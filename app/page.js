@@ -1,11 +1,13 @@
 import Image from "next/image";
 import Navbar from "./components/Navbar";
+import Main from "./components/Main"
 
 export default function Home() {
   return (
-    <div className="main-div">
+    <div >
        <h1></h1>
-       <Navbar />
+       <Navbar/> 
+       <Main/> 
     </div> 
       
   );
