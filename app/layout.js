@@ -1,6 +1,7 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Link from "next/link";
+import Searchinput from "./components/Searchinput";
 const inter = Inter({ subsets: ["latin"] });
 
  export const metadata = {
@@ -11,9 +12,12 @@ const inter = Inter({ subsets: ["latin"] });
 export default function mainLayout({ children }) {
   return (
     <html lang="en">
-      <body>
-         {children}
-      </body>
+        <body> 
+        <div >
+            
+          </div>
+        <div> {children} </div> 
+     </body>
     </html>
   );
 }
