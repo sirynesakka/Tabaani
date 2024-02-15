@@ -5,14 +5,32 @@ import Image from "next/image";
 
 import Logo from "../../public/Logo.png";
 import { IoIosMenu, IoIosClose } from "react-icons/io";
-import { useState } from "react";
+import { useState } from "react"; 
+import {auth}   from "../firebase"; 
+import {signInWithPopup,GoogleAuthProvider} from "firebase/auth";
+import {useAuthState} from "react-firebase-hooks/auth"
+
+
+
+
+
 
 const Navbar =() => {
   const [menuIcon, setIcon] = useState(false);
   const [header, setHeader] = useState(false);
+  const [user,setuser]= useAuthState(auth);
 
   const handleNav = () => {
     setIcon(!menuIcon);}
+  
+    const googleAuth = new GoogleAuthProvider();
+    const login = async()=>{
+    const result = await signInWithPopup(auth, googleAuth);};
+    useEffect(()=>{
+      console.log(user)},
+      [user]);
+
+
 
     
   const scollHeader = () => {
@@ -43,7 +61,7 @@ const Navbar =() => {
           height={60} />
 
         <div>
-          <ul className="hidden md:flex text-2xl lg:text-[20px]">
+        <ul className="hidden md:flex text-2xl lg:text-[20px]">
             <Link href="/home">
               <div className="ml-10  font-bold  lg:mr-8 mr-4  text-blue-800 hover:text-[#659be2]  ">
                 Accueil
@@ -63,15 +81,22 @@ const Navbar =() => {
               <div className="ml-10 rounded-full font-bold  mr-4  text-blue-800 hover:text-[#659be2]">
                 contact
               </div>
-            </Link>
-           </ul>
-           <div className="hidden md:flex"> 
-              <div className="flex"> 
-                   
-              </div>
+            </Link> 
+            <div>
+             <button onClick={handleNav , login}  className="bg-[#659be2] ml-10 rounded-full font-bold  mr-4  text-blue-800 hover:text-[#659be2] ">Login</button>
+             </div>
 
-           </div>
+             <div> 
+                   <Link href="/login" onClick={handleNav} > 
+                      <button className="bg-[#659be2] ml-10 rounded-full font-bold  mr-4  text-blue-800 hover:text-[#659be2]">Signup</button>
+                   </Link>
+
+                </div>
+                
+         </ul>
+          
         </div>
+
         <div onClick={handleNav} className="flex md:hidden">
           {menuIcon ? (
             <IoIosClose size={25} className="text-[#659be2] " />
@@ -105,10 +130,13 @@ const Navbar =() => {
                 </li>
 
                 </ul> 
-                <div className="flex flex-col justify-center items-center mt-16 "> 
-                   <Link href="/login" onClick={handleNav} > 
-                      <button className="bg-[#659be2] text-slate-800 rounded-full font-bold py-3 w-[250px] mb-5 ">Login</button>
-                   </Link>
+                <div className="flex flex-col justify-center items-center mt-16 ">  
+                      <button onClick={handleNav , login}  className="bg-[#659be2] text-slate-800 rounded-full font-bold py-3 w-[250px] mb-5 ">Login</button>
+                      <div onClick={( ) => auth.signOut()}>
+                      {user ? "welcome ," + user.displayName : ""}
+                      </div>
+                </div>
+                <div> 
                    <Link href="/login" onClick={handleNav} > 
                       <button className="bg-[#659be2] text-slate-800 rounded-full font-bold py-3 w-[250px] mb-5 ">Signup</button>
                    </Link>
