@@ -6,17 +6,20 @@ import SearchPage from "./search/page";
 import Searchinput from "./components/Searchinput";
 
 
+
 export default function Home() {
   return (
-    <div >
+    <div>
+
       
        <Navbar/> 
        <Main/> 
        <SearchPage/> 
+      
+       </div>
+
        
-       
-          
-        </div> 
+
         
       
   );

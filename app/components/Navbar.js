@@ -18,17 +18,12 @@ import {useAuthState} from "react-firebase-hooks/auth"
 const Navbar =() => {
   const [menuIcon, setIcon] = useState(false);
   const [header, setHeader] = useState(false);
-  const [user,setuser]= useAuthState(auth);
+  
 
   const handleNav = () => {
     setIcon(!menuIcon);}
   
-    const googleAuth = new GoogleAuthProvider();
-    const login = async()=>{
-    const result = await signInWithPopup(auth, googleAuth);};
-    useEffect(()=>{
-      console.log(user)},
-      [user]);
+   
 
 
 
@@ -63,32 +58,35 @@ const Navbar =() => {
         <div>
         <ul className="hidden md:flex text-2xl lg:text-[20px]">
             <Link href="/home">
-              <div className="ml-10  font-bold  lg:mr-8 mr-4  text-blue-800 hover:text-[#659be2]  ">
+              <div className="ml-2 font-bold  lg:mr-2 mr-4 px-8 py-1 text-blue-800 hover:text-[#659be2]  ">
                 Accueil
               </div>
             </Link>
             <Link href="/Destination">
-              <div className="ml-10 rounded-full font-bold  mr-4   text-blue-800 hover:text-[#659be2] ">
+              <div className="ml-2 rounded-full lg:mr-2 font-bold  mr-4 px-8 py-1  text-blue-800 hover:text-[#659be2] ">
                 Destination
               </div>
             </Link>
             <Link href="/Review">
-              <div className="ml-10 rounded-full  font-bold  mr-4  text-blue-800 hover:text-[#659be2]">
+              <div className="ml-2 rounded-full lg:mr-2 px-8 py-1 font-bold  mr-4  text-blue-800 hover:text-[#659be2]">
                 Review
               </div>
             </Link>
             <Link href="/Contact">
-              <div className="ml-10 rounded-full font-bold  mr-4  text-blue-800 hover:text-[#659be2]">
+              <div className="ml-2 lg:mr-2 rounded-full font-bold px-8 py-1 mr-4  text-blue-800 hover:text-[#659be2]">
                 contact
               </div>
             </Link> 
             <div>
-             <button onClick={handleNav , login}  className="bg-[#659be2] ml-10 rounded-full font-bold  mr-4  text-blue-800 hover:text-[#659be2] ">Login</button>
+                 <Link href="/Login" onClick={handleNav} > 
+                      <button onClick={handleNav }  className=" border-2 border-blue-800  ml-10 lg:mr-2 px-8 py-1 rounded-full font-bold  mr-10  text-blue-800 hover:text-[#659be2] ">Login</button>
+                 </Link>
+            
              </div>
 
              <div> 
-                   <Link href="/login" onClick={handleNav} > 
-                      <button className="bg-[#659be2] ml-10 rounded-full font-bold  mr-4  text-blue-800 hover:text-[#659be2]">Signup</button>
+                   <Link href="/Signup" onClick={handleNav} > 
+                      <button className=" border-2 border-blue-800  ml-10 lg:mr-2 px-8 py-1 rounded-full font-bold  mr-10  text-blue-800 hover:text-[#659be2]">Sign up</button>
                    </Link>
 
                 </div>
@@ -130,15 +128,17 @@ const Navbar =() => {
                 </li>
 
                 </ul> 
-                <div className="flex flex-col justify-center items-center mt-16 ">  
-                      <button onClick={handleNav , login}  className="bg-[#659be2] text-slate-800 rounded-full font-bold py-3 w-[250px] mb-5 ">Login</button>
-                      <div onClick={( ) => auth.signOut()}>
-                      {user ? "welcome ," + user.displayName : ""}
-                      </div>
+
+                <div >  
+                      <Link href="/Login" onClick={handleNav} > 
+                      <button onClick={handleNav }  className="border-2 border-white  text-slate rounded-full font-bold py-3 w-[250px] mb-5 hover:text-[#659be2] ">Login</button>
+                      </Link>
+                      
                 </div>
+
                 <div> 
-                   <Link href="/login" onClick={handleNav} > 
-                      <button className="bg-[#659be2] text-slate-800 rounded-full font-bold py-3 w-[250px] mb-5 ">Signup</button>
+                   <Link href="/Signup" onClick={handleNav} > 
+                      <button className="border-2 border-white  text-slate  rounded-full font-bold py-3 w-[250px] mb-5 hover:text-[#659be2] ">Signup</button>
                    </Link>
 
                 </div>
