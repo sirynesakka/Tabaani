@@ -3,7 +3,12 @@
 @tailwind utilities;
 
 .custom-img{
-    background-image: url(https://www.tacapes-tours.com/wp-content/uploads/2022/07/Tunisian-Food-display.jpeg) ;
+    background-image: url(https://img.freepik.com/photos-gratuite/vue-dessus-delicieux-plov-differents-raisins-secs-interieur-plaque-espace-sombre_140725-97885.jpg?w=1380&t=st=1708089580~exp=1708090180~hmac=0e2fafe7f02d213026862e09d952ca4f9a382435f98573e7d863f339006b398f) ;
+    background-repeat: no-repeat;
+    object-fit: cover;
+    background-size: 100%;
+    
+
 }
 
 .slick-slide>div{

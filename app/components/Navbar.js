@@ -47,8 +47,8 @@ const Navbar =() => {
   
   
   return (
-    <nav className={header ? "fixed w-[100%] bg-[#8addf8]" : "bg-[transparent]"}>
-      <div className="flex justify-between items-center h-full w-full px-4 2xl:px-16 md:text-2xl xl:text-3xl">
+    <nav className={header ? "z-10 fixed w-[100%] bg-[#d0d7da]" : "bg-[transparent] z-90"}>
+      <div className="flex justify-between items-center h-full w-full px-4 2xl:px-16 md:text-2xl xl:text-3xl z-50">
         <Image 
         src="/Logo.png"
          alt="logo" 
@@ -80,7 +80,7 @@ const Navbar =() => {
             <div>
                  <Link href="/Login" onClick={handleNav} > 
                       <button onClick={handleNav }  className=" border-2 border-blue-800  ml-10 lg:mr-2 px-8 py-1 rounded-full font-bold  mr-10  text-blue-800 hover:text-[#659be2] ">Login</button>
-                 </Link>
+                 </Link> 
             
              </div>
 

@@ -2,10 +2,11 @@
 "use client"
 import React, { useEffect } from "react";
 import Link from "next/link";
-import Searchinput from "./Searchinput";
-import MySlider from "../components2/MySlider"
 import Cadre from "../components2/cadre";
-
+import Temoignages from "../components3/page";
+import Footer from "../components4/page";
+import Search1 from "../search/page";
+import MySlider from "../components2/MySlider"
 
 
 
@@ -22,7 +23,7 @@ const Main = () => {
 
     
              <div className="h-[100vh] flex justify-center items-center flex-col text-center custom-img">
-                 <Searchinput/>
+                 <Search1 /> 
                  
             </div> 
 
@@ -44,7 +45,9 @@ const Main = () => {
                     Top 6 Restaurants in Tunisia 
                     </h1>
                    
-                    <MySlider/> 
+                   <MySlider className="z-1" />  
+                   <Temoignages /> 
+                    <Footer/> 
                     
                     
                     

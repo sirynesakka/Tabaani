@@ -52,26 +52,15 @@ const MySlider = () => {
          },
         ],
 
-      
-
-
-
-
-
-
-
-
-
-
        
 }
 
 
     return (
-        <div className="relative"> 
+        <div className="z-0"> 
          
          
-             <Slider {...settings}>
+             <Slider {...settings} className="z-0 ">
                 {data.map((el,index) => <Cadre key={index} img={el.img}/>) }
              </Slider>
         </div>
