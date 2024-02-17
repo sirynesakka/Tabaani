@@ -47,7 +47,7 @@ const Navbar =() => {
   
   
   return (
-    <nav className={header ? "z-10 fixed w-[100%] bg-[#d0d7da]" : "bg-[transparent] z-90"}>
+    <nav className={header ? "z-10 fixed w-full bg-red-50 " : " bg-red-50"}>
       <div className="flex justify-between items-center h-full w-full px-4 2xl:px-16 md:text-2xl xl:text-3xl z-50">
         <Image 
         src="/Logo.png"

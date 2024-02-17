@@ -1,9 +1,14 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-.custom-img{
-    background-image: url(https://img.freepik.com/photos-gratuite/vue-dessus-delicieux-plov-differents-raisins-secs-interieur-plaque-espace-sombre_140725-97885.jpg?w=1380&t=st=1708089580~exp=1708090180~hmac=0e2fafe7f02d213026862e09d952ca4f9a382435f98573e7d863f339006b398f) ;
+@font-face {
+    font-family: 'Maharlika';
+    font-style: normal;
+    font-weight: 400;
+    src: url('https://fonts.cdnfonts.com/css/maharlika') format('woff');
+  }
+  .custom-img{
+    background-image: url("../public/ph1.png") ;
     background-repeat: no-repeat;
     object-fit: cover;
     background-size: 100%;

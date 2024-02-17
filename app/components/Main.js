@@ -5,7 +5,6 @@ import Link from "next/link";
 import Cadre from "../components2/cadre";
 import Temoignages from "../components3/page";
 import Footer from "../components4/page";
-import Search1 from "../search/page";
 import MySlider from "../components2/MySlider"
 
 
@@ -23,7 +22,7 @@ const Main = () => {
 
     
              <div className="h-[100vh] flex justify-center items-center flex-col text-center custom-img">
-                 <Search1 /> 
+               
                  
             </div> 
 
