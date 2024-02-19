@@ -8,8 +8,8 @@ const Temoignages = () => {
 
 
     return( 
-        <div className="container mx-auto my-24 md:px-6">
-      <section className="text-center mb-32">
+      <div className="container mx-auto my-24 md:px-6">
+      <section className=" py-20  text-center mb-32">
         <h2 className="font-bold text-3xl mb-12">Témoignages</h2>
 
         <div className="grid md:grid-cols-3 gap-x-6 lg:gap-x-12">

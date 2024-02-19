@@ -6,6 +6,7 @@ import Cadre from "../components2/cadre";
 import Temoignages from "../components3/page";
 import Footer from "../components4/page";
 import MySlider from "../components2/MySlider"
+import Aboutus from "../conponent5/page";
 
 
 
@@ -40,10 +41,11 @@ const Main = () => {
          </div> 
 
             <div>
-                <h1 className="text-3xl font-bold text-center mt-[50px] mb-[50px] underline">
+              
+                   <Aboutus/>
+                   <h1 className=" py-10  text-3xl font-bold text-center mt-[50px] mb-[50px] underline">
                     Top 6 Restaurants in Tunisia 
                     </h1>
-                   
                    <MySlider className="z-1" />  
                    <Temoignages /> 
                     <Footer/> 
