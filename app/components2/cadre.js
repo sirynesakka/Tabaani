@@ -3,7 +3,7 @@ import React from "react";
 
 const Cadre = ({img}) => {
     return(
-        <div className="w-[100%] bg-red-50  shadow-x1">
+        <div className=" relative w-[100%] bg-red-50  shadow-x1">
            <div>
               <img className="h-[250px] w-[100%] object-cover" src={img} alt="dp"/>
               <div className="flex flex-col gap-4 p-[20px]">
@@ -21,7 +21,10 @@ const Cadre = ({img}) => {
                       <a className="text-white" href="#"> Read more 
 
                       </a>
-                   </div>
+                   </div>  
+
+
+            
 
               
               

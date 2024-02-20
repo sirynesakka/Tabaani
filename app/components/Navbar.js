@@ -59,13 +59,39 @@ const Navbar =() => {
         <ul className="hidden md:flex text-2xl lg:text-[20px]">
             <Link href="/home">
               <div className="ml-2 font-bold  lg:mr-2 mr-4 px-8 py-1 text-blue-800 hover:text-[#659be2]  ">
-                Accueil
+                Accueile 
               </div>
             </Link>
-            <Link href="/Destination">
-              <div className="ml-2 rounded-full lg:mr-2 font-bold  mr-4 px-8 py-1  text-blue-800 hover:text-[#659be2] ">
-                Destination
-              </div>
+
+
+            <Link href="/Destination"> 
+                       <div class="relative inline-block text-center">
+                       <div class="group">
+                       <div className="ml-2 rounded-full lg:mr-2 font-bold  mr-4 px-8 py-1  text-blue-800 hover:text-[#659be2] ">
+                                  Destination
+                              </div>
+
+                        
+                              
+
+
+
+                           
+                           <div
+            class="absolute left-0  w-40 mt-1 origin-top-left  bg-white divide-y divide-gray-100 rounded-s-none shadow-lg opacity-20 invisible group-hover:opacity-100 group-hover:visible  duration-500">
+            <div class="py-1">
+                <Link href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Mahdia </Link>
+                <Link href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">sousse </Link>
+                <Link href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Option 3</Link>
+            </div>
+        </div> 
+        </div>
+        </div>
+        
+        
+
+
+
             </Link>
             <Link href="/Review">
               <div className="ml-2 rounded-full lg:mr-2 px-8 py-1 font-bold  mr-4  text-blue-800 hover:text-[#659be2]">
@@ -116,7 +142,9 @@ const Navbar =() => {
                 </li>
                 
                 <li onClick={handleNav} className="py-5 hover:text-[#659be2] cursor-pointer">
-                  <Link href="/Accuil">Destination</Link>
+                  
+                 
+
                 </li> 
 
                 <li onClick={handleNav} className="py-5 hover:text-[#659be2] cursor-pointer">
