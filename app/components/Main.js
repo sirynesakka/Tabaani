@@ -23,10 +23,10 @@ const Main = () => {
 
     
 <div className="h-[100vh] flex justify-center items-center flex-col text-center custom-img">
-     <div className="bg-white w-full md:w-[50%] lg:w-[25%] pr-[4px] rounded-[6px] mt-4 md:mt-10 flex flex-col md:flex-row items-center">
-     <input type="text" className="bg-white outline-none w-full md:w-3/4 text-black py-3 md:py-4 pl-4 md:pl-6 rounded-full md:rounded-[40px] mb-4 md:mb-0" placeholder="chercher la ville" />
-    <button className="bg-black py-2 md:py-3 px-4 md:px-6 text-white rounded-full md:rounded-[12px]">Recherche</button>
-     </div>
+              <div>
+                <button className="mt-16 text-white  uppercase py-3 text-sm px-10 border border-red  hover:bg-blue-200 hover:bg-opacity-10">Explorez</button>
+               </div>
+     
 </div>
 
         <div>
