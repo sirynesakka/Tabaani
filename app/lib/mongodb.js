@@ -3,8 +3,12 @@ import mongoose from "mongoose";
 const connectDB = async () => {
   try {
     if (mongoose.connection.readyState === 0) {
-      await mongoose.connect(process.env.MONGODB_URI);
-      console.log("db connected");
+    const connex =   await mongoose.connect(process.env.MONGODB_URI , {
+        pass: "Tabaani-password",
+        dbName: "Tabaani",
+        user: "Tabaani-dev"
+      });
+      console.log("db connected", connex);
     }
   } catch (error) {
     console.log(error);

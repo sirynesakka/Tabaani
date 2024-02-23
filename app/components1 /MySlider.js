@@ -1,8 +1,8 @@
 import React from "react"; 
-import Cadre from "./cadre"
+import Cadre from "./Cadre"
 import Slider from "react-slick"
-import NextArrow from "../components2/NextArrow"
-import PrevArrow from "../components2/PrevArrow"
+import NextArrow from "./NextArrow"
+import PrevArrow from "./PrevArrow"
 
 
 const data = [

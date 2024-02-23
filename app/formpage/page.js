@@ -1,5 +1,5 @@
 import React from "react"; 
-import ContactForm from "../component/ContactForm"
+import ContactForm from "../formpage/ContactForm"
 
 const FormPage = () => {
     return (

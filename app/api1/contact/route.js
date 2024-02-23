@@ -9,6 +9,7 @@ export async function POST(req) {
   try {
     await connectDB();
     await Contact.create({ fullname, email, message });
+    console.log(err);
 
     return NextResponse.json({
       msg: ["Message sent successfully"],
@@ -23,7 +24,9 @@ export async function POST(req) {
       console.log(errorList);
       return NextResponse.json({ msg: errorList });
     } else {
-      return NextResponse.json({ msg: ["Unable to send message."] });
+      err = error;
+      console.log(err);
+      NextResponse.json({ msg: ["Unable to send message."] });
     }
   }
 }
