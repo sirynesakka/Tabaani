@@ -8,14 +8,18 @@ export async function POST(req) {
 
   try {
     await connectDB();
-    await Contact.create({ fullname, email, message });
-    console.log(err);
+   const res = await Contact.create({ fullname, email, message });
+
 
     return NextResponse.json({
       msg: ["Message sent successfully"],
       success: true,
     });
-  } catch (error) {
+
+  } 
+  
+  
+  catch (error) {
     if (error instanceof mongoose.Error.ValidationError) {
       let errorList = [];
       for (let e in error.errors) {
@@ -24,9 +28,23 @@ export async function POST(req) {
       console.log(errorList);
       return NextResponse.json({ msg: errorList });
     } else {
-      err = error;
-      console.log(err);
-      NextResponse.json({ msg: ["Unable to send message."] });
+      return  NextResponse.json({ msg: ["Unable to send message."] });
     }
   }
-}
+} 
+
+
+export async function GET(req) {
+  try {
+    await connectDB();
+
+    const contact = await Contact.find();
+
+    return NextResponse.json({
+      contact,
+      success: true,
+    });
+  } catch (error) {
+    console.error(error);
+    return NextResponse.json({ msg: ["Unable to retrieve contact data."], success: false });
+  }}

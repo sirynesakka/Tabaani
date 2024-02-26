@@ -24,7 +24,13 @@ export default function Home() {
     
 <div className="h-[100vh] flex justify-center items-center flex-col text-center custom-img">
               <div>
-                <button className="mt-16 text-white  uppercase py-3 text-sm px-10 border border-red  hover:bg-blue-200 hover:bg-opacity-10">Explorez</button>
+              <Link href="/cities" > 
+              <div>
+                <button className="mt-16 text-black uppercase py-3 text-sm px-10 border border-blackhover:bg-opacity-10 transition ease-in-out delay-150 bg-white hover:-translate-y-1 hover:scale-110 hover:bg-black-500 duration-300">Explorez</button>
+               </div>
+              
+              
+               </Link>
                </div>
      
 </div>

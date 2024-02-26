@@ -28,9 +28,9 @@ export default function ContactForm() {
       }),
     });
 
-    const { msg, success } = await res.json();
-    setError(msg);
-    setSuccess(success);
+      const { msg, success } = await res.json();
+      setError(msg);
+       setSuccess(success);
 
     if (success) {
       setFullname("");
@@ -94,7 +94,7 @@ export default function ContactForm() {
               {e}
             </div>
           ))}
-      </div>
+      </div> 
     </>
   );
 }
