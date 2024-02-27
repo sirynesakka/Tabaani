@@ -1,7 +1,7 @@
 import React from "react";
-import Navbar from "../components1 /Navbar";
+import Navbar from "../components1/Navbar";
 import Card from "../cities/Card"; 
-import Footer from "../components1 /Footer";
+import Footer from "../components1/Footer";
 
 const Cities  = () => {
     return ( 
