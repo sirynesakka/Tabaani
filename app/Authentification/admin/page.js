@@ -14,7 +14,7 @@ const AdminPage = () => {
         <div>
 
          
-          hello {user.name}! <a href="/api/auth/logout">Logout</a>
+          welcome {user.name}! <a href="/api/auth/logout">Logout</a>
         </div>
       );
     }

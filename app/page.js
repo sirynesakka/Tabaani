@@ -2,13 +2,13 @@
 
 "use client" 
 import Image from "next/image";
-import Navbar from "../app/components1 /Navbar";
+import Navbar from "../app/components1/Navbar";
 import React, { useEffect } from "react";
 import Link from "next/link";
-import Temoignages from "../app/components1 /Temoignages";
-import Footer from "../app/components1 /Footer";
-import MySlider from "../app/components1 /MySlider"
-import Aboutus from "../app/components1 /Aboutus";
+import Temoignages from "../app/components1/Temoignages";
+import Footer from "../app/components1/Footer";
+import MySlider from "../app/components1/MySlider"
+import Aboutus from "../app/components1/Aboutus";
 
 
 
