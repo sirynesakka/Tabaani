@@ -1,51 +1,185 @@
 import React from "react";
+import Link from "next/link";
 
 const Ajouterplace = () => {
-    return ( <form>
-        <div class="bg-indigo-50 min-h-screen md:px-20 pt-6">
-          <div class=" bg-white rounded-md px-6 py-10 max-w-2xl mx-auto">
-            <h1 class="text-center text-2xl font-bold text-gray-500 mb-10">Ajouter une place</h1>
-            <div class="space-y-4">
-              <div>
-                <label for="title" class="text-lx font-serif">Nom:</label>
-                <input type="text" placeholder="title" id="title" class="ml-2 outline-none py-1 px-2 text-md border-2 rounded-md" />
-              </div>
+    return (
+      
+   <div class="flex items-center justify-center p-12">
+  <div class="mx-auto w-full max-w-[550px]">
+
+
+    <form >
+      <div class="-mx-3 flex flex-wrap">
 
 
 
-              <div>
-                <label for="description" class="block mb-2 text-lg font-serif">Quelle catégorie décrit le mieux cet endroit:</label>
-                <button class="bg-transparent hover:bg-blue text-blue-dark font-semibold hover:text-blue-400  py-2 px-4 border border-blue hover:border-transparent rounded mr-2">
-		            Restaurant 
-		         </button>
-                 <button class="bg-transparent hover:bg-blue text-blue-dark font-semibold hover:text-blue-400   py-2 px-4 border border-blue hover:border-transparent rounded mr-2">
-		          café
-		        </button>
-              </div>
-
-
-
-
-
-              <div>
-                <label for="name" class="text-lx font-serif">Addresse:</label>
-                <input type="text" placeholder="name" id="name" class="ml-2 outline-none py-1 px-2 text-md border-2 rounded-md" />
-              </div>
-              <div>
-                <label for="email" class="text-lx font-serif">ville:</label>
-                <input type="text" placeholder="name" id="email" class="ml-2 outline-none py-1 px-2 text-md border-2 rounded-md" />
-              </div>
-              <button class=" px-6 py-2 mx-auto block rounded-md text-lg font-semibold text-indigo-100 bg-indigo-600  ">ADD POST</button>
-            </div>
+        <div class="w-full px-3 sm:w-1/2">
+          <div class="mb-5">
+            <label
+              for="fName"
+              class="mb-3 block text-base font-medium text-[#07074D]" >
+              Nom du manager 
+            </label>
+            <input
+              type="text"
+              name="fName"
+              id="fName"
+              placeholder="First Name"
+              class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+            />
           </div>
         </div>
-      </form>
+
+
+
+
+        <div class="w-full px-3 sm:w-1/2">
+          <div class="mb-5">
+            <label
+              for="lName"
+              class="mb-3 block text-base font-medium text-[#07074D]">
+              Nom 
+            </label>
+            <input
+              type="text"
+              name="lName"
+              id="lName"
+              placeholder="Last Name"
+              class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"/>
+          </div>
+        </div>
+        
+
+      
+
+
+
+    <div class="w-full px-3 sm:w-1/2">
+          <div class="mb-5">
+            <label
+              for="lName"
+              class="mb-3 block text-base font-medium text-[#07074D]">
+              Sélectioner le type : 
+            </label>
+            <Link href="/ajouter" > <select class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md">
+      <option>Réstaurent </option>
+        <option>café </option>
+        <option>Les deux </option>  
+      </select>
+      </Link>
+          </div>
+        </div> 
 
 
 
 
 
 
+
+
+
+
+
+
+      </div>
+      <div class="mb-5">
+        <label
+          for="guest"
+          class="mb-3 block text-base font-medium text-[#07074D]"
+        >
+          How many guest are you bringing?
+        </label>
+        <input
+          type="number"
+          name="guest"
+          id="guest"
+          placeholder="5"
+          min="0"
+          class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+        />
+      </div>
+
+      <div class="-mx-3 flex flex-wrap">
+        <div class="w-full px-3 sm:w-1/2">
+          <div class="mb-5">
+            <label
+              for="date"
+              class="mb-3 block text-base font-medium text-[#07074D]"
+            >
+              Date
+            </label>
+            <input
+              type="date"
+              name="date"
+              id="date"
+              class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+            />
+          </div>
+        </div>
+        <div class="w-full px-3 sm:w-1/2">
+          <div class="mb-5">
+            <label
+              for="time"
+              class="mb-3 block text-base font-medium text-[#07074D]"
+            >
+              Time
+            </label>
+            <input
+              type="time"
+              name="time"
+              id="time"
+              class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+            />
+          </div>
+        </div>
+      </div>
+
+      <div class="mb-5">
+        <label class="mb-3 block text-base font-medium text-[#07074D]">
+          Are you coming to the event?
+        </label>
+        <div class="flex items-center space-x-6">
+          <div class="flex items-center">
+            <input
+              type="radio"
+              name="radio1"
+              id="radioButton1"
+              class="h-5 w-5"
+            />
+            <label
+              for="radioButton1"
+              class="pl-3 text-base font-medium text-[#07074D]"
+            >
+              Yes
+            </label>
+          </div>
+          <div class="flex items-center">
+            <input
+              type="radio"
+              name="radio1"
+              id="radioButton2"
+              class="h-5 w-5"
+            />
+            <label
+              for="radioButton2"
+              class="pl-3 text-base font-medium text-[#07074D]"
+            >
+              No
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <button
+          class="hover:shadow-form rounded-md bg-[#6A64F1] py-3 px-8 text-center text-base font-semibold text-white outline-none"
+        >
+          Submit
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
 
     )
 }

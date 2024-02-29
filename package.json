@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@auth0/nextjs-auth0": "^3.5.0",
+    "@headlessui/react": "^1.7.18",
     "@react-google-maps/api": "^2.19.3",
     "dotenv": "^16.4.4",
     "firebase": "^10.8.0",
