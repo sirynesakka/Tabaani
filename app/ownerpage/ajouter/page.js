@@ -1,14 +1,60 @@
+"use client"
 import React from "react";
 import Link from "next/link";
+import { useState } from "react";
+
 
 const Ajouterplace = () => {
-    return (
+ 
+  const [fName, setfName] = useState("");
+  const [lName, setlName] = useState("");
+  const [qName, setqName] = useState("");
+  const [message, setmessage] = useState("");
+  const [error, setError] = useState(null);
+  const [success, setSuccess] = useState(false);
+  
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    console.log("Non du manager: ", fName);
+    console.log("Nom: ", lName);
+    console.log("Quelle est votre type : ", qName);
+    console.log("message ", message); 
+
+
+    const res = await fetch("/api1/ajouter", {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify({
+        fName,
+        lName,
+        qName,
+        message,
+      }),
+    });
+   
+    const { msg, success } = await res.json();
+    setError(msg);
+     setSuccess(success);
+
+  if (success) {
+    setfName("");
+    setlName("");
+    setmessage("");
+  }
+ } ;  
+
+return (
+
+      
       
    <div class="flex items-center justify-center p-12">
   <div class="mx-auto w-full max-w-[550px]">
 
 
-    <form >
+    <form  onSubmit={handleSubmit}>
       <div class="-mx-3 flex flex-wrap">
 
 
@@ -20,7 +66,8 @@ const Ajouterplace = () => {
               class="mb-3 block text-base font-medium text-[#07074D]" >
               Nom du manager 
             </label>
-            <input
+            <input onChange={(e) => setfName(e.target.value)}
+              value={fName}
               type="text"
               name="fName"
               id="fName"
@@ -40,7 +87,8 @@ const Ajouterplace = () => {
               class="mb-3 block text-base font-medium text-[#07074D]">
               Nom 
             </label>
-            <input
+            <input  onChange={(e) => setlName(e.target.value)}
+              value={lName}
               type="text"
               name="lName"
               id="lName"
@@ -53,122 +101,45 @@ const Ajouterplace = () => {
       
 
 
-
-    <div class="w-full px-3 sm:w-1/2">
+        <div class="w-full px-3 sm:w-1/2">
           <div class="mb-5">
             <label
               for="lName"
               class="mb-3 block text-base font-medium text-[#07074D]">
-              Sélectioner le type : 
+              Quelle est votre type :  
             </label>
-            <Link href="/ajouter" > <select class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md">
-      <option>Réstaurent </option>
-        <option>café </option>
-        <option>Les deux </option>  
-      </select>
-      </Link>
+            <input  onChange={(e) => setqName(e.target.value)}
+              value={qName}
+              type="text"
+              name="lName"
+              id="qName"
+              placeholder="type"
+              class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md "/>
           </div>
-        </div> 
+        </div>
 
+</div>
+ 
 
-
-
-
-
-
-
-
-
-
-
-      </div>
-      <div class="mb-5">
-        <label
-          for="guest"
-          class="mb-3 block text-base font-medium text-[#07074D]"
-        >
-          How many guest are you bringing?
-        </label>
-        <input
-          type="number"
-          name="guest"
-          id="guest"
-          placeholder="5"
-          min="0"
-          class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
-        />
-      </div>
-
-      <div class="-mx-3 flex flex-wrap">
-        <div class="w-full px-3 sm:w-1/2">
+<div class="w-full px-3 sm:w-1/2">
           <div class="mb-5">
             <label
-              for="date"
-              class="mb-3 block text-base font-medium text-[#07074D]"
-            >
-              Date
+              for="lName"
+              class="mb-3 block text-base font-medium text-[#07074D]">
+              message  
             </label>
-            <input
-              type="date"
-              name="date"
-              id="date"
-              class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
-            />
+            <textarea  onChange={(e) => setmessage(e.target.value)}
+              value={message}
+              type="text"
+              name="lName"
+              id="message"
+              placeholder="..."
+              class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"/>
           </div>
         </div>
-        <div class="w-full px-3 sm:w-1/2">
-          <div class="mb-5">
-            <label
-              for="time"
-              class="mb-3 block text-base font-medium text-[#07074D]"
-            >
-              Time
-            </label>
-            <input
-              type="time"
-              name="time"
-              id="time"
-              class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
-            />
-          </div>
-        </div>
-      </div>
+  
 
-      <div class="mb-5">
-        <label class="mb-3 block text-base font-medium text-[#07074D]">
-          Are you coming to the event?
-        </label>
-        <div class="flex items-center space-x-6">
-          <div class="flex items-center">
-            <input
-              type="radio"
-              name="radio1"
-              id="radioButton1"
-              class="h-5 w-5"
-            />
-            <label
-              for="radioButton1"
-              class="pl-3 text-base font-medium text-[#07074D]"
-            >
-              Yes
-            </label>
-          </div>
-          <div class="flex items-center">
-            <input
-              type="radio"
-              name="radio1"
-              id="radioButton2"
-              class="h-5 w-5"
-            />
-            <label
-              for="radioButton2"
-              class="pl-3 text-base font-medium text-[#07074D]"
-            >
-              No
-            </label>
-          </div>
-        </div>
-      </div>
+     
 
       <div>
         <button
@@ -177,10 +148,29 @@ const Ajouterplace = () => {
           Submit
         </button>
       </div>
-    </form>
+
+      
+    </form> 
+
+    <div>
+    <div className="bg-slate-100 flex flex-col">
+        {error &&
+          error.map((e , index) => (
+            <div key={index}
+              className={`${
+                success ? "text-green-800" : "text-red-600"
+              } px-5 py-2`}
+            >
+              {e}
+            </div>
+          ))}
+      </div> 
+      </div>
+
+
   </div>
 </div>
 
     )
-}
+} 
 export default Ajouterplace;
