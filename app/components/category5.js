@@ -1,4 +1,3 @@
-
 "use client"
 import React from "react";
 import Container from "../components/container"
@@ -11,37 +10,31 @@ import Categorybox from "../components/categorybox"
 
 
 
-export const categories2 = [
+export const categories5 = [
     {
-      label: 'Petit-déjeuner',
+      label: 'Familles',
       icon: IoIosCafe ,
       description: 'This property is close to the beach!',
     },
     {
-      label: 'Brunch',
+      label: 'Romantique',
       icon: IoIosRestaurant ,
       description: 'This property is has windmills!',
     },
     {
-      label: 'Déjeuner',
-      icon: IoIosRestaurant ,
-      description: 'This property is has windmills!',
-    },
-    {
-      label: 'Diner',
-      icon: IoIosRestaurant ,
-      description: 'This property is has windmills!',
-    },
-   
+        label: 'Enfants',
+        icon: IoIosRestaurant ,
+        description: 'This property is has windmills!',
+      },
+
     
   ]
- 
   
   
 
 
-const Category2 = () => {
-  const params = useSearchParams();
+const Category5 = () => {
+    const params = useSearchParams();
   const category = params?.get('category');
   const pathname = usePathname();
   const isMainPage = pathname === '/components';
@@ -58,16 +51,14 @@ const Category2 = () => {
           justify-between
           overflow-x-auto
         ">
-            {categories2.map((item) => (
+            {categories5.map((item) => (
           <Categorybox 
             key={item.label}
             label={item.label}
             icon={item.icon}
             selected={category === item.label}
-            required
           />
         ))}
-        
 
             </div>
 
@@ -76,4 +67,4 @@ const Category2 = () => {
 
     )
 }
-export default Category2; 
+export default Category5; 

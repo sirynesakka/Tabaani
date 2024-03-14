@@ -15,7 +15,7 @@ import {useAuthState} from "react-firebase-hooks/auth"
 
 
 
-const Navbar =() => {
+const Navbar2 =() => {
   const [menuIcon, setIcon] = useState(false);
   const [header, setHeader] = useState(false);
   
@@ -57,6 +57,13 @@ const Navbar =() => {
 
         <div>
         <ul className="hidden md:flex text-2xl lg:text-[20px]">
+        <Link href="/ownerpage">
+              <div className="ml-2 font-bold  lg:mr-2 mr-4 px-8 py-1 text-blue-800 hover:text-[#659be2]  ">
+                Dashboard
+              </div>
+            </Link>
+
+
             <Link href="/home">
               <div className="ml-2 font-bold  lg:mr-2 mr-4 px-8 py-1 text-blue-800 hover:text-[#659be2]  ">
                 Accueile 
@@ -112,16 +119,7 @@ const Navbar =() => {
 
              <div> 
                    <Link href="/api/auth/login" onClick={handleNav} > 
-                      <button className=" border-2 border-blue-800  ml-10 lg:mr-2 px-8 py-1 rounded-full font-bold  mr-10  text-blue-800 hover:text-[#659be2]">Sign up as user </button>
-                   </Link> 
-           
-
-                </div>
-
-               
-                <div> 
-                   <Link href="/api/auth/logout" onClick={handleNav} > 
-                      <button className=" border-2 border-blue-800  ml-10 lg:mr-2 px-8 py-1 rounded-full font-bold  mr-10  text-blue-800 hover:text-[#659be2]">logout </button>
+                      <button className=" border-2 border-blue-800  ml-10 lg:mr-2 px-8 py-1 rounded-full font-bold  mr-10  text-blue-800 hover:text-[#659be2]">Sign up</button>
                    </Link>
 
                 </div>
@@ -187,4 +185,4 @@ const Navbar =() => {
     </nav>
   );
 }
-export default Navbar;
+export default Navbar2;

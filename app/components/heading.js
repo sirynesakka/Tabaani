@@ -17,7 +17,7 @@ const Heading = ({
         <div className="font-light text-neutral-500 mt-2">
           {subtitle}
         </div>
-        <div className="font-light text-black  mt-2">
+        <div className="font-bold  text-zinc-800 text-1xl underline   mt-2">
           {subtitle2}
         </div>
       </div>

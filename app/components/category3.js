@@ -1,4 +1,3 @@
-
 "use client"
 import React from "react";
 import Container from "../components/container"
@@ -11,37 +10,45 @@ import Categorybox from "../components/categorybox"
 
 
 
-export const categories2 = [
+export const categories3 = [
     {
-      label: 'Petit-déjeuner',
+      label: 'Tunisien',
       icon: IoIosCafe ,
       description: 'This property is close to the beach!',
     },
     {
-      label: 'Brunch',
+      label: 'Italien',
       icon: IoIosRestaurant ,
       description: 'This property is has windmills!',
     },
     {
-      label: 'Déjeuner',
-      icon: IoIosRestaurant ,
-      description: 'This property is has windmills!',
-    },
-    {
-      label: 'Diner',
-      icon: IoIosRestaurant ,
-      description: 'This property is has windmills!',
-    },
-   
+        label: 'Asiatique',
+        icon: IoIosRestaurant ,
+        description: 'This property is has windmills!',
+      },
+      {
+        label: 'Pizza',
+        icon: IoIosRestaurant ,
+        description: 'This property is has windmills!',
+      },
+      {
+        label: 'Fruits de mer',
+        icon: IoIosRestaurant ,
+        description: 'This property is has windmills!',
+      },
+      {
+        label: 'Café',
+        icon: IoIosRestaurant ,
+        description: 'This property is has windmills!',
+      },
     
   ]
- 
   
   
 
 
-const Category2 = () => {
-  const params = useSearchParams();
+const Category3 = () => {
+    const params = useSearchParams();
   const category = params?.get('category');
   const pathname = usePathname();
   const isMainPage = pathname === '/components';
@@ -58,16 +65,14 @@ const Category2 = () => {
           justify-between
           overflow-x-auto
         ">
-            {categories2.map((item) => (
+            {categories3.map((item) => (
           <Categorybox 
             key={item.label}
             label={item.label}
             icon={item.icon}
             selected={category === item.label}
-            required
           />
         ))}
-        
 
             </div>
 
@@ -76,4 +81,4 @@ const Category2 = () => {
 
     )
 }
-export default Category2; 
+export default Category3; 
