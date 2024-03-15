@@ -52,3 +52,20 @@ try{
 
   
 }
+
+export async function GET() {
+  try {
+    await connectDB();
+    const ajout = await Ajout.find();
+    console.log(ajout, "validated");
+    return NextResponse.json({ ajout }, { status: 200 });
+  } catch (error) {
+    console.error("Error:", error);
+    return NextResponse.json(
+      { error: "An error occurred while processing your request" },
+      { status: 500 }
+    );
+  }
+}
+
+

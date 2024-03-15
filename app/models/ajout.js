@@ -3,6 +3,7 @@ import mongoose, { Schema } from "mongoose";
 const ajoutSchema = new Schema({
   category: {
        type: String,
+       
     
   },
  locationValue: {
