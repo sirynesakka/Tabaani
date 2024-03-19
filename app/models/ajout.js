@@ -3,25 +3,30 @@ import mongoose, { Schema } from "mongoose";
 const ajoutSchema = new Schema({
   category: {
        type: String,
+       required: true,
        
     
   },
  locationValue: {
     type: String,
+    required: true,
  
 },
 category2: {
     type: String,
+    required: true,
  
 },
 category3: {
   type: String,
+  required: true,
   
         
 
 },
 category4: {
   type: String,
+  required: true,
   
 
 },

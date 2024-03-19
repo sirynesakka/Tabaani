@@ -194,10 +194,13 @@ const handleCategoryChange = (e, category) => {
               selected={category === item.label}
               label={item.label}
               icon={item.icon}
+                          
             />
+      
            
           </div>
         ))}
+
        
       </div>
        
@@ -216,7 +219,8 @@ const handleCategoryChange = (e, category) => {
           /> 
           <CountrySelect 
           value={location} 
-          onChange={(value) => setCustomValue('location', value)} />
+          onChange={(value) => setCustomValue('location', value)}
+           />
        
       </div>
         )
@@ -248,9 +252,7 @@ const handleCategoryChange = (e, category) => {
               selected={category2 === item.label}
               label={item.label}
               icon={item.icon}
-
-              required
-            />
+                />
            
           </div>
         ))}
@@ -287,7 +289,7 @@ if (step === STEPS.SPECIALITE){
               label={item.label}
               icon={item.icon}
 
-              required
+           
             />
            
           </div>

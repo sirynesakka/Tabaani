@@ -81,23 +81,23 @@ const ListingCard = ({
         </div>
 
         <div className="font-light text-neutral-500">
-          {reservationDate || data.category}
+          { data.category}
         </div>
 
         <div className="font-light text-neutral-500">
-           {reservationDate || data.category2}
+           { data.category2}
         </div>
         <div className="font-light text-neutral-500">
-          {reservationDate || data.category3}
+          { data.category3}
         </div>
         <div className="font-light text-neutral-500">
-          {reservationDate || data.category4}
+          { data.category4}
         </div>
          <div className="font-light text-neutral-500">
-          {reservationDate || data.category5}
+          { data.category5}
         </div>
         <div className="font-light text-neutral-500">
-          le titre : {reservationDate || data.title}
+          le titre : { data.title}
         </div>
 
           </div>
