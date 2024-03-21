@@ -12,21 +12,15 @@ const userSchema = new Schema({
     required: true,
  
 },
-createAt: {
-    type: String,
+
    
  
-},
-role: {
+selectedRole: {
     type: String,
-    
+    required: true,
  
 },
 
-  date: {
-    type: Date,
-    default: Date.now,
-  },
 });
 
 const User =

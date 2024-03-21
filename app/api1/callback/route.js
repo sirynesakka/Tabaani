@@ -1,25 +1,29 @@
-// /home/leema/tabaani-frontend/app/api1/callback/route.js
-
 import connectDB from "../../lib/mongodb";
 import mongoose from "mongoose";
 import User from "../../models/user";
+import { NextResponse } from 'next/server';
 
-export async function POST(req, res) {
-    const { id, name } = req.body;
+export async function POST(request) {
+
+    const { id, name, selectedRole } =await request.json();
+
+    console.log(id,name,selectedRole)
+    
+    // Check if required fields are provided
+    if (!id || !name) {
+        return NextResponse.error('Path `id` and `name` are required.', { status: 400 });
+    }
 
     try {
         await connectDB();
-        const createdUser = await User.create({ id, name });
+        const createdUser = await User.create({ id, name, selectedRole });
 
         // Return success response
-        return {
-            status: 200,
-            body: JSON.stringify({
-                msg: ["Message envoyé avec succès"],
-                success: true,
-                createdUser,
-            }),
-        };
+        return NextResponse.json({
+            msg: ["Message envoyé avec succès"],
+            success: true,
+            createdUser,
+        });
     } catch (error) {
         if (error instanceof mongoose.Error.ValidationError) {
             let errorList = [];
@@ -28,17 +32,11 @@ export async function POST(req, res) {
             }
             console.log(errorList);
             // Return validation error response
-            return {
-                status: 400,
-                body: JSON.stringify({ msg: errorList }),
-            };
+            return NextResponse.json({ msg: errorList }, { status: 400 });
         } else {
             console.error(error);
             // Return generic error response
-            return {
-                status: 500,
-                body: JSON.stringify({ msg: ["Impossible d'envoyer le message"] }),
-            };
+            return NextResponse.error("Impossible d'envoyer le message", { status: 500 });
         }
     }
 }
