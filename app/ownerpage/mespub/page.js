@@ -1,9 +1,9 @@
 "use client";
 import React , {useState , useEffect} from "react"
-import Container from "../components/container"
-import EmptyState from "../components/EmptyState"
+import Container from "../../components/container"
+import EmptyState from "../../components/EmptyState"
 import axios from "axios";
-import ListingCard from "../components/ListingCard"
+import ListingCard from "../../components/ListingCard"
 
 
 
@@ -45,6 +45,7 @@ export default function Pub () {
             2xl:grid-cols-6
             gap-8
             text-center 
+            ml-60
           ">  
      {ajout.map(ajout => (
             <ListingCard

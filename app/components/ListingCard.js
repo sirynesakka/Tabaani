@@ -3,9 +3,13 @@
 import Image from "next/image"
 import { useRouter } from "next/navigation"
 import { useCallback, useMemo } from "react"
+import { LuClipboardEdit } from "react-icons/lu";
+import Deletebtn from "./deletebtn"
+
 
 
 import useCountries from "../hooks/usecountries"
+import Link from "next/link";
 
 
 
@@ -62,7 +66,7 @@ const ListingCard = ({
   
     return (
       <div
-        onClick={() => router.push(`/ajout/${data.id}`)}
+        onClick={() => router.push(`ajout/${data.id}`)}
         className="col-span-1 cursor-pointer group"
       >
         <div className=" flex flex-col gap-2 w-full">
@@ -96,9 +100,19 @@ const ListingCard = ({
          <div className="font-light text-neutral-500">
           { data.category5}
         </div>
-        <div className="font-light text-neutral-500">
+        <div className="font-semibold text-neutral-500">
           le titre : { data.title}
         </div>
+        <div className="font-semibold text-neutral-500">
+          Description: { data.description}
+        </div> 
+
+        <Link href="/editform" 
+        className="bg-white hover:bg-teal-600 text-black  font-bold py-1 px-3 rounded-md  shadow-md"> Modifier 
+       </Link>
+       <Deletebtn id={data.id}/> 
+       
+
 
           </div>
         </div>

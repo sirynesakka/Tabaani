@@ -66,6 +66,14 @@ export async function GET() {
       { status: 500 }
     );
   }
+} 
+
+export async function DELETE(request) {
+  const id = request.nextUrl.searchParams.get("id");
+  await connectDB();
+  await Ajout.findByIdAndDelete(id);
+  return NextResponse.json({ message: "Topic deleted" }, { status: 200 });
 }
+
 
 

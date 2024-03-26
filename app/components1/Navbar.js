@@ -110,13 +110,7 @@ const Navbar =() => {
             
              </div>
 
-             <div> 
-                   <Link href="/api/auth/login" onClick={handleNav} > 
-                      <button className=" border-2 border-blue-800  ml-10 lg:mr-2 px-8 py-1 rounded-full font-bold  mr-10  text-blue-800 hover:text-[#659be2]">Sign up as user </button>
-                   </Link> 
-           
-
-                </div>
+             
 
                
                 <div> 

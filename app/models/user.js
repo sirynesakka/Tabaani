@@ -4,29 +4,17 @@ const userSchema = new Schema({
   id: {
        type: String,
        required: true,
-       
-    
   },
  name: {
     type: String,
     required: true,
- 
 },
-createAt: {
+selectedRole: {
     type: String,
-   
- 
-},
-role: {
-    type: String,
-    
+    required: false,
  
 },
 
-  date: {
-    type: Date,
-    default: Date.now,
-  },
 });
 
 const User =
