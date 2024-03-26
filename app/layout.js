@@ -5,7 +5,7 @@ import "./globals.css";
 import Link from "next/link";
 import { UserProvider } from '@auth0/nextjs-auth0/client';
 import {AppProps } from "@auth0/nextjs-auth0/client"; 
-import { Component } from "react";
+
 
 
 
