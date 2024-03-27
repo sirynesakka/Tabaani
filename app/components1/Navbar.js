@@ -6,7 +6,7 @@ import Image from "next/image";
 import Logo from "../../public/Logo.png";
 import { IoIosMenu, IoIosClose } from "react-icons/io";
 import { useState } from "react"; 
-import {auth}   from "../firebase"; 
+
 import {signInWithPopup,GoogleAuthProvider} from "firebase/auth";
 import {useAuthState} from "react-firebase-hooks/auth"
 
@@ -14,21 +14,14 @@ import {useAuthState} from "react-firebase-hooks/auth"
 
 
 
-
-const Navbar =() => {
+const Navbar =({ selectedRole }) => {
   const [menuIcon, setIcon] = useState(false);
   const [header, setHeader] = useState(false);
-  
-
-  const handleNav = () => {
+ 
+ const handleNav = () => {
     setIcon(!menuIcon);}
   
-   
-
-
-
-    
-  const scollHeader = () => {
+   const scollHeader = () => {
     if(window.scrollY >= 20){
       setHeader(true)
     }else {
@@ -62,6 +55,16 @@ const Navbar =() => {
                 Accueile 
               </div>
             </Link>
+
+            {selectedRole === "manager" && (
+      <li
+        className="ml-2 font-bold  lg:mr-2 mr-4 px-8 py-1 text-blue-800  hover:text-[#659be2]  "
+      >
+        <Link href="/ownerpage">Dashboard</Link>
+      </li>
+    )}
+
+
 
 
             <Link href="/Destination"> 

@@ -65,6 +65,7 @@ const ListingCard = ({
     }, [reservation]) 
   
     return (
+      <> 
       <div
         onClick={() => router.push(`ajout/${data.id}`)}
         className="col-span-1 cursor-pointer group"
@@ -106,17 +107,25 @@ const ListingCard = ({
         <div className="font-semibold text-neutral-500">
           Description: { data.description}
         </div> 
-
-        <Link href="/editform" 
+<div>
+<Link href={`/editform/${data._id}`} 
         className="bg-white hover:bg-teal-600 text-black  font-bold py-1 px-3 rounded-md  shadow-md"> Modifier 
        </Link>
-       <Deletebtn id={data.id}/> 
+</div>
+
+       <Deletebtn id={data._id}/> 
        
 
 
           </div>
         </div>
       </div>
+     
+
+
+      
+      </>
+
     )
   }
   

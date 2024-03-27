@@ -12,7 +12,14 @@ export async function PUT(request, { params }) {
 
 export async function GET(request, { params }) {
   const { id } = params;
-  await connectMongoDB();
+  await connectDB();
   const ajout = await Ajout.findOne({ _id: id });
   return NextResponse.json({ ajout }, { status: 200 });
+}
+
+export async function DELETE(request) {
+  const id = request.nextUrl.searchParams.get("id");
+  await connectDB();
+  await Ajout.findByIdAndDelete(id);
+  return NextResponse.json({ message: "publication supprimé" }, { status: 200 });
 }

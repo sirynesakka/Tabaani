@@ -1,24 +1,25 @@
-"use client"
-import React from "react"
-import { useRouter } from "next/navigation";
+import React from "react";
+import axios from "axios";
 
-export default function Deletebtn (id) {
-    const router = useRouter();
-    
-    const removeTopic = async () => {
-      const confirmed = confirm("Are you sure?");
-  
-      if (confirmed) {
-        const res = await fetch(`http://localhost:3000/api1/ajout?id=${id}`, {
-          method: "DELETE",
-        });
-  
-        if (res.ok) {
-          router.refresh();
-        }
-      }
-    };
-    return(
-        <button onClick={removeTopic}  class="bg-red-400 hover:bg-red-600 text-white font-bold py px-3 rounded-md shadow-md"> Supprimer </button>
-    )
-}
+const Deletebtn = ({ id, fetchData }) => {
+  const handleDelete = async () => {
+    try {
+      await axios.delete(`http://localhost:3000/api1/ajout?id=${id}`);
+      console.log("Data Deleted successfully!");
+      fetchData(); // Assuming fetchData is a function passed as prop to refetch data
+    } catch (error) {
+      console.error("Error deleting:", error);
+    }
+  };
+
+  return (
+    <button
+      onClick={handleDelete}
+      className="bg-red-400 hover:bg-red-600 text-white font-bold py px-3 rounded-md shadow-md"
+    >
+      Supprimer
+    </button>
+  );
+};
+
+export default Deletebtn;

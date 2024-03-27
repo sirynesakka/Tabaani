@@ -1,22 +1,23 @@
 "use client" 
 import Image from "next/image";
-import Navbar from "../components1/Navbar2";
+
 import React, { useEffect } from "react";
 import Link from "next/link";
 import Temoignages from "../components1/Temoignages";
 import Footer from "../components1/Footer";
 import MySlider from "../components1/MySlider";
 import Aboutus from "../components1/Aboutus";
-import Navbar2 from "../components1/Navbar2";
-
+import Navbar from "../components1/Navbar";
+import RoleSelecting from "../admin/roleSelecting"
 
 export default function Manager() { 
+  const selectedRole = "manager";
    
      return (
 <div>
 
       
-       <Navbar2/> 
+       <Navbar selectedRole={selectedRole} /> 
     
 
     
