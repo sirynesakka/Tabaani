@@ -36,6 +36,7 @@ export default function Pub () {
           <Container/> 
           <div    className="
             pt-24
+            pb-24
             grid 
             grid-cols-1 
             sm:grid-cols-2 

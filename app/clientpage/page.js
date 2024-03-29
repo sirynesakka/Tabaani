@@ -1,3 +1,4 @@
+
 "use client" 
 import Image from "next/image";
 import React, { useEffect } from "react";
@@ -9,13 +10,13 @@ import Aboutus from "../components1/Aboutus";
 import Navbar from "../components1/Navbar";
 
 
-export default function Manager() { 
+export default function Client() { 
    
      return (
 <div>
 
       
-       <Navbar hasDashboardmanager={true} /> 
+       <Navbar hasDashboardclient={true} /> 
     
 
     
@@ -56,9 +57,22 @@ export default function Manager() {
                    <Temoignages /> 
                     <Footer/> 
                     
-    </div>
+     
+      
 
-</div>
+
+
+
+
+       </div>
+
+
+
+
+
+
+
+ </div>
 
         
       

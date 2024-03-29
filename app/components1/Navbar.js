@@ -6,7 +6,7 @@ import Image from "next/image";
 import Logo from "../../public/Logo.png";
 import { IoIosMenu, IoIosClose } from "react-icons/io";
 import { useState } from "react"; 
-
+import {auth}   from "../firebase"; 
 import {signInWithPopup,GoogleAuthProvider} from "firebase/auth";
 import {useAuthState} from "react-firebase-hooks/auth"
 
@@ -14,14 +14,21 @@ import {useAuthState} from "react-firebase-hooks/auth"
 
 
 
-const Navbar =({ selectedRole }) => {
+
+const Navbar =({hasDashboardmanager,hasDashboardadmin,hasDashboardclient}) => {
   const [menuIcon, setIcon] = useState(false);
   const [header, setHeader] = useState(false);
- 
- const handleNav = () => {
+  
+
+  const handleNav = () => {
     setIcon(!menuIcon);}
   
-   const scollHeader = () => {
+   
+
+
+
+    
+  const scollHeader = () => {
     if(window.scrollY >= 20){
       setHeader(true)
     }else {
@@ -54,17 +61,38 @@ const Navbar =({ selectedRole }) => {
               <div className="ml-2 font-bold  lg:mr-2 mr-4 px-8 py-1 text-blue-800 hover:text-[#659be2]  ">
                 Accueile 
               </div>
+            </Link> 
+
+  {hasDashboardmanager && (
+              <Link href="/ownerpage">
+                <div className="ml-2 font-bold lg:mr-2 mr-4 px-8 py-1 text-blue-800 hover:text-[#659be2] ">
+                  Tableau de bord
+                </div>
+              </Link>
+            )}
+
+{hasDashboardadmin && (
+              <Link href="/dashboard2">
+                <div className="ml-2 font-bold lg:mr-2 mr-4 px-8 py-1 text-blue-800 hover:text-[#659be2] ">
+                  Tableau de bord 
+                </div>
+              </Link>
+            )}
+
+{hasDashboardclient && (
+  <>
+              <Link href="/mes-reservations">
+                <div className="ml-2 font-bold lg:mr-2 mr-4 px-8 py-1 text-blue-800 hover:text-[#659be2] ">
+                  Mes Réservations
+                </div>
+              </Link>
+              <Link href="/mes-reservations">
+              <div className="ml-2 font-bold lg:mr-2 mr-4 px-8 py-1 text-blue-800 hover:text-[#659be2] ">
+                Mes favorite 
+              </div>
             </Link>
-
-            {selectedRole === "manager" && (
-      <li
-        className="ml-2 font-bold  lg:mr-2 mr-4 px-8 py-1 text-blue-800  hover:text-[#659be2]  "
-      >
-        <Link href="/ownerpage">Dashboard</Link>
-      </li>
-    )}
-
-
+            </>
+            )}
 
 
             <Link href="/Destination"> 
@@ -113,7 +141,6 @@ const Navbar =({ selectedRole }) => {
             
              </div>
 
-             
 
                
                 <div> 
@@ -146,6 +173,37 @@ const Navbar =({ selectedRole }) => {
                 <li onClick={handleNav} className="py-5 hover:text-[#659be2] cursor-pointer">
                   <Link href="/Accuil">Accueile </Link>
                 </li>
+
+                {hasDashboardmanager && (
+              <Link href="/ownerpage">
+                <div className="py-5 hover:text-[#659be2] cursor-pointer">
+                  Tableau de bord
+                </div>
+              </Link>
+            )}
+
+{hasDashboardadmin && (
+              <Link href="/dashboard2">
+                <div className="py-5 hover:text-[#659be2] cursor-pointer">
+                  Tableau de bord 
+                </div>
+              </Link>
+            )}
+
+{hasDashboardclient && (
+  <>
+              <Link href="/mes-reservations">
+                <div className="py-5 hover:text-[#659be2] cursor-pointer">
+                  Mes Réservations
+                </div>
+              </Link>
+              <Link href="/mes-reservations">
+              <div className="py-5 hover:text-[#659be2] cursor-pointer">
+                Mes favorite 
+              </div>
+            </Link>
+            </>
+            )}
                 
                 <li onClick={handleNav} className="py-5 hover:text-[#659be2] cursor-pointer">
                 <Link href="/Accuil">Destination</Link>

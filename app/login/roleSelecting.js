@@ -3,9 +3,9 @@ import { useUser } from "@auth0/nextjs-auth0/client";
 import React, { useState } from 'react';
 import axios from 'axios';
 import Select from "react-select";
-import Cities from "../cities/page";
+import Client from "../clientpage/page";
 import Manager from "../managerpage/page";
-import Ownerpage from "../ownerpage/page";
+import Admin from "../adminpage/page";
 
 const options = [
   { value: 'client', label: 'Client' },
@@ -46,11 +46,11 @@ const RoleSelecting = () => {
   const renderPageBasedOnRole = () => {
     switch (selectedRole) {
       case 'client':
-        return <Cities />;
+        return <Client />;
       case 'manager':
         return <Manager />;
       case 'admin':
-        return <Ownerpage />;
+        return <Admin />;
       default:
         return null; // You can handle other cases here, such as showing an error message
     }

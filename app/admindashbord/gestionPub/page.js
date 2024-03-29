@@ -3,7 +3,7 @@ import React , {useState , useEffect} from "react"
 import Container from "../../components/container"
 import EmptyState from "../../components/EmptyState"
 import axios from "axios";
-import ListingCard from "../../components/ListingCard"
+import Adminlisting from "../../components/adminlisting"
 
 
 
@@ -48,7 +48,7 @@ export default function Pub () {
             ml-60
           ">  
      {ajout.map(ajout => (
-            <ListingCard
+            <Adminlisting
             
               key={ajout.id}
               data={ajout}

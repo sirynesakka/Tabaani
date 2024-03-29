@@ -1,6 +1,5 @@
 "use client" 
 import Image from "next/image";
-
 import React, { useEffect } from "react";
 import Link from "next/link";
 import Temoignages from "../components1/Temoignages";
@@ -8,16 +7,15 @@ import Footer from "../components1/Footer";
 import MySlider from "../components1/MySlider";
 import Aboutus from "../components1/Aboutus";
 import Navbar from "../components1/Navbar";
-import RoleSelecting from "../admin/roleSelecting"
 
-export default function Manager() { 
-  const selectedRole = "admin";
+
+export default function Admin() { 
    
      return (
 <div>
 
       
-       <Navbar selectedRole={selectedRole} /> 
+       <Navbar hasDashboardadmin={true} /> 
     
 
     
@@ -58,8 +56,7 @@ export default function Manager() {
                    <Temoignages /> 
                     <Footer/> 
                     
-    </div>
-
+ </div>
 
 </div>
 

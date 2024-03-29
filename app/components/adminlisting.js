@@ -15,7 +15,7 @@ import Link from "next/link";
 
 
 
-const ListingCard = ({
+const Adminlisting = ({
     data,
     reservation,
     onAction,
@@ -43,6 +43,13 @@ const ListingCard = ({
       [disabled, onAction, actionId]
     )
   
+    const price = useMemo(() => {
+      if (reservation) {
+        return reservation.totalPrice
+      }
+  
+      return data.price
+    }, [reservation, data.price])
 
 
   
@@ -59,16 +66,14 @@ const ListingCard = ({
   
     return (
       <> 
-      
       <div
         onClick={() => router.push(`ajout/${data.id}`)}
         className="col-span-1 cursor-pointer group"
       >
-        
         <div className=" flex flex-col gap-2 w-full">
           <div
             className="
-              aspect-auto
+              aspect-square 
               w-full 
               relative 
               overflow-hidden 
@@ -76,9 +81,6 @@ const ListingCard = ({
               
             "
           >
-   
-            
-
          <div className="font-semibold text-lg">
           {location?.region}, {location?.label}
         </div>
@@ -105,11 +107,7 @@ const ListingCard = ({
         <div className="font-semibold text-neutral-500">
           Description: { data.description}
         </div> 
-<div>
-<Link href={`/editform/${data._id}`} 
-        className="bg-white hover:bg-teal-600 text-black  font-bold py-1 px-3 rounded-md  shadow-md"> Modifier 
-       </Link>
-</div>
+
 
        <Deletebtn id={data._id}/> 
        
@@ -118,7 +116,7 @@ const ListingCard = ({
           </div>
         </div>
       </div>
-      
+     
 
 
       
@@ -127,4 +125,4 @@ const ListingCard = ({
     )
   }
   
-  export default ListingCard
+  export default Adminlisting;

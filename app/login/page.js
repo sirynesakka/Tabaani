@@ -1,12 +1,12 @@
 "use client"
 import { useUser } from "@auth0/nextjs-auth0/client";
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Select from "react-select";
 import RoleSelecting from "./roleSelecting";
-import Cities from "../cities/page";
+import Client from "../clientpage/page";
 import Manager from "../managerpage/page";
-import Ownerpage from "../ownerpage/page";
+import Admin from "../adminpage/page";
 
 const options = [
   { value: 'client', label: 'Client' },
@@ -72,9 +72,10 @@ const Index = () => {
 
   return (
     <div>
-      {isLoading && <p>Loading...</p>}
-      {existingUser && <p>Welcome, {user ? user.name : "User"}!</p>}
-      {!existingUser && <p>User not found in the database.</p>}
+      
+      {isLoading && <p className=" flex justify-center items-center h-screen text-4xl">Loading...</p>}
+      {existingUser && <p> {user ? user.name : "User"}!</p>}
+      {!existingUser && <p></p>}
       {userInserted && !existingUser && (
         <RoleSelecting />
       )}
@@ -93,9 +94,9 @@ const Index = () => {
         <>
           {users.map((foundUser) => (
             foundUser.id === user.sub && (
-              foundUser.selectedRole === 'client' && <Cities key={foundUser.id} />
+              foundUser.selectedRole === 'client' && <Client key={foundUser.id} />
               || foundUser.selectedRole === 'manager' && <Manager key={foundUser.id} />
-              || foundUser.selectedRole === 'admin' && <Ownerpage key={foundUser.id} />
+              || foundUser.selectedRole === 'admin' && <Admin key={foundUser.id} />
             )
           ))}
         </>
@@ -104,4 +105,4 @@ const Index = () => {
   );
 }
 
-export default Index;
+export default Index
