@@ -5,18 +5,18 @@ import { NextResponse } from 'next/server';
 
 export async function POST(request) {
 
-    const { id, name, selectedRole } =await request.json();
+    const { id, email, selectedRole } =await request.json();
 
-    console.log(id,name,selectedRole)
+    console.log(id,email,selectedRole)
     
     // Check if required fields are provided
-    if (!id || !name) {
+    if (!id || !email) {
         return NextResponse.error('Path id and name are required.', { status: 400 });
     }
 
     try {
         await connectDB();
-        const createdUser = await User.create({ id, name, selectedRole });
+        const createdUser = await User.create({ id, email, selectedRole });
 
         // Return success response
         return NextResponse.json({
@@ -61,3 +61,10 @@ export async function GET(request) {
         return NextResponse.error('Error retrieving users', { status: 500 });
     }
 }
+export async function DELETE(request) {
+    const id = request.nextUrl.searchParams.get("id");
+    await connectDB();
+    await User.findByIdAndDelete(id);
+    return NextResponse.json({ message: "user supprimé" }, { status: 200 });
+  }
+  

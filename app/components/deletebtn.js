@@ -15,7 +15,7 @@ const Deletebtn = ({ id, fetchData }) => {
   return (
     <button
       onClick={handleDelete}
-      className="bg-red-400 hover:bg-red-600 text-white font-bold py px-3 rounded-md shadow-md"
+      className="rounded bg-red-400 hover:bg-red-500 text-white font-bold py- px-3 focus:outline-none focus:shadow-outline"
     >
       Supprimer
     </button>

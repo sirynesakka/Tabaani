@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation"
 import { useCallback, useMemo } from "react"
 import { LuClipboardEdit } from "react-icons/lu";
 import Deletebtn from "./deletebtn"
+import Confirmationbtn from "../confirmationbtn/page"
 
 
 
@@ -108,13 +109,19 @@ const Adminlisting = ({
           Description: { data.description}
         </div> 
 
-
-       <Deletebtn id={data._id}/> 
+<div>
+<Deletebtn id={data._id}/>
+<Confirmationbtn/>
+</div>
+      
+       
        
 
 
           </div>
         </div>
+      </div>
+      <div> <Confirmationbtn/>
       </div>
      
 

@@ -9,9 +9,7 @@ import axios from "axios";
 const Table = () => {
     const [user , setUser] = useState([]);
 
-    useEffect(() => {
-        fetchUser(); 
-    }, []);
+  
     const fetchUser = async () => {
         try {
             const response = await axios.get("/api1/callback");
@@ -25,10 +23,17 @@ const Table = () => {
     useEffect(() => {
         fetchUser(); 
     }, []); 
- 
 
-    
-     
+    const handleDelete = async (id) => {
+        try {
+          await axios.delete(`/api1/callback?id=${id}`);
+          console.log("Data Deleted successfully!");
+          fetchUser(); // Refetch data after deletion
+        } catch (error) {
+          console.error("Error deleting:", error);
+        }
+      };
+ 
 
     return (
         <>
@@ -49,10 +54,10 @@ const Table = () => {
             <tbody key={user.id} className="bg-gray-200">
                 <tr className="text-center">
                     <td className="px-6 py-4">{user.id}</td>
-                    <td className="px-6 py-4">{user.name}</td>
+                    <td className="px-6 py-4">{user.email}</td>
                     <td className="px-6 py-4">{user.selectedRole}</td>
                     <td className="px-6 py-4">
-                        <button className="text-red-500">
+                        <button  onClick={() => handleDelete(user._id)}className="text-red-500">
                             <RiDeleteBin5Line size={25} />
                         </button>
                     </td>
