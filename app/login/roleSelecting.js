@@ -26,8 +26,8 @@ const RoleSelecting = () => {
       return;
     }
 
-    const { sub, email } = user ||{};
-    const body = JSON.stringify({ id: sub, email, selectedRole }); // Include selected role in the body
+    const { sub, email, picture } = user ||{};
+    const body = JSON.stringify({ id: sub, email, selectedRole , picture }); // Include selected role in the body
 
     try {
       const response = await axios.post('/api1/callback', body, {
@@ -84,7 +84,7 @@ const RoleSelecting = () => {
       {selectedRole && renderPageBasedOnRole()}
       
       {/* Display user information if available */}
-      <div>{user && JSON.stringify({ sub: user.sub, email: user.email }, null, 2)}</div>
+      <div>{user && JSON.stringify({ sub: user.sub, email: user.email , picture: user.picture}, null, 2)}</div>
     </div>
   );
 }

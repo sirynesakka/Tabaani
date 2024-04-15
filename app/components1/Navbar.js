@@ -2,7 +2,7 @@
 import Link from "next/link";
 import React, { useEffect } from "react";
 import Image from "next/image";
-
+import { AiOutlineMenu } from "react-icons/ai";
 import Logo from "../../public/Logo.png";
 import { IoIosMenu, IoIosClose } from "react-icons/io";
 import { useState } from "react"; 
@@ -68,6 +68,7 @@ const Navbar =({hasDashboardmanager,hasDashboardadmin,hasDashboardclient}) => {
                 <div className="ml-2 font-bold lg:mr-2 mr-4 px-8 py-1 text-blue-800 hover:text-[#659be2] ">
                   Tableau de bord
                 </div>
+        
               </Link>
             )}
 
@@ -149,6 +150,8 @@ const Navbar =({hasDashboardmanager,hasDashboardadmin,hasDashboardclient}) => {
                    </Link>
 
                 </div>
+
+           
                 
          </ul>
           

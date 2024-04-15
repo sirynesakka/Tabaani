@@ -1,4 +1,5 @@
-import React from "react";
+"use client"
+import React , {useState} from "react";
 import Link from "next/link";
 import {GiHamburgerMenu} from "react-icons/gi"
 import { Disclosure } from "@headlessui/react";
@@ -10,20 +11,26 @@ import {
 } from "react-icons/md"; 
 import { TfiWrite } from "react-icons/tfi";
 import { FaRegComments } from "react-icons/fa";
-
+import Model from "../components/model";
+import Ajoutbtn from "./ajoutbtn";
 
 
 
 
 
 const Sidebar = () => {
+  const [isModelOpen, setIsModelOpen] = useState(false);
+  const openModel = () => setIsModelOpen(true);
+  const closeModel = () => setIsModelOpen(false);
+
+  
 
     return ( 
      
 
       
       <div>
-
+    
         
         <Disclosure as="nav">
       <Disclosure.Button className="absolute top-4 right-4 inline-flex items-center peer justify-center rounded-md p-2 text-gray-900 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:rind-white group hover:bg-gray-900 ">
@@ -31,7 +38,7 @@ const Sidebar = () => {
 
 
 
-
+       
 
 
       </Disclosure.Button>
@@ -49,6 +56,8 @@ const Sidebar = () => {
                   Ajouter des publications 
                 </h3>
               </Link> 
+             
+             
 
               <Link href="/ownerpage/visiter" className="flex  mb-2 justify-start items-center gap-4 pl-5 hover:bg-gray-900 p-2 rounded-md group cursor-pointer hover:shadow-lg m-auto">
                 <TfiWrite   className="text-2xl text-gray-600 group-hover:text-white " />
@@ -56,6 +65,8 @@ const Sidebar = () => {
                   Visiter les réservations 
                 </h3>
               </Link> 
+
+            
 
                <Link href="/ownerpage/publication"    className="flex  mb-2 justify-start items-center gap-4 pl-5 hover:bg-gray-900 p-2 rounded-md group cursor-pointer hover:shadow-lg m-auto">
                 <FaRegComments className="text-2xl text-gray-600 group-hover:text-white " />
@@ -72,7 +83,7 @@ const Sidebar = () => {
                   Mes commentaires
                 </h3>
               </Link>          
-
+            
 
                
 

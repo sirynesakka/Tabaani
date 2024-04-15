@@ -38,14 +38,14 @@ const Table = () => {
     return (
         <>
 
-        <div className="container mx-auto overflow-x-auto ">
+        <div className="container mx-auto overflow-x-auto  ">
             <table className="w-full mt-16 table-auto ">
                 <thead>
                     <tr className="bg-gray-800 text-white">
-                        <th className="px-6 py-3 ">ID</th>
-                        <th className="px-6 py-3">Email</th>
-                        <th className="px-6 py-3">Role</th>
-                        <th className="px-6 py-3">Action</th>
+                        
+                        <th className="px-1 py-4">Email</th>
+                        <th className="px-1 py-3">Role</th>
+                        <th className="px-1 py-3">Action</th>
                     </tr>
                 </thead>
                 {user.filter((user, index, self) => 
@@ -53,7 +53,6 @@ const Table = () => {
         ).map(user => (
             <tbody key={user.id} className="bg-gray-200">
                 <tr className="text-center">
-                    <td className="px-6 py-4">{user.id}</td>
                     <td className="px-6 py-4">{user.email}</td>
                     <td className="px-6 py-4">{user.selectedRole}</td>
                     <td className="px-6 py-4">

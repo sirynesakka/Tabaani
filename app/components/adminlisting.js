@@ -3,14 +3,10 @@
 import Image from "next/image"
 import { useRouter } from "next/navigation"
 import { useCallback, useMemo } from "react"
-import { LuClipboardEdit } from "react-icons/lu";
 import Deletebtn from "./deletebtn"
 import Confirmationbtn from "../confirmationbtn/page"
-
-
-
 import useCountries from "../hooks/usecountries"
-import Link from "next/link";
+
 
 
 
@@ -44,26 +40,11 @@ const Adminlisting = ({
       [disabled, onAction, actionId]
     )
   
-    const price = useMemo(() => {
-      if (reservation) {
-        return reservation.totalPrice
-      }
-  
-      return data.price
-    }, [reservation, data.price])
+   
 
 
   
-    const reservationDate = useMemo(() => {
-      if (!reservation) {
-        return null
-      }
   
-      const start = new Date(reservation.startDate)
-      const end = new Date(reservation.endDate)
-  
-      return `${format(start, "PP")} - ${format(end, "PP")}`
-    }, [reservation]) 
   
     return (
       <> 

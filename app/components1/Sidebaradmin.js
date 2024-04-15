@@ -22,7 +22,7 @@ const Sidebaradmin = () => {
      
 
       
-      <div>
+      <div >
 
         
         <Disclosure as="nav">
@@ -43,14 +43,14 @@ const Sidebaradmin = () => {
         <div className=" my-4 border-b border-gray-100 pb-4">
           
 
-            <Link href="/" className="flex mb-2 justify-start items-center gap-4 pl-5 hover:bg-gray-900 p-2 rounded-md group cursor-pointer hover:shadow-lg m-auto">
+            <Link href="/admindashbord/table" className="flex mb-2 justify-start items-center gap-4 pl-5 hover:bg-gray-900 p-2 rounded-md group cursor-pointer hover:shadow-lg m-auto">
                 <MdOutlineSpaceDashboard className="text-2xl text-gray-600  group-hover:text-white " />
                 <h3 className="text-base text-gray-800 group-hover:text-white   font-semibold ">
                  Gestion des profiles
                 </h3>
               </Link> 
 
-              <Link href="/admindashbord/gestionPub" className="flex  mb-2 justify-start items-center gap-4 pl-5 hover:bg-gray-900 p-2 rounded-md group cursor-pointer hover:shadow-lg m-auto">
+              <Link href="/admindashbord/gestion-pub" className="flex  mb-2 justify-start items-center gap-4 pl-5 hover:bg-gray-900 p-2 rounded-md group cursor-pointer hover:shadow-lg m-auto">
                 <TfiWrite   className="text-2xl text-gray-600 group-hover:text-white " />
                 <h3 className="text-base text-gray-800 group-hover:text-white font-semibold ">
                  Gestion des publications

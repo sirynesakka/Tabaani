@@ -5,9 +5,9 @@ import { NextResponse } from 'next/server';
 
 export async function POST(request) {
 
-    const { id, email, selectedRole } =await request.json();
+    const { id, email, selectedRole ,picture} =await request.json();
 
-    console.log(id,email,selectedRole)
+    console.log(id,email,selectedRole ,picture)
     
     // Check if required fields are provided
     if (!id || !email) {
@@ -16,7 +16,7 @@ export async function POST(request) {
 
     try {
         await connectDB();
-        const createdUser = await User.create({ id, email, selectedRole });
+        const createdUser = await User.create({ id, email, selectedRole, picture });
 
         // Return success response
         return NextResponse.json({

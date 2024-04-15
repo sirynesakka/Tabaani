@@ -1,8 +1,40 @@
-import React from "react"; 
+'use client'
+import React, {useEffect,useState} from "react"; 
 import Image from "next/image";
 import Link from "next/link";
-
+import { useRouter } from "next/navigation";
 const Card = () => {
+  const [clickedImageAlt, setClickedImageAlt] = useState(null);
+
+  useEffect(() => {
+    const storedAlt = localStorage.getItem("clickedImageAlt");
+    if (storedAlt) {
+      setClickedImageAlt(storedAlt);
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("clickedImageAlt", clickedImageAlt);
+  }, [clickedImageAlt]);
+
+  const handleImageClick = (alt) => {
+    setClickedImageAlt(alt);
+    localStorage.setItem("clickedImageAlt", alt);
+    console.log(`Image cliquée: ${alt}`);
+  };
+
+  useEffect(() => {
+    const handleRouteChange = () => {
+      setClickedImageAlt(null);
+    };
+
+    window.addEventListener("popstate", handleRouteChange);
+
+    return () => {
+      window.removeEventListener("popstate", handleRouteChange);
+    };
+  }, []);
+
     return (
         <section className="bg-white z-0  dark:bg-gray-900">
         <div className="container z-0 px-6 py-20 mx-auto ">
@@ -16,20 +48,21 @@ const Card = () => {
 
                
             <div className="w-full ">
-                   <Link href="/mahdia" > 
-                  <div className="w-full h-64 bg-gray-300 rounded-lg dark:bg-gray-600">
+                   <Link href="/pageClient" > 
+                  <div className="w-full h-64 bg-gray-300 rounded-lg dark:bg-gray-600"
+                  onClick={() => handleImageClick("Mahdia")}>
                     <Image 
                       src="/mahdia.jpg"
-                      alt="mahdia" 
+                      alt="Mahdia" 
                       class="h-full w-auto"
                       width={600}
                       height={300} /> 
                       </div>
                        </Link>
                     
-                    <Link href="/mahdia" className="w-56 h-2 mt-4 dark:bg-gray-700"> 
-                    <div className=" mt-5 transition ease-in-out delay-150 bg-transparent hover:-translate-y-1 hover:scale-110 hover:bg-transparent duration-700  dark:bg-gray-700"> Mahdia , Tunisia </div> </Link>
-                    <p className="w- h-2 mt- text-gray-400  dark:bg-gray-700"> plus de 30 restaurants</p>
+                    <div href="/test" className="w-56 h-2 mt-4 dark:bg-gray-700"> 
+                    <div className=" mt-5 transition ease-in-out delay-150 bg-transparent hover:-translate-y-1 hover:scale-110 hover:bg-transparent duration-700  dark:bg-gray-700"> Mahdia , Tunisia </div> </div>
+                    <p className="w- h-2 mt-2 text-gray-400  dark:bg-gray-700"> plus de 30 restaurants</p>
              </div>
     
 
@@ -38,39 +71,41 @@ const Card = () => {
 
 
              <div className="w-full ">
-                <Link href="/bizerte" > 
-                  <div className="w-full h-64 bg-gray-300 rounded-lg dark:bg-gray-600">
+                <Link href="/pageClient" > 
+                  <div className="w-full h-64 bg-gray-300 rounded-lg dark:bg-gray-600"
+                  onClick={() => handleImageClick("Bizerte")}>
                     <Image 
                       src="/bizert.jpg"
-                      alt="bizerte" 
+                      alt="Bizerte" 
                       class="h-full w-auto"
                       width={600}
                       height={300} /> 
                       </div>
                        </Link>
                     
-                       <Link href="/mahdia" className="w-56 h-2 mt-4 dark:bg-gray-700"> 
-                    <div className=" mt-5 transition ease-in-out delay-150 bg-transparent hover:-translate-y-1 hover:scale-110 hover:bg-transparent duration-700  dark:bg-gray-700"> Bizerte , Tunisia </div> </Link>
-                    <p className="w- h-2 mt- text-gray-400  dark:bg-gray-700"> plus de 30 restaurants</p>
+                       <div  className="w-56 h-2 mt-4 dark:bg-gray-700"> 
+                    <div className=" mt-5 transition ease-in-out delay-150 bg-transparent hover:-translate-y-1 hover:scale-110 hover:bg-transparent duration-700  dark:bg-gray-700"> Bizerte , Tunisia </div> </div>
+                  <div className=" h-2 mt-2 text-gray-400  dark:bg-gray-700"> plus de 30 restaurants </div> 
                 </div>
 
 
     
                 <div className="w-full ">
-                  <Link href="/djerba" > 
-                  <div className="w-full h-64 bg-gray-300 rounded-lg dark:bg-gray-600">
+                  <Link href="/pageClient" > 
+                  <div className="w-full h-64 bg-gray-300 rounded-lg dark:bg-gray-600"
+                  onClick={() => handleImageClick("Médenine")}>
                     <Image 
                       src="/djerba.jpg"
-                      alt="djerba" 
+                      alt="Médenine" 
                       class=" h-64 w-auto"
                       width={600}
                       height={300} /> 
                       </div>
                        </Link>
                     
-                       <Link href="/mahdia" className="w-56 h-2 mt-4 dark:bg-gray-700"> 
-                    <div className=" mt-5 transition ease-in-out delay-150 bg-transparent hover:-translate-y-1 hover:scale-110 hover:bg-transparent duration-700  dark:bg-gray-700"> Djerba , Tunisia </div> </Link>
-                    <p className="w- h-2 mt- text-gray-400  dark:bg-gray-700"> plus de 30 restaurants</p>
+                       <div className="w-56 h-2 mt-4 dark:bg-gray-700"> 
+                    <div className=" mt-5 transition ease-in-out delay-150 bg-transparent hover:-translate-y-1 hover:scale-110 hover:bg-transparent duration-700  dark:bg-gray-700"> Médenine, Tunisia </div> </div>
+                    <p className="w- h-2 mt-2 text-gray-400  dark:bg-gray-700"> plus de 30 restaurants</p>
                 </div>
 
 
@@ -78,20 +113,22 @@ const Card = () => {
 
     
                 <div className="w-full ">
-                <Link href="/nabeul" > 
-                  <div className="w-full h-64 bg-gray-300 rounded-lg dark:bg-gray-600">
+                <Link href="/pageClient" > 
+                  <div className="w-full h-64 bg-gray-300 rounded-lg dark:bg-gray-600"
+                   onClick={() => handleImageClick("Nabeul")}>
+                    
                     <Image 
                       src="/nabeul.jpg"
-                      alt="nabeul" 
+                      alt="Nabeul" 
                       class="h-full w-auto"
                       width={600}
                       height={300} /> 
                       </div>
                        </Link>
 
-                       <Link href="/mahdia" className="w-56 h-2 mt-4 dark:bg-gray-700"> 
-                    <div className=" mt-5 transition ease-in-out delay-150 bg-transparent hover:-translate-y-1 hover:scale-110 hover:bg-transparent duration-700  dark:bg-gray-700"> Nabeul, Tunisia </div> </Link>
-                    <p className="w- h-2 mt- text-gray-400  dark:bg-gray-700"> plus de 30 restaurants</p>
+                       <div className="w-56 h-2 mt-4 dark:bg-gray-700"> 
+                    <div className=" mt-5 transition ease-in-out delay-150 bg-transparent hover:-translate-y-1 hover:scale-110 hover:bg-transparent duration-700  dark:bg-gray-700"> Nabeul, Tunisia </div> </div>
+                    <p className="w- h-2 mt-2 text-gray-400  dark:bg-gray-700"> plus de 30 restaurants</p>
                 </div>
 
 
@@ -100,31 +137,33 @@ const Card = () => {
 
     
                 <div className="w-full ">
-                <Link href="/mahdia" > 
-                  <div className="w-full h-64 bg-gray-300 rounded-lg dark:bg-gray-600">
+                <Link href="/pageClient" > 
+                  <div className="w-full h-64 bg-gray-300 rounded-lg dark:bg-gray-600"
+                   onClick={() => handleImageClick("Sousse")}>
                     <Image 
                       src="/sousse.jpg"
-                      alt="sousse" 
+                      alt="Sousse" 
                       class="h-full w-auto"
                       width={600}
                       height={300} /> 
                       </div>
                        </Link>
                     
-                   <Link href="/mahdia" className="w-56 h-2 mt-4 dark:bg-gray-700"> 
-                    <div className=" mt-5 transition ease-in-out delay-150 bg-transparent hover:-translate-y-1 hover:scale-110 hover:bg-transparent duration-700  dark:bg-gray-700"> Sousse , Tunisia </div> </Link>
-                    <p className="w- h-2 mt- text-gray-400  dark:bg-gray-700"> plus de 30 restaurants</p>
+                   <div  className="w-56 h-2 mt-4 dark:bg-gray-700"> 
+                    <div className=" mt-5 transition ease-in-out delay-150 bg-transparent hover:-translate-y-1 hover:scale-110 hover:bg-transparent duration-700  dark:bg-gray-700">Sousse, Tunisia </div> </div>
+                    <p className="w- h-2 mt-2 text-gray-400  dark:bg-gray-700"> plus de 30 restaurants</p>
                 </div>
 
 
 
     
                 <div className="w-full ">
-                <Link href="/mahdia" > 
-                  <div className="w-full h-64 bg-gray-300 rounded-lg dark:bg-gray-600">
+                <Link href="/pageClient" > 
+                  <div className="w-full h-64 bg-gray-300 rounded-lg dark:bg-gray-600"
+                  onClick={() => handleImageClick("Monastir")}>
                     <Image 
                       src="/monestir.jpg"
-                      alt="mahdia" 
+                      alt="Monastir" 
                       class="h-full w-auto"
                       width={600}
                       height={300} /> 
@@ -132,9 +171,9 @@ const Card = () => {
                        </Link>
 
 
-                       <Link href="/mahdia" className="w-56 h-2 mt-4 dark:bg-gray-700"> 
-                    <div className=" mt-5 transition ease-in-out delay-150 bg-transparent hover:-translate-y-1 hover:scale-110 hover:bg-transparent duration-700  dark:bg-gray-700"> Monestir , Tunisia </div> </Link>
-                    <p className="w- h-2 mt- text-gray-400  dark:bg-gray-700"> plus de 30 restaurants</p>
+                       <div className="w-56 h-2 mt-4 dark:bg-gray-700"> 
+                    <div className=" mt-5 transition ease-in-out delay-150 bg-transparent hover:-translate-y-1 hover:scale-110 hover:bg-transparent duration-700  dark:bg-gray-700">Monastir , Tunisia </div> </div>
+                    <p className="w- h-2 mt-2 text-gray-400  dark:bg-gray-700"> plus de 30 restaurants</p>
                 </div>
 
 
@@ -143,43 +182,82 @@ const Card = () => {
 
     
                 <div className="w-full ">
-                <Link href="/mahdia" > 
-                  <div className="w-full h-64 bg-gray-300 rounded-lg dark:bg-gray-600">
+                <Link href="/pageClient" > 
+                  <div className="w-full h-64 bg-gray-300 rounded-lg dark:bg-gray-600"
+                  onClick={() => handleImageClick("Sfax")}>
                     <Image 
                       src="/sfax.jpg"
-                      alt="mahdia" 
+                      alt="Sfax" 
                       class="h-full w-auto"
                       width={600}
                       height={300} /> 
                       </div>
                        </Link>
                     
-                   <Link href="/mahdia" className="w-56 h-2 mt-4 dark:bg-gray-700"> 
-                    <div className=" mt-5 transition ease-in-out delay-150 bg-transparent hover:-translate-y-1 hover:scale-110 hover:bg-transparent duration-700  dark:bg-gray-700"> Sfax , Tunisia </div> </Link>
-                    <p className="w- h-2 mt- text-gray-400  dark:bg-gray-700"> plus de 30 restaurants</p>
+                   <div className="w-56 h-2 mt-4 dark:bg-gray-700"> 
+                    <div className=" mt-5 transition ease-in-out delay-150 bg-transparent hover:-translate-y-1 hover:scale-110 hover:bg-transparent duration-700  dark:bg-gray-700">Sfax , Tunisia </div> </div>
+                    <p className="w- h-2 mt-2 text-gray-400  dark:bg-gray-700"> plus de 30 restaurants</p>
                 </div>
 
 
-
-
-    
                 <div className="w-full ">
-                <Link href="/mahdia" > 
-                  <div className="w-full h-64 bg-gray-300 rounded-lg dark:bg-gray-600">
+                <Link href="/pageClient" > 
+                  <div className="w-full h-64 bg-gray-300 rounded-lg dark:bg-gray-600"
+                  onClick={() => handleImageClick("Ariana")}>
                     <Image 
-                      src="/mahdia.jpg"
-                      alt="mahdia" 
+                      src="/sfax.jpg"
+                      alt="Ariana" 
                       class="h-full w-auto"
                       width={600}
                       height={300} /> 
                       </div>
                        </Link>
-
-                       <Link href="/mahdia" className="w-56 h-2 mt-4 dark:bg-gray-700"> 
-                    <div className=" mt-5 transition ease-in-out delay-150 bg-transparent hover:-translate-y-1 hover:scale-110 hover:bg-transparent duration-700  dark:bg-gray-700"> Hammamet , Tunisia </div> </Link>
-                    <p className="w- h-2 mt- text-gray-400  dark:bg-gray-700"> plus de 30 restaurants</p>
+                    
+                   <div className="w-56 h-2 mt-4 dark:bg-gray-700"> 
+                    <div className=" mt-5 transition ease-in-out delay-150 bg-transparent hover:-translate-y-1 hover:scale-110 hover:bg-transparent duration-700  dark:bg-gray-700">Ariana , Tunisia </div> </div>
+                    <p className="w- h-2 mt-2 text-gray-400  dark:bg-gray-700"> plus de 30 restaurants</p>
                 </div>
 
+
+                <div className="w-full ">
+                <Link href="/pageClient" > 
+                  <div className="w-full h-64 bg-gray-300 rounded-lg dark:bg-gray-600"
+                  onClick={() => handleImageClick("Beja")}>
+                    <Image 
+                      src="/sfax.jpg"
+                      alt="Beja" 
+                      class="h-full w-auto"
+                      width={600}
+                      height={300} /> 
+                      </div>
+                       </Link>
+                    
+                   <div className="w-56 h-2 mt-4 dark:bg-gray-700"> 
+                    <div className=" mt-5 transition ease-in-out delay-150 bg-transparent hover:-translate-y-1 hover:scale-110 hover:bg-transparent duration-700  dark:bg-gray-700">Beja , Tunisia </div> </div>
+                    <p className="w- h-2 mt-2 text-gray-400  dark:bg-gray-700"> plus de 30 restaurants</p>
+                </div>
+
+
+                <div className="w-full ">
+                <Link href="/pageClient" > 
+                  <div className="w-full h-64 bg-gray-300 rounded-lg dark:bg-gray-600"
+                  onClick={() => handleImageClick("Ben Arous")}>
+                    <Image 
+                      src="/sfax.jpg"
+                      alt="Ben Arous" 
+                      class="h-full w-auto"
+                      width={600}
+                      height={300} /> 
+                      </div>
+                       </Link>
+                    
+                   <div className="w-56 h-2 mt-4 dark:bg-gray-700"> 
+                    <div className=" mt-5 transition ease-in-out delay-150 bg-transparent hover:-translate-y-1 hover:scale-110 hover:bg-transparent duration-700  dark:bg-gray-700">Ben Arous, Tunisia </div> </div>
+                    <p className="w- h-2 mt-2 text-gray-400  dark:bg-gray-700"> plus de 30 restaurants</p>
+                </div>
+
+    
+               
 
             </div>
         </div>

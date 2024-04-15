@@ -40,7 +40,7 @@ const Index = () => {
         console.log("User exists in the database.");
       } else {
         console.log("User does not exist in the database. Inserting user...");
-        await insertUserIntoDatabase(user.sub, user.email); // Assuming user.sub contains the unique identifier of the user
+        await insertUserIntoDatabase(user.sub, user.email,user.picture); // Assuming user.sub contains the unique identifier of the user
       }
     } catch (error) {
       console.error("Error fetching users:", error);
@@ -52,11 +52,12 @@ const Index = () => {
   };
 
   // Function to insert user into the database
-  const insertUserIntoDatabase = async (userId, userEmail) => {
+  const insertUserIntoDatabase = async (userId, userEmail,userPicture) => {
     try {
       const response = await axios.post('/api1/callback', {
         id: userId,
         email: userEmail,
+        picture: userPicture
       });
       console.log(response.data.msg);
       if (response.data.success) {

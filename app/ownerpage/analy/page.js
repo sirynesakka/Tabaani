@@ -1,6 +1,5 @@
 import React from "react";
-import Modal from "../../models/modal"
-import Rentmodal from "../../models/rentmodal"
+import Ajoutbtn from "../../components1/ajoutbtn"
 
 
 
@@ -8,8 +7,8 @@ import Rentmodal from "../../models/rentmodal"
 const Analy = () => {
     return (
         <div>
-            <Rentmodal isOpen={true}
-            /> 
+            
+           <Ajoutbtn/>
            
            
            

@@ -1,9 +1,7 @@
-
 "use client"
-import Link from "next/link"
 
-export default function Contact() {
 
+const Confirmer = ()=> {
     async function handleSubmit(event) {
 
         event.preventDefault();
@@ -28,15 +26,14 @@ export default function Contact() {
             alert("Error, please try resubmitting the form");
         }
     };
-
     return (
-        <main className="flex min-h-screen flex-col items-center" >
-            
-            <form onSubmit={handleSubmit} className="mt-1 mb-2 w-80 max-w-screen-lg sm:w-96">
-    <button className="rounded bg-sky-400 hover:bg-sky-500 text-white font-bold py- px-3 focus:outline-none focus:shadow-outline" type="submit">
-        Confirmer
-    </button>
-</form>
-        </main>
+      
+           
+
+            <form onSubmit={handleSubmit} className="mt-8 mb-2 w-80 max-w-screen-lg sm:w-96">
+                <button className=" rounded bg-sky-400" type="submit">Confirmer</button>
+            </form>
+      
     )
 }
+export default Confirmer;

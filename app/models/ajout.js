@@ -51,6 +51,11 @@ imageSrc: {
     type: String,
     
   },
+
+  ownerEmail: {
+    type: String,
+    
+  },
   date: {
     type: Date,
     default: Date.now,

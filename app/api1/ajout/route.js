@@ -1,9 +1,7 @@
 import { NextResponse } from "next/server";
 import connectDB from "../../lib/mongodb";
 import Ajout  from "../../models/ajout";;
-import mongoose from "mongoose"; 
-
-
+import mongoose, { set } from "mongoose"; 
 
 export async function POST(request) {
     const { category,
@@ -15,6 +13,7 @@ export async function POST(request) {
       imageSrc,
       title,
       description, 
+      ownerEmail,
          } = await request.json();
 
 
@@ -29,7 +28,8 @@ try{
     category5,
     imageSrc,
     title,
-    description,});
+    description,
+    ownerEmail,});
  
     return NextResponse.json({
         msg: ["Message envoyé avec succès"],
@@ -83,7 +83,11 @@ export async function GET() {
       { status: 500 }
     );
   }
-} 
+}
+
+
+
+// Exporter les adresses email pour les rendre accessibles
 
 export async function DELETE(request) {
   const id = request.nextUrl.searchParams.get("id");

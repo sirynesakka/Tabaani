@@ -14,6 +14,10 @@ selectedRole: {
     required: false,
  
 },
+picture:{
+  data: Buffer, // Store binary data
+  contentType: String 
+},
 
 });
 
