@@ -1,8 +1,8 @@
-import Minio from "minio"
+import * as minio from "minio"
 
 
 // Configure Minio client
-const minioClient = new Minio.Client({
+const minioClient = new minio.Client({
   endPoint: process.env.MINIO_ENDPOINT,
   port: 9000,
   useSSL: false,

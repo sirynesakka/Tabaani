@@ -1,39 +1,21 @@
-import { useForm, Controller } from "react-hook-form";
+// TimePicker.js
+import React from 'react';
+import { Controller } from 'react-hook-form';
 
-import TimeInput from "react-time-picker-input";
-
-const Styledtime = ({
-  name,
-  control,
-  defaultValue,
-  options,
-  required,
-  message,
-  errors,
-  value,
-  onChange
-}) => {
+const TimePicker = ({ control, name }) => {
   return (
-    <div className="relative">
-     <Controller
-        name="startTime"
-        control={control}
-        render={({ field }) => (
-          <div className="timeInputWrapper">
-            <TimeInput
-              {...field}
-              value={field?.value || "00:00"}
-              // hour12Format
-              eachInputDropdown
-              // manuallyDisplayDropdown
-              // disabled={true}
-            />
-          </div>
-        )}
-      />
-      {errors?.startTime && <p>{errors?.startTime?.message}</p>}
-    </div>
+    <Controller
+      control={control}
+      name={name}
+      render={({ field }) => (
+        <input
+          type="time"
+          {...field}
+          style={{ width: '100%', padding: '0.5rem' }}
+        />
+      )}
+    />
   );
 };
 
-export default Styledtime;
+export default TimePicker;

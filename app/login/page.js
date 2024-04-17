@@ -74,7 +74,13 @@ const Index = () => {
   return (
     <div>
       
-      {isLoading && <p className=" flex justify-center items-center h-screen text-4xl">Loading...</p>}
+      {isLoading &&  
+  <>
+    <div class="flex gap-4 p-4 flex-wrap justify-center">
+      <img class="w-20 h-20 animate-spin" src="https://www.svgrepo.com/show/448500/loading.svg" alt="Loading icon" />
+    </div>
+  </>
+}
       {existingUser && <p> {user ? user.email : "User"}!</p>}
       {!existingUser && <p></p>}
       {userInserted && !existingUser && (
@@ -83,7 +89,7 @@ const Index = () => {
       {!userInserted && !existingUser && (
         <>
           
-          <h3>All Users:</h3>
+          
           <ul>
             {users.map((user) => (
               <li key={user._id}>{user.id}</li>

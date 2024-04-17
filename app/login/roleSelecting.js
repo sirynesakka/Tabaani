@@ -84,7 +84,7 @@ const RoleSelecting = () => {
       {selectedRole && renderPageBasedOnRole()}
       
       {/* Display user information if available */}
-      <div>{user && JSON.stringify({ sub: user.sub, email: user.email , picture: user.picture}, null, 2)}</div>
+     
     </div>
   );
 }

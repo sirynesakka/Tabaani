@@ -1,101 +1,96 @@
-import React from "react";
+"use client"
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 
+const Visiter = () => {
+  const [demandes, setDemande] = useState([]);
 
-const Visiterres = () => {
-    return (
-   
-   <div class="flex flex-col">
-  <div class="-m-1.5 overflow-x-auto">
-    <div class="p-1.3   min-w-full inline-block align-middle  ">
-      <div class=" flex items-center justify-center min-h-screen overflow-hidden">
-        <table class=" table-auto w-full sm:w-2/3 md:w-4/5 lg:w-2/3 xl:w-1/2">
-        <thead class="bg-gray-50  dark:bg-gray-700">
-            <tr>
-              <th scope="col" class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase dark:text-gray-400">nom</th>
-              <th scope="col" class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase dark:text-gray-400">Email</th>
-              <th scope="col" class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase dark:text-gray-400">Date</th>
-              <th scope="col" class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase dark:text-gray-400">Heure</th>
-              <th scope="col" class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase dark:text-gray-400">Combien de personne </th>
-              <th scope="col" class="px-32 py-3 text-end text-xs font-medium text-gray-500 uppercase dark:text-gray-400">Action</th>
-            </tr>
-          </thead>
-          <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
-            <tr class="hover:bg-gray-100 dark:hover:bg-gray-700">
-              <td class=" px-6 py-4  whitespace-nowrap text-sm font-medium text-gray-800 dark:text-gray-200">John Brown</td>
-              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-gray-200">john@gmail.com</td>
-              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-gray-200">06/05/2024</td>
-              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-gray-200">22h</td>
-              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-gray-200">5</td>
+  const fetchDemande = async () => {
+    try {
+      const response = await axios.get("/api1/demande");
+      setDemande(response.data.demandes);
+    } catch (error) {
+      console.error("Error", error);
+    }
+  };
 
-              <td class="pr-15 py-4 whitespace-nowrap text-end text-sm font-medium">
-                <div>
-                <button type="button" class="inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent text-blue-600 hover:text-blue-800 disabled:opacity-50 disabled:pointer-events-none dark:text-blue-500 dark:hover:text-blue-400 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">Confirmer </button>
-                </div>
-                <div>
-                <button type="button" class="  inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent text-blue-600 hover:text-blue-800 disabled:opacity-50 disabled:pointer-events-none dark:text-blue-500 dark:hover:text-blue-400 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">Refuser</button>
-                </div>
+  useEffect(() => {
+    fetchDemande();
+  }, []);
+
+  return (
+    <div className="overflow-x-auto ml-60 mt-20">
+      <table className="min-w-full divide-y divide-gray-200">
+      <thead className="bg-gray-100">
+  <tr className="font-bold ">
+    <th className="py-3  px-6 text-left text-gray-600 sm:px-8 md:px-12 lg:px-16">
+      Nom
+    </th>
+    <th className="py-3 px-6 text-left text-gray-600 sm:px-8 md:px-12 lg:px-16">
+      Email
+    </th>
+    <th className="py-3 px-6 text-left text-gray-600 sm:px-8 md:px-12 lg:px-16">
+      Heures
+    </th>
+    <th className="py-3 px-6 text-left text-gray-600 sm:px-8 md:px-12 lg:px-16">
+      Durée
+    </th>
+    <th className="py-3 px-6 text-left text-gray-600 sm:px-8 md:px-12 lg:px-16">
+      Nombre de personnes
+    </th>
+    <th className="py-3 px-6 text-left text-gray-600 sm:px-8 md:px-12 lg:px-16">
+      Date
+    </th>
+    <th className="py-3 px-6 text-left text-gray-600 sm:px-8 md:px-12 lg:px-16">
+      Action
+    </th>
+  </tr>
+</thead>
+
+        <tbody className="bg-white divide-y divide-gray-200">
+          {demandes.map((demande) => (
+            <tr key={demande.id}>
+              <td className="py-4 px-6 text-left font-medium text-gray-600 sm:px-8 md:px-12 lg:px-16">
+                {demande.nom}
               </td>
-             
-            </tr>
-
-            <tr class="hover:bg-gray-100 dark:hover:bg-gray-700">
-              <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800 dark:text-gray-200">Jim Green</td>
-              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-gray-200">27</td>
-              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-gray-200">London No. 1 Lake Park</td>
-              <td class="pr-15 py-4 whitespace-nowrap text-end text-sm font-medium">
-                <div>
-                <button type="button" class="inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent text-blue-600 hover:text-blue-800 disabled:opacity-50 disabled:pointer-events-none dark:text-blue-500 dark:hover:text-blue-400 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">Confirmer </button>
-                </div>
-                <div>
-                <button type="button" class="  inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent text-blue-600 hover:text-blue-800 disabled:opacity-50 disabled:pointer-events-none dark:text-blue-500 dark:hover:text-blue-400 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">Refuser</button>
-                </div>
-                </td>
-            </tr>
-
-            <tr class="hover:bg-gray-100 dark:hover:bg-gray-700">
-              <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800 dark:text-gray-200">Joe Black</td>
-              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-gray-200">31</td>
-              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-gray-200">Sidney No. 1 Lake Park</td>
-              <td class="pr-15 py-4 whitespace-nowrap text-end text-sm font-medium">
-                <div>
-                <button type="button" class="inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent text-blue-600 hover:text-blue-800 disabled:opacity-50 disabled:pointer-events-none dark:text-blue-500 dark:hover:text-blue-400 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">Confirmer </button>
-                </div>
-                <div>
-                <button type="button" class="  inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent text-blue-600 hover:text-blue-800 disabled:opacity-50 disabled:pointer-events-none dark:text-blue-500 dark:hover:text-blue-400 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">Refuser</button>
-                </div>
-                </td>
-            </tr>
-
-            <tr class="hover:bg-gray-100 dark:hover:bg-gray-700">
-              <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800 dark:text-gray-200">Edward King</td>
-              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-gray-200">16</td>
-              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-gray-200">LA No. 1 Lake Park</td>
-              <td class="px-15  py-4 whitespace-nowrap text-end text-sm font-medium">
-                <button type="button" class="inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent text-blue-600 hover:text-blue-800 disabled:opacity-50 disabled:pointer-events-none dark:text-blue-500 dark:hover:text-blue-400 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">Confirmer </button>
+              <td className="py-4 px-6 text-left sm:px-8 md:px-12 lg:px-16">
+                {demande.email}
               </td>
-              <td class="px-6 py-4 whitespace-nowrap text-end text-sm font-medium">
-                <button type="button" class="inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent text-blue-600 hover:text-blue-800 disabled:opacity-50 disabled:pointer-events-none dark:text-blue-500 dark:hover:text-blue-400 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">Refuser</button>
+              <td className="py-4 px-6 text-left sm:px-8 md:px-12 lg:px-16">
+                {demande.heure}
               </td>
-            </tr>
-
-            <tr class="hover:bg-gray-100 dark:hover:bg-gray-700">
-              <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800 dark:text-gray-200">Jim Red</td>
-              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-gray-200">45</td>
-              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-gray-200">Melbourne No. 1 Lake Park</td>
-              <td class="px-15  py-4 whitespace-nowrap text-end text-sm font-medium">
-                <button type="button" class="inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent text-blue-600 hover:text-blue-800 disabled:opacity-50 disabled:pointer-events-none dark:text-blue-500 dark:hover:text-blue-400 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">Confirmer </button>
+              <td className="py-4 px-6 text-left sm:px-8 md:px-12 lg:px-16">
+                {demande.num}
               </td>
-              <td class="px-6 py-4 whitespace-nowrap text-end text-sm font-medium">
-                <button type="button" class="inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent text-blue-600 hover:text-blue-800 disabled:opacity-50 disabled:pointer-events-none dark:text-blue-500 dark:hover:text-blue-400 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">Refuser</button>
+              <td className="py-4 px-6 text-left sm:px-8 md:px-12 lg:px-16">
+                {demande.nombre}
               </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+              <td className="py-4 px-6 text-left sm:px-8 md:px-12 lg:px-16">
+                {demande.date}
+              </td>
+ <td className="py-4 px-6 text-left sm:px-8 md:px-12 lg:px-16">
+    <div>
+    <a href="#"
+        class=" font-bold px-3 py-2 leading-none text-black-200 border border-green-800 rounded-lg focus:outline-none focus:shadow-outline bg-gradient-to-b hover:from-green-500 from-white-900 to-green">
+       Confirmer
+    </a>
     </div>
-  </div>
-</div>
-  
-    )
-}
-export default Visiterres ; 
+    
+   <div className="mt-4">
+   <a href="#"
+        class=" font-bold px-3 py-2 leading-none text-black-200 border border-red-800 rounded-lg focus:outline-none focus:shadow-outline bg-gradient-to-b hover:from-red-500 from-white-900 to-red">
+       Supprimer
+    </a>
+   </div>
+   
+</td>
+
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+};
+
+export default Visiter;

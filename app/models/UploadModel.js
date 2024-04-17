@@ -1,6 +1,6 @@
 // /src/db/models/UploadModel.js
 
-import { Schema, model } from 'mongoose';
+import mongoose, { Schema } from "mongoose";
 
 const uploadSchema = new Schema({
 
@@ -10,19 +10,20 @@ const uploadSchema = new Schema({
         
      
    },
-   location: {
+ location: {
     type: String,
     required: true,
+    
+ 
+},
+type: {
+    type: String,
+   
     
  
 },
    
-type: {
-    type: String,
-    required: true,
-    
- 
-},
+
 bucketName: {
     type: String,
     required: true,
@@ -31,6 +32,7 @@ bucketName: {
 },
 });
 
-const UploadModel = model('Upload', uploadSchema);
+const UploadModel = 
+mongoose.models.UploadModel || mongoose.model('UploadModel', uploadSchema);
 
 export default UploadModel;

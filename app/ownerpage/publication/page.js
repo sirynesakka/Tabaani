@@ -49,7 +49,7 @@ export default function Pub () {
                             <div className="font-light text-neutral-500"><span className="font-bold">Description:</span> {publication.description}</div>
                            
                             <div className="flex justify-center mt-5">
-                                <Link href={`/editForm/${publication._id}`}className="bg-blue-200 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" > Modifier</Link>
+                                <Link href={`/editForm/${publication._id}`}className="font-bold px-6 py-3 leading-none text-black-200 border border-green-800 rounded-lg focus:outline-none focus:shadow-outline bg-gradient-to-b hover:from-green-500 from-white-900 to-green" > Modifier</Link>
                                <div className=" flex items-center">
                                 <Deletebtn  id={publication._id} setPublication={setPublication} />
                                 </div>
