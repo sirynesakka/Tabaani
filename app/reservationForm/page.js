@@ -129,7 +129,7 @@ const Modal = () => {
                       placeholder="Entrer votre email "
                       register={register}
                       required={true}
-                      pattern={/^[a-zA-Z\s]+$/}
+                      pattern={/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i}
                       message="Only letters are allowed"
                     />
                     

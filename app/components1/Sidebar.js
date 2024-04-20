@@ -50,36 +50,36 @@ const Sidebar = () => {
         <div className=" my-4 border-b border-gray-100 pb-4">
           
 
-            <Link href="/ownerpage/analy" className="flex mb-2 justify-start items-center gap-4 pl-5 hover:bg-gray-900 p-2 rounded-md group cursor-pointer hover:shadow-lg m-auto">
-                <MdOutlineSpaceDashboard className="text-2xl text-gray-600  group-hover:text-white " />
-                <h3 className="text-base text-gray-800 group-hover:text-white   font-semibold ">
+            <Link href="/ownerpage/analy" className="flex mb-2 justify-start items-center gap-4 pl-5 hover:bg-blue-900 p-2 rounded-md group cursor-pointer hover:shadow-lg m-auto">
+                <MdOutlineSpaceDashboard className="text-2xl text-black-900  group-hover:text-white " />
+                <h3 className="text-base text-blue-900 group-hover:text-white   font-semibold ">
                   Ajouter des publications 
                 </h3>
               </Link> 
              
              
 
-              <Link href="/ownerpage/visiter" className="flex  mb-2 justify-start items-center gap-4 pl-5 hover:bg-gray-900 p-2 rounded-md group cursor-pointer hover:shadow-lg m-auto">
-                <TfiWrite   className="text-2xl text-gray-600 group-hover:text-white " />
-                <h3 className="text-base text-gray-800 group-hover:text-white font-semibold ">
+              <Link href="/ownerpage/visiter" className="flex  mb-2 justify-start items-center gap-4 pl-5 hover:bg-blue-900 p-2 rounded-md group cursor-pointer hover:shadow-lg m-auto">
+                <TfiWrite   className="text-2xl text-black-900 group-hover:text-white " />
+                <h3 className="text-base text-blue-900 group-hover:text-white font-semibold ">
                   Visiter les réservations 
                 </h3>
               </Link> 
 
             
 
-               <Link href="/ownerpage/publication"    className="flex  mb-2 justify-start items-center gap-4 pl-5 hover:bg-gray-900 p-2 rounded-md group cursor-pointer hover:shadow-lg m-auto">
-                <FaRegComments className="text-2xl text-gray-600 group-hover:text-white " />
-                <h3 className="text-base text-gray-800 group-hover:text-white font-semibold ">
+               <Link href="/ownerpage/publication"    className="flex  mb-2 justify-start items-center gap-4 pl-5 hover:bg-blue-900 p-2 rounded-md group cursor-pointer hover:shadow-lg m-auto">
+                <FaRegComments className="text-2xl text-black-900 group-hover:text-white " />
+                <h3 className="text-base text-blue-900 group-hover:text-white font-semibold ">
                  Mes publications 
                 </h3>
               </Link> 
             
 
 
-              <Link href="/" className="flex  mb-2 justify-start items-center gap-4 pl-5 hover:bg-gray-900 p-2 rounded-md group cursor-pointer hover:shadow-lg m-auto">
-                <FaRegComments  className="text-2xl text-gray-600 group-hover:text-white " />
-                <h3 className="text-base text-gray-800 group-hover:text-white font-semibold ">
+              <Link href="/" className="flex  mb-2 justify-start items-center gap-4 pl-5 hover:bg-blue-900 p-2 rounded-md group cursor-pointer hover:shadow-lg m-auto">
+                <FaRegComments  className="text-2xl text-black-900 group-hover:text-white " />
+                <h3 className="text-base text-blue-900 group-hover:text-white font-semibold ">
                   Mes commentaires
                 </h3>
               </Link>          
@@ -92,24 +92,24 @@ const Sidebar = () => {
               
               </div>  
               <div className=" my-4 border-b border-gray-100 pb-4">
-              <div className="flex mb-2 justify-start items-center gap-4 pl-5 hover:bg-gray-900 p-2 rounded-md group cursor-pointer hover:shadow-lg m-auto">
-                <MdOutlineSettings className="text-2xl text-gray-600 group-hover:text-white " />
-                <h3 className="text-base text-gray-800 group-hover:text-white font-semibold ">
+              <div className="flex mb-2 justify-start items-center gap-4 pl-5 hover:bg-blue-900 p-2 rounded-md group cursor-pointer hover:shadow-lg m-auto">
+                <MdOutlineSettings className="text-2xl text-black-900 group-hover:text-white " />
+                <h3 className="text-base text-blue-900 group-hover:text-white font-semibold ">
                   Settings
                 </h3>
               </div>
-              <div className="flex mb-2 justify-start items-center gap-4 pl-5 hover:bg-gray-900 p-2 rounded-md group cursor-pointer hover:shadow-lg m-auto">
-                <MdOutlineMoreHoriz className="text-2xl text-gray-600 group-hover:text-white " />
-                <h3 className="text-base text-gray-800 group-hover:text-white font-semibold ">
+              <div className="flex mb-2 justify-start items-center gap-4 pl-5 hover:bg-blue-900 p-2 rounded-md group cursor-pointer hover:shadow-lg m-auto">
+                <MdOutlineMoreHoriz className="text-2xl text-black-900 group-hover:text-white " />
+                <h3 className="text-base text-blue-900 group-hover:text-white font-semibold ">
                   More
                 </h3>
               </div>
             </div>
             {/* logout */}
             <div className=" my-4">
-            <Link href="/manager" className="flex mb-2 justify-start items-center gap-4 pl-5 border border-gray-200  hover:bg-gray-900 p-2 rounded-md group cursor-pointer hover:shadow-lg m-auto">
-                <MdOutlineLogout className="text-2xl text-gray-600 group-hover:text-white " />
-                <h3 className="text-base text-gray-800 group-hover:text-white font-semibold ">
+            <Link href="/manager" className="flex mb-2 justify-start items-center gap-4 pl-5 border border-gray-200  hover:bg-blue-900 p-2 rounded-md group cursor-pointer hover:shadow-lg m-auto">
+                <MdOutlineLogout className="text-2xl text-black-900 group-hover:text-white " />
+                <h3 className="text-base text-blue-900 group-hover:text-white font-semibold ">
                   Logout
                 </h3>
               </Link>

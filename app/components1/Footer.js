@@ -3,7 +3,7 @@ import React from "react";
 const Footer = () => {
     return(
     
-        <footer className="bg-gradient-to-r from-gray-100 via-[#5b98ca] to-gray-100">
+        <footer className="bg-gradient-to-r from-red-100 via-[#5b98ca] to-red-100">
           <div className=" py-20 max-w-screen-xl px-4 mx-auto sm:px-6 lg:px-8">
             <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
               <div>

@@ -47,7 +47,8 @@ const Navbar =({hasDashboardmanager,hasDashboardadmin,hasDashboardclient}) => {
   
   
   return (
-    <nav className={header ? "z-10 fixed w-full bg-red-50 " : " bg-red-50"}>
+    
+    <nav className={header ? "z-10 fixed w-full bg-red-50 " : " bg-gray-100"}>
       <div className="flex justify-between items-center h-full w-full px-4 2xl:px-16 md:text-2xl xl:text-3xl z-50">
         <Image 
         src="/Logo.png"
@@ -59,77 +60,77 @@ const Navbar =({hasDashboardmanager,hasDashboardadmin,hasDashboardclient}) => {
         <ul className="hidden md:flex text-2xl lg:text-[20px]">
             <Link href="/home">
               <div className="ml-2 font-bold  lg:mr-2 mr-4 px-8 py-1 text-blue-800 hover:text-[#659be2]  ">
-                Accueile 
+                Accueil
               </div>
             </Link> 
 
   {hasDashboardmanager && (
+    <>
               <Link href="/ownerpage">
                 <div className="ml-2 font-bold lg:mr-2 mr-4 px-8 py-1 text-blue-800 hover:text-[#659be2] ">
                   Tableau de bord
                 </div>
-        
-              </Link>
+               </Link>
+               <Link href="/clientpage/cities"> 
+                       <div class="relative inline-block text-center">
+                       <div class="group">
+                       <div className="ml-2 rounded-full lg:mr-2 font-bold  mr-4 px-8 py-1  text-blue-800 hover:text-[#659be2] ">
+                                  Destination
+                              </div> 
+                              </div>
+                       </div>
+                </Link>
+              </>
             )}
 
 {hasDashboardadmin && (
+  <>
               <Link href="/dashboard2">
                 <div className="ml-2 font-bold lg:mr-2 mr-4 px-8 py-1 text-blue-800 hover:text-[#659be2] ">
                   Tableau de bord 
                 </div>
               </Link>
-            )}
-
-{hasDashboardclient && (
-  <>
-              <Link href="/mes-reservations">
-                <div className="ml-2 font-bold lg:mr-2 mr-4 px-8 py-1 text-blue-800 hover:text-[#659be2] ">
-                  Mes Réservations
-                </div>
-              </Link>
-              <Link href="/mes-reservations">
-              <div className="ml-2 font-bold lg:mr-2 mr-4 px-8 py-1 text-blue-800 hover:text-[#659be2] ">
-                Mes favorite 
-              </div>
-            </Link>
-            </>
-            )}
-
-
-            <Link href="/Destination"> 
+              <Link href="/clientpage/cities"> 
                        <div class="relative inline-block text-center">
                        <div class="group">
                        <div className="ml-2 rounded-full lg:mr-2 font-bold  mr-4 px-8 py-1  text-blue-800 hover:text-[#659be2] ">
                                   Destination
+                              </div> 
                               </div>
+                       </div>
+                </Link>
+              </>
+            )}
 
-                        
-                              
-
-
-
-                           
-                           <div
-            class="absolute left-0  w-40 mt-1 origin-top-left  bg-white divide-y divide-gray-100 rounded-s-none shadow-lg opacity-20 invisible group-hover:opacity-100 group-hover:visible  duration-500">
-            <div class="py-1">
-                <Link href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Mahdia </Link>
-                <Link href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">sousse </Link>
-                <Link href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Option 3</Link>
-            </div>
-        </div> 
-        </div>
-        </div>
-        
-        
-
-
-
-            </Link>
-            <Link href="/Review">
-              <div className="ml-2 rounded-full lg:mr-2 px-8 py-1 font-bold  mr-4  text-blue-800 hover:text-[#659be2]">
-                Review
+{hasDashboardclient && (
+  <>
+              <Link href="/clientpage/reservationpage">
+                <div className="ml-2 font-bold lg:mr-2 mr-4 px-8 py-1 text-blue-800 hover:text-[#659be2] ">
+                  Mes Réservations
+                </div>
+              </Link>
+              <Link href="/clientpage/demande">
+              <div className="ml-2 font-bold lg:mr-2 mr-4 px-8 py-1 text-blue-800 hover:text-[#659be2] ">
+                Mes demandes
               </div>
             </Link>
+            <Link href="/clientpage/cities"> 
+                       <div class="relative inline-block text-center">
+                       <div class="group">
+                       <div className="ml-2 rounded-full lg:mr-2 font-bold  mr-4 px-8 py-1  text-blue-800 hover:text-[#659be2] ">
+                                  Destination
+                              </div> 
+                              </div>
+                       </div>
+                </Link>
+            </>
+            )}
+
+
+           
+
+
+           
             <Link href="/Contact">
               <div className="ml-2 lg:mr-2 rounded-full font-bold px-8 py-1 mr-4  text-blue-800 hover:text-[#659be2]">
                 contact
@@ -174,38 +175,69 @@ const Navbar =({hasDashboardmanager,hasDashboardadmin,hasDashboardclient}) => {
             <ul className="font-blod text-2xl">
 
                 <li onClick={handleNav} className="py-5 hover:text-[#659be2] cursor-pointer">
-                  <Link href="/Accuil">Accueile </Link>
+                  <Link href="/Accuil"> Accueil </Link>
                 </li>
 
-                {hasDashboardmanager && (
+ {hasDashboardmanager && (
+              <>
               <Link href="/ownerpage">
-                <div className="py-5 hover:text-[#659be2] cursor-pointer">
+                <div className="ml-2 font-bold lg:mr-2 mr-4 px-8 py-1 text-blue-800 hover:text-[#659be2] ">
                   Tableau de bord
                 </div>
-              </Link>
+               </Link>
+               <Link href="/clientpage/cities"> 
+                       <div class="relative inline-block text-center">
+                       <div class="group">
+                       <div className="ml-2 rounded-full lg:mr-2 font-bold  mr-4 px-8 py-1  text-blue-800 hover:text-[#659be2] ">
+                                  Destination
+                              </div> 
+                              </div>
+                       </div>
+                </Link>
+              </>
             )}
 
 {hasDashboardadmin && (
-              <Link href="/dashboard2">
-                <div className="py-5 hover:text-[#659be2] cursor-pointer">
-                  Tableau de bord 
-                </div>
-              </Link>
+             <>
+             <Link href="/dashboard2">
+               <div className="ml-2 font-bold lg:mr-2 mr-4 px-8 py-1 text-blue-800 hover:text-[#659be2] ">
+                 Tableau de bord 
+               </div>
+             </Link>
+             <Link href="/clientpage/cities"> 
+                      <div class="relative inline-block text-center">
+                      <div class="group">
+                      <div className="ml-2 rounded-full lg:mr-2 font-bold  mr-4 px-8 py-1  text-blue-800 hover:text-[#659be2] ">
+                                 Destination
+                             </div> 
+                             </div>
+                      </div>
+               </Link>
+             </>
             )}
 
 {hasDashboardclient && (
-  <>
-              <Link href="/mes-reservations">
-                <div className="py-5 hover:text-[#659be2] cursor-pointer">
-                  Mes Réservations
-                </div>
-              </Link>
-              <Link href="/mes-reservations">
-              <div className="py-5 hover:text-[#659be2] cursor-pointer">
-                Mes favorite 
-              </div>
-            </Link>
-            </>
+ <>
+ <Link href="/clientpage/reservationpage">
+   <div className="ml-2 font-bold lg:mr-2 mr-4 px-8 py-1 text-blue-800 hover:text-[#659be2] ">
+     Mes Réservations
+   </div>
+ </Link>
+ <Link href="/clientpage/demande">
+ <div className="ml-2 font-bold lg:mr-2 mr-4 px-8 py-1 text-blue-800 hover:text-[#659be2] ">
+   Mes demandes
+ </div>
+</Link>
+<Link href="/clientpage/cities"> 
+          <div class="relative inline-block text-center">
+          <div class="group">
+          <div className="ml-2 rounded-full lg:mr-2 font-bold  mr-4 px-8 py-1  text-blue-800 hover:text-[#659be2] ">
+                     Destination
+                 </div> 
+                 </div>
+          </div>
+   </Link>
+</>
             )}
                 
                 <li onClick={handleNav} className="py-5 hover:text-[#659be2] cursor-pointer">

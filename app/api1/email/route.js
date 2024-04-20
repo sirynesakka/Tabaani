@@ -48,6 +48,6 @@ export async function POST(request) {
     
     } catch (error) {
         console.log(error)
-        NextResponse.status(500).json({ message: "COULD NOT SEND MESSAGE" })
+        return NextResponse.json({ message: "COULD NOT SEND MESSAGE" }, { status: 500 })
     }
 }

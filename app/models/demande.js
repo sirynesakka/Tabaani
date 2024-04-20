@@ -26,7 +26,12 @@ date:{
 heure:{
   type: String,
   required: true,
+},    
+confirme: {
+  type: Boolean,
+  default: false, // Par défaut, la demande n'est pas confirmée
 },
+
 
 });
 

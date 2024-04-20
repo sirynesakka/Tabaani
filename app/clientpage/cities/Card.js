@@ -48,7 +48,7 @@ const Card = () => {
 
                
             <div className="w-full ">
-                   <Link href="/pageClient" > 
+                   <Link href="/clientpage/pageClient" > 
                   <div className="w-full h-64 bg-gray-300 rounded-lg dark:bg-gray-600"
                   onClick={() => handleImageClick("Mahdia")}>
                     <Image 
@@ -71,7 +71,7 @@ const Card = () => {
 
 
              <div className="w-full ">
-                <Link href="/pageClient" > 
+                <Link href="/clientpage/pageClient" > 
                   <div className="w-full h-64 bg-gray-300 rounded-lg dark:bg-gray-600"
                   onClick={() => handleImageClick("Bizerte")}>
                     <Image 
@@ -91,7 +91,7 @@ const Card = () => {
 
     
                 <div className="w-full ">
-                  <Link href="/pageClient" > 
+                  <Link href="/clientpage/pageClient" > 
                   <div className="w-full h-64 bg-gray-300 rounded-lg dark:bg-gray-600"
                   onClick={() => handleImageClick("Médenine")}>
                     <Image 
@@ -113,7 +113,7 @@ const Card = () => {
 
     
                 <div className="w-full ">
-                <Link href="/pageClient" > 
+                <Link href="/clientpage/pageClient" > 
                   <div className="w-full h-64 bg-gray-300 rounded-lg dark:bg-gray-600"
                    onClick={() => handleImageClick("Nabeul")}>
                     
@@ -137,7 +137,7 @@ const Card = () => {
 
     
                 <div className="w-full ">
-                <Link href="/pageClient" > 
+                <Link href="/clientpage/pageClient" > 
                   <div className="w-full h-64 bg-gray-300 rounded-lg dark:bg-gray-600"
                    onClick={() => handleImageClick("Sousse")}>
                     <Image 
@@ -158,7 +158,7 @@ const Card = () => {
 
     
                 <div className="w-full ">
-                <Link href="/pageClient" > 
+                <Link href="/clientpage/pageClient" > 
                   <div className="w-full h-64 bg-gray-300 rounded-lg dark:bg-gray-600"
                   onClick={() => handleImageClick("Monastir")}>
                     <Image 
@@ -182,7 +182,7 @@ const Card = () => {
 
     
                 <div className="w-full ">
-                <Link href="/pageClient" > 
+                <Link href="/clientpage/pageClient" > 
                   <div className="w-full h-64 bg-gray-300 rounded-lg dark:bg-gray-600"
                   onClick={() => handleImageClick("Sfax")}>
                     <Image 
@@ -201,7 +201,7 @@ const Card = () => {
 
 
                 <div className="w-full ">
-                <Link href="/pageClient" > 
+                <Link href="/clientpage/pageClient" > 
                   <div className="w-full h-64 bg-gray-300 rounded-lg dark:bg-gray-600"
                   onClick={() => handleImageClick("Ariana")}>
                     <Image 
@@ -220,7 +220,7 @@ const Card = () => {
 
 
                 <div className="w-full ">
-                <Link href="/pageClient" > 
+                <Link href="/clientpage/pageClient" > 
                   <div className="w-full h-64 bg-gray-300 rounded-lg dark:bg-gray-600"
                   onClick={() => handleImageClick("Beja")}>
                     <Image 
@@ -239,7 +239,7 @@ const Card = () => {
 
 
                 <div className="w-full ">
-                <Link href="/pageClient" > 
+                <Link href="/clientpage/pageClient" > 
                   <div className="w-full h-64 bg-gray-300 rounded-lg dark:bg-gray-600"
                   onClick={() => handleImageClick("Ben Arous")}>
                     <Image 

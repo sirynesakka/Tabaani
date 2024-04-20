@@ -18,14 +18,24 @@ export default function Home() {
 <div>
 
       
-       <Navbar/> 
-    
+<div>
+  <Navbar />
 
-    
-<div className="h-[100vh] flex justify-center items-center flex-col text-center custom-img">
-              
-     
+  <div className="min-h-screen flex justify-center items-center text-center relative">
+  <Image 
+    src="/pp.png"
+    alt="logo" 
+    layout="fill"
+    objectFit="cover"
+  />
+  <div className="absolute top-1/ left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white">
+    <p className="text-4xl font-bold">Découvrez, Savourez:</p>
+    <p className="text-2xl">Votre Guide Ultime Des Bonnes Adresses</p>
+  </div>
+  {/* Your other content here */}
 </div>
+</div>
+
 
         <div>
 

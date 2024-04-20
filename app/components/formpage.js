@@ -51,7 +51,7 @@ const Formajouter = ({ onFormClose }) => {
   const { user } = useUser();
   const { email } = user || {};
   const body = JSON.stringify({ email });
-
+  const confirmation = "x";
   useEffect(() => {
     const fetchCities = async () => {
       try {
@@ -103,6 +103,7 @@ const Formajouter = ({ onFormClose }) => {
           tunisiaStates: data.cities.value,
           titre: data.titre,
           description: data.description,
+          confirmer :confirmation ,
         }),
       });
 
@@ -227,7 +228,7 @@ const Formajouter = ({ onFormClose }) => {
           pattern={/^[a-zA-Z\s]+$/}
           message="Only letters are allowed"
         />
-
+       <ImageUploadForm />
         <button
           onClick={notify}
           form="main-form"
@@ -236,8 +237,9 @@ const Formajouter = ({ onFormClose }) => {
           Enregistrer
         </button>
         <ToastContainer />
+        
       </form>
-      <ImageUploadForm />
+    
     </div>
   );
 };

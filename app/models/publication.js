@@ -1,44 +1,50 @@
 import mongoose, { Schema } from "mongoose";
 
 const publicationSchema = new Schema({
-  type: {
-       type: String,
-       required: true,
+ clé:{
+    type: String,
+    required: true,
+ },
+    type: {
+    type: String,
+    required: true,
   },
-  repas : {
+  repas: {
     type: String,
     required: true,
-},
-spécialité: {
+  },
+  spécialité: {
     type: String,
     required: true,
- 
-},
-prix:{
+  },
+  prix: {
     type: String,
     required: true,
-},
-bonpour:{
+  },
+  bonpour: {
     type: String,
     required: true,
-},
-tunisiaStates:{
+  },
+  tunisiaStates: {
     type: String,
     required: true,
-},
-description:{
+  },
+  description: {
     type: String,
     required: true,
-},
-titre:{
+  },
+  titre: {
     type: String,
     required: true,
-},
-ownerEmail:{
+  },
+  ownerEmail: {
     type: String,
     required: true,
-},
-
+  },
+  confirmer: {
+    type: String,
+    required: true,
+  }
 });
 
 const Publication =

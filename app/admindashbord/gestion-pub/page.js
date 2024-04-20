@@ -5,7 +5,6 @@ import Deletebtn from "../../components/deletebtn"
 import Confirmer from "../../confirmationbtn/page"
 
 
-
 export default function GesPub () {
     
     const [publications , setPublication] = useState([]);
@@ -24,13 +23,27 @@ export default function GesPub () {
         fetchPublication(); 
     }, []); 
 
-    async function handleSubmit(event, ownerEmail) {
+    async function handleSubmit(event, ownerEmail ,clé ) {
         event.preventDefault();
         const formData = new FormData(event.target);
-    
         // Append the ownerEmail to the formData
-        formData.append('email', ownerEmail);
-    
+        formData.append('email', ownerEmail );
+        try {
+            const response = await axios.put(`/api1/ownerpublications`, { clé });
+            if (response.status === 200) {
+                // Publication successfully confirmed, update UI accordingly
+                // For example, you may want to refetch the publications list
+                fetchPublication();
+                alert('Publication successfully confirmed');
+            } else {
+                // Handle other response statuses if needed
+                console.error("Error confirming publication");
+                alert('Error confirming publication');
+            }
+        } catch (error) {
+            console.error("Error", error);
+            alert("Error, please try again");
+        }
         try {
             const response = await fetch('/api1/email', {
                 method: 'post',
@@ -72,7 +85,7 @@ export default function GesPub () {
                             <div className="font-light text-neutral-500"><span className="font-bold">Owner Email:</span> {publication.ownerEmail}</div>
 <div className="flex justify-center ml-6">
    
-    <form onSubmit={(event) => handleSubmit(event, publication.ownerEmail)} className="mt-8 mb-2 w-80 max-w-screen-lg sm:w-96">
+    <form onSubmit={(event) => handleSubmit(event, publication.ownerEmail , publication.clé)} className="mt-8 mb-2 w-80 max-w-screen-lg sm:w-96">
         <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 mt-1 rounded " type="submit">Confirmer</button>
     </form>
     <div className=" flex items-center "> {/* Added margin to separate the buttons */}

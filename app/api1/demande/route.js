@@ -6,47 +6,49 @@ import { NextResponse } from 'next/server';
 
 export async function POST(req) {
     const {
-     nom,
-     email,
-     num,
-     nombre,
-     date,
-     heure,
-    } = await req.json();
-    try {
-      await connectDB();
-  
-      const err = await Demande.create({
         nom,
         email,
         num,
         nombre,
         date,
         heure,
-      });
-      console.log(err); 
-      const demandes = await Demande.find();
-      return NextResponse.json({
-        msg: ["Publication information saved successfully"],
-        demandes,
-        success: true,
-      });
+        confirme = false, // Ajoutez le champ confirme avec la valeur false par défaut
+    } = await req.json();
+
+    try {
+        await connectDB();
+
+        const demande = await Demande.create({
+            nom,
+            email,
+            num,
+            nombre,
+            date,
+            heure,
+            confirme, // Incluez le champ confirme dans la création de la demande
+        });
+        console.log(demande) ;
+        const demandes = await Demande.find();
+
+        return NextResponse.json({
+            msg: ["Demande enregistrée avec succès"],
+            demandes,
+            success: true,
+        });
     } catch (error) {
-      let err;
-      if (error instanceof mongoose.Error.ValidationError) {
-        let errorList = [];
-        for(let e in error.errors) {
-          errorList.push(error.errors[e].message);
+        if (error instanceof mongoose.Error.ValidationError) {
+            let errorList = [];
+            for (let e in error.errors) {
+                errorList.push(error.errors[e].message);
+            }
+            console.log(errorList);
+            return NextResponse.json({ msg: errorList });
+        } else {
+            console.log(error);
+            return NextResponse.json({ msg: ["Impossible d'enregistrer la demande."] });
         }
-        console.log(errorList);
-        return NextResponse.json({ msg: errorList });
-      } else {
-        err = error;
-        console.log(err);
-        return NextResponse.json({ msg: ["Unable to save user information."] });
-      }
     }
-  }
+}
 
   export async function GET(request) {
     try {
