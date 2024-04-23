@@ -51,6 +51,7 @@ const Formajouter = ({ onFormClose }) => {
   const { user } = useUser();
   const { email } = user || {};
   const body = JSON.stringify({ email });
+  
   const confirmation = "x";
   useEffect(() => {
     const fetchCities = async () => {
@@ -219,15 +220,16 @@ const Formajouter = ({ onFormClose }) => {
           message="Only letters are allowed"
         />
 
-        <StyledInput
-          label="Description"
-          name="description"
-          placeholder="votre description  "
-          register={register}
-          required={true}
-          pattern={/^[a-zA-Z\s]+$/}
-          message="Only letters are allowed"
-        />
+<StyledInput
+  label="Description"
+  name="description"
+  placeholder="Votre description"
+  register={register}
+  required={true}
+  pattern={/[\s\S]*/} // This pattern allows any character including line breaks
+  message="Please enter a valid description"
+/>
+
        <ImageUploadForm />
         <button
           onClick={notify}

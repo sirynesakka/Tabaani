@@ -62,6 +62,13 @@ const Sidebar = () => {
               <Link href="/ownerpage/visiter" className="flex  mb-2 justify-start items-center gap-4 pl-5 hover:bg-blue-900 p-2 rounded-md group cursor-pointer hover:shadow-lg m-auto">
                 <TfiWrite   className="text-2xl text-black-900 group-hover:text-white " />
                 <h3 className="text-base text-blue-900 group-hover:text-white font-semibold ">
+                  Visiter les demandes
+                </h3>
+              </Link> 
+
+              <Link href="/ownerpage/visiterRes" className="flex  mb-2 justify-start items-center gap-4 pl-5 hover:bg-blue-900 p-2 rounded-md group cursor-pointer hover:shadow-lg m-auto">
+                <TfiWrite   className="text-2xl text-black-900 group-hover:text-white " />
+                <h3 className="text-base text-blue-900 group-hover:text-white font-semibold ">
                   Visiter les réservations 
                 </h3>
               </Link> 

@@ -15,8 +15,16 @@ export async function GET(request) {
             return NextResponse.error('State parameter is missing', { status: 400 });
         }
 
-        // Retrieve publications for the specified Tunisian state
-        const publications = await Publication.find({ tunisiaStates: tunisiaState });
+        // Define the confirmation status
+        const confirmationStatus = searchParams.get('confirmationStatus');
+
+        // Define the query based on confirmation status
+        const query = confirmationStatus === 'confirmer' ?
+            { tunisiaStates: tunisiaState, confirmer: 'confirmer' } :
+            { tunisiaStates: tunisiaState };
+
+        // Retrieve publications based on the query
+        const publications = await Publication.find(query);
 
         // Map the publications to include the alt attribute for the image
         const publicationsWithAlt = publications.map(publication => ({

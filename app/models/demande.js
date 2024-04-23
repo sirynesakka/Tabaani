@@ -1,6 +1,10 @@
 import mongoose, { Schema } from "mongoose";
 
 const demandeSchema = new Schema({
+  clé:{
+    type: String,
+    required: true,
+ },
   nom: {
        type: String,
        required: true,
@@ -27,6 +31,7 @@ heure:{
   type: String,
   required: true,
 },    
+
 confirme: {
   type: Boolean,
   default: false, // Par défaut, la demande n'est pas confirmée

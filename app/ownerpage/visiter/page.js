@@ -18,8 +18,31 @@ const Visiter = () => {
     fetchDemande();
   }, []);
 
+  
+    async function handleConfirmation(clé) {
+    try {
+        const response = await axios.put(`/api1/demande`,{clé});
+        
+
+        // Assuming the response contains JSON data
+        const responseData = await response.json();
+        console.log(responseData.message);
+
+        // If you want to update the UI after confirmation, you might need to refetch the data
+        fetchDemande();
+
+        alert('Demande confirmée avec succès');
+    } catch (error) {
+        console.error('Error confirming demande:', error);
+        
+    }
+    
+}
+
+
+  
   return (
-    <div className="flex ml-60 justify-center items-center h-full">
+    <div className="flex ml-60 mt-10 justify-center items-center h-full">
       <div className="overflow-x-auto">
         <table className="min-w-full divide-y divide-gray-200">
           <thead>
@@ -109,23 +132,20 @@ const Visiter = () => {
                 <td className="w-full lg:w-auto p-3 text-gray-800 text-center border border-b text-center block lg:table-cell relative lg:static">
                   <div className="lg:flex">
                     <div className="mr-4 lg:mr-0">
-                      <a
-                        href="#"
-                        className="font-bold px-3 py-2 leading-none text-black-200 border border-green-800 rounded-lg focus:outline-none focus:shadow-outline bg-gradient-to-b hover:from-green-500 from-white-900 to-green"
-                      >
+                      {/* "Confirmer" button */}
+                      <button onClick={() => handleConfirmation(demande.clé)} className="font-bold px-3 py-2 leading-none text-black-200 border border-green-800 rounded-lg focus:outline-none focus:shadow-outline bg-gradient-to-b hover:from-green-500 from-white-900 to-green">
                         Confirmer
-                      </a>
+                      </button>
                     </div>
-                    <div className="mr-4">
-                      <a
-                        href="#"
-                        className="font-bold px-3 py-2 leading-none text-black-200 border border-red-800 rounded-lg focus:outline-none focus:shadow-outline bg-gradient-to-b hover:from-red-500 from-white-900 to-red"
-                      >
+                    <div className=" ml-3">
+                      {/* "Supprimer" button */}
+                      <button className="font-bold px-3 py-2 leading-none text-black-200 border border-red-800 rounded-lg focus:outline-none focus:shadow-outline bg-gradient-to-b hover:from-red-500 from-white-900 to-red">
                         Supprimer
-                      </a>
+                      </button>
                     </div>
                   </div>
                 </td>
+
               </tr>
             ))}
           </tbody>

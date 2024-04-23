@@ -1,12 +1,16 @@
  "use client"
  import { useState } from 'react';
- import Dateinput from "../components/dateinput";
+ import Dateinput from "./dateinput";
 import {useForm} from "react-hook-form"
-import StyledInput2 from "../components/styledinput2"
-import Stylednum from "../components/stylednum"
-import TimePicker from "../components/styledtime"
+import StyledInput2 from "./styledinput2"
+import Stylednum from "./stylednum"
+import TimePicker from "./styledtime"
+
+
+
 const Modal = () => {
-    const [modalOpen, setModalOpen] = useState(false);
+  
+const [modalOpen, setModalOpen] = useState(false);
 
     const openModal = () => {
         setModalOpen(true);
@@ -54,6 +58,7 @@ const Modal = () => {
               nombre: data.nombre,
               num: data.num,
               heure: data.heure,
+              
             }),
           });
     
@@ -61,7 +66,7 @@ const Modal = () => {
             
            
             // Redirect to publication page after 3 seconds
-           
+            window.location.href = '/clientpage/demande';
             
           } else {
             console.error("Error posting data to server");
