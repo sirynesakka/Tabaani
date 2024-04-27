@@ -1,6 +1,7 @@
 "use client"
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import DeleteDemande from "./deletDemande";
 
 const Mesdemandes = () => {
   const [demandes, setDemande] = useState([]);
@@ -20,30 +21,36 @@ const Mesdemandes = () => {
 
   return (
     <div className="flex flex-col items-center justify-center h-screen">
-      <h1 className="mt-0 text-4xl text-center font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-blue-400 to-blue-500">
+      <h1 className="mt-3 text-4xl text-center font-semibold font-serif text-transparent bg-clip-text text-green-900">
         Mes Demandes
       </h1>
-      <div className="flex justify-center">
+      <div className="flex mt-4 justify-center">
         <table className="border-collapse w-full max-w-screen-lg">
           <thead>
             <tr>
-              <th className="p-3 font-bold uppercase bg-gray-200 text-blue-900 border border-gray-300 hidden lg:table-cell">
+              <th className="p-3 font-semibold font-serif uppercase bg-white-200 text-green-900 border border-gray-300 hidden lg:table-cell">
                 Nom
               </th>
-              <th className="p-3 font-bold uppercase bg-gray-200 text-blue-900 border border-gray-300 hidden lg:table-cell">
+              <th className="p-3 font-semibold font-serif uppercase bg-white-200 text-green-900 border border-gray-300 hidden lg:table-cell">
+                tel
+              </th>
+              <th className="p-3 font-semibold font-serif uppercase bg-white-200 text-green-900 border border-gray-300 hidden lg:table-cell">
                 Email
               </th>
-              <th className="p-3 font-bold uppercase bg-gray-200 text-blue-900 border border-gray-300 hidden lg:table-cell">
+              <th className="p-3 font-semibold font-serif uppercase bg-white-200 text-green-900 border border-gray-300 hidden lg:table-cell">
                 Heures
               </th>
-              <th className="p-3 font-bold uppercase bg-gray-200 text-blue-900 border border-gray-300 hidden lg:table-cell">
+              <th className="p-3 font-semibold font-serif uppercase bg-white-200 text-green-900 border border-gray-300 hidden lg:table-cell">
                 Durée
               </th>
-              <th className="p-3 font-bold uppercase bg-gray-200 text-blue-900 border border-gray-300 hidden lg:table-cell">
+              <th className="p-3 font-semibold font-serif uppercase bg-white-200 text-green-900 border border-gray-300 hidden lg:table-cell">
                 Nombre de personnes
               </th>
-              <th className="p-3 font-bold uppercase bg-gray-200 text-blue-900 border border-gray-300 hidden lg:table-cell">
+              <th className="p-3 font-semibold font-serif uppercase bg-white-200 text-green-900 border border-gray-300 hidden lg:table-cell">
                 Date
+              </th>
+              <th className="p-3 font-semibold font-serif uppercase bg-white-200 text-green-900 border border-gray-300 hidden lg:table-cell">
+                Action
               </th>
             </tr>
           </thead>
@@ -61,9 +68,15 @@ const Mesdemandes = () => {
                 </td>
                 <td className="w-full lg:w-auto p-3 text-gray-800 text-center border border-b text-center block lg:table-cell relative lg:static">
                   <span className="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">
+                    name
+                  </span>
+                  {demande.telnum}
+                </td>
+                <td className="w-full lg:w-auto p-3 text-gray-800 text-center border border-b text-center block lg:table-cell relative lg:static">
+                  <span className="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">
                     email
                   </span>
-                  <span className="rounded bg-blue-200 py-1 px-3 text-xs font-bold">
+                  <span className="rounded  py-1 px-3 text-xs font-bold">
                     {demande.email}
                   </span>
                 </td>
@@ -98,6 +111,14 @@ const Mesdemandes = () => {
                   <span className="rounded bg-grey-400 py-1 px-3 text-xs font-bold">
                     {demande.date}
                   </span>
+                </td>
+                <td className="w-full lg:w-auto p-3 text-gray-800 text-center border border-b text-center block lg:table-cell relative lg:static">
+                  <span className="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">
+                    action
+                  </span>
+                  <div >
+                        <DeleteDemande id={demande._id} setDemande={setDemande}/>
+                      </div>
                 </td>
               </tr>
             ))}

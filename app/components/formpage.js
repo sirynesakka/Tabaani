@@ -127,9 +127,12 @@ const Formajouter = ({ onFormClose }) => {
   return (
     <div>
       <form onSubmit={handleSubmit(onSubmit)} id="main-form" >
-        <div className=" mb-4 block mb-2 text-sm font-bold text-gray-700 underline ">
+      <div class=" mb-6 underline text-center  font-bold font-custom">Veuillez entrer votre établissement</div>
+
+        <div className=" mb-2 block mb-2 text-sm font-bold text-gray-700 underline ">
           Sélectionner le type de votre établissement:{" "}
         </div>
+        <div className="mb-4">
         <StyledSelect
           name="type"
           control={control}
@@ -139,9 +142,12 @@ const Formajouter = ({ onFormClose }) => {
           errors={errors.type && "Sélectionner le champ type"}
           className="block w-full px-4 py-2 pr-8 mt-1 text-sm border border-gray-300 rounded-md appearance-none focus:outline-none focus:ring focus:ring-indigo-400 focus:border-indigo-400"
         />
-        <div className="mb-3 block mb-2 text-sm font-bold text-gray-700 underline">
+        </div>
+
+        <div className="mb-2 block mb-2 text-sm font-bold text-gray-700 underline">
           Où est situé votre endroit ?{" "}
         </div>
+        <div className="mb-4" >
         <StyledSelect
           name="cities"
           control={control}
@@ -153,9 +159,11 @@ const Formajouter = ({ onFormClose }) => {
           }
           className="block w-full px-4 py-2 pr-8 mt-1 text-sm border border-gray-300 rounded-md appearance-none focus:outline-none focus:ring focus:ring-indigo-400 focus:border-indigo-400"
         />
-        <div className="mb-3 block mb-2 text-sm font-bold text-gray-700 underline">
+        </div>
+        <div className="mb-2 block mb-2 text-sm font-bold text-gray-700 underline">
           Les repas proposées dans votre établissement
         </div>
+        <div className="mb-4">
         <StyledSelect
           name="repas"
           control={control}
@@ -165,10 +173,11 @@ const Formajouter = ({ onFormClose }) => {
           errors={errors.repas && "Sélectionner le champ repas"}
           className="block w-full px-4 py-2 pr-8 mt-1 text-sm border border-gray-300 rounded-md appearance-none focus:outline-none focus:ring focus:ring-indigo-400 focus:border-indigo-400"
         />
-
-        <div className="mb-3 block mb-2 text-sm font-bold text-gray-700 underline">
+</div>
+        <div className="mb-2 block mb-2 text-sm font-bold text-gray-700 underline">
           Quelle est la spécialité de votre établissement?
         </div>
+        <div className="mb-4">
         <StyledSelect
           name="spécialité"
           control={control}
@@ -180,10 +189,12 @@ const Formajouter = ({ onFormClose }) => {
           }
           className="block w-full px-4 py-2 pr-8 mt-1 text-sm border border-gray-300 rounded-md appearance-none focus:outline-none focus:ring focus:ring-indigo-400 focus:border-indigo-400"
         />
+        </div>
 
-        <div className="mb-3 block mb-2 text-sm font-bold text-gray-700 underline">
+        <div className="mb-2 block mb-2 text-sm font-bold text-gray-700 underline">
           Les prix:{" "}
         </div>
+        <div className="mb-4">
         <StyledSelect
           name="prix"
           control={control}
@@ -193,10 +204,11 @@ const Formajouter = ({ onFormClose }) => {
           errors={errors.prix && "Sélectionner le champ prix"}
           className="block w-full px-4 py-2 pr-8 mt-1 text-sm border border-gray-300 rounded-md appearance-none focus:outline-none focus:ring focus:ring-indigo-400 focus:border-indigo-400"
         />
-
-        <div className="mb-3 block mb-2 text-sm font-bold text-gray-700 underline">
+  </div>
+        <div className="mb-2 block mb-2 text-sm font-bold text-gray-700 underline">
           Bon pour:{" "}
         </div>
+        <div className="mb-4">
         <StyledSelect
           name="bonpour"
           control={control}
@@ -207,8 +219,8 @@ const Formajouter = ({ onFormClose }) => {
             errors.bonpour && "Sélectionner le champs bon pour  "
           }
           className="block w-full px-4 py-2 pr-8 mt-1 text-sm border border-gray-300 rounded-md appearance-none focus:outline-none focus:ring focus:ring-indigo-400 focus:border-indigo-400"
-        />
-
+        /> </div>
+<div className="mb-4">
         <StyledInput2
         type="text"
           label="Titre"
@@ -219,8 +231,10 @@ const Formajouter = ({ onFormClose }) => {
           pattern={/^[a-zA-Z\s]+$/}
           message="Only letters are allowed"
         />
+        </div>
 
-<StyledInput
+<div className="mb-4">
+         <StyledInput
   label="Description"
   name="description"
   placeholder="Votre description"
@@ -229,8 +243,10 @@ const Formajouter = ({ onFormClose }) => {
   pattern={/[\s\S]*/} // This pattern allows any character including line breaks
   message="Please enter a valid description"
 />
-
+</div>
+    <div className="mb-4">
        <ImageUploadForm />
+       </div>
         <button
           onClick={notify}
           form="main-form"

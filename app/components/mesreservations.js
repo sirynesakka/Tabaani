@@ -1,6 +1,7 @@
 "use client"
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import DeleteDemande from "../components/deletDemande"
 
 const Reservation = () => {
   const [demandes, setDemande] = useState([]);
@@ -23,7 +24,7 @@ const Reservation = () => {
     {demandes.map((demande) => (
     <div   key={demande.id} className="flex justify-center items-center h-">
       <div className="bg-white border rounded-lg shadow-lg px-4 py-6 max-w-sm mx-auto mt-24">
-        <h1 className="font-bold text-lg my-2 text-center text-blue-600">Votre table a été réservée avec succès.</h1>
+        <h1 className="font-semibold font-serif text-lg my-2 text-center text-green-800">Votre table a été réservée avec succès.</h1>
         <hr className="mb-1" />
         
         <table className="w-full mb-2">
@@ -67,7 +68,10 @@ const Reservation = () => {
               <td className="text-left text-sm text-gray-700">{demande.nombre}</td>
             </tr>
           </tbody>
-        </table>
+          </table>
+          <th className="  text-right font-bold text-sm text-gray-700">
+                <DeleteDemande id={demande._id} setDemande={setDemande}/>
+              </th>
       </div>
     </div>
      ))}

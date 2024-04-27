@@ -1,16 +1,43 @@
-'use client'
-
-import Navbar from "../components1/Navbar";
+"use client";
+import React, { useState, useEffect } from "react";
+import { useUser } from "@auth0/nextjs-auth0/client";
+import axios from "axios";
+import Rating from "../components/rating";
 import Footer from "../components1/Footer";
 import Modal from "../components/reservationForm";
-import Image from "next/image";
-import axios from "axios";
-import React, { useState, useEffect } from "react";
-
 
 const Affichage = () => {
+  const [rating, setRating] = useState(null);
+  const [comment, setComment] = useState([]);
+
+  const fetchComment = async () => {
+    try {
+      const response = await axios.get("/api1/comments");
+      setComment(response.data.comments);
+    } catch (error) {
+      console.error("Error", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchComment();
+  }, []);
+    // Polling to fetch comments periodically
+    useEffect(() => {
+      const interval = setInterval(fetchComment, 5000); // Fetch every 5 seconds (adjust as needed)
+      return () => clearInterval(interval); // Cleanup on unmount
+    }, []);
+
+  // Function to handle rating change and save it to localStorage
+  const handleRatingChange = (value) => {
+    setRating(value);
+    localStorage.setItem("rating", value);
+  };
+
   const [publication, setPublication] = useState();
-  
+  const { user } = useUser();
+  const { email } = user || {};
+  console.log(email);
   useEffect(() => {
     fetchPublication();
   }, []);
@@ -22,134 +49,105 @@ const Affichage = () => {
       try {
         const response = await axios.get(`/api1/client?clé=${clé}`);
         setPublication(response.data.publication);
-
       } catch (error) {
         console.error("Error fetching publication:", error);
       }
-    } console.log(publication)
+    }
+    console.log(publication);
   };
+
+  const [formData, setFormData] = useState({
+    pubclé: "",
+    useremail: "",
+    comment: "",
+    rating: "",
+  });
+
+  const handleChange = (e, ratingValue) => {
+    // Check if e exists and has a target property
+    if (e && e.target) {
+      const { name, value } = e.target;
+      setFormData({ ...formData, [name]: value, rating: ratingValue });
+    }
+  };
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const clé = localStorage.getItem("clickedPublicationId");
+
+    try {
+      const response = await fetch("/api1/comments", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          comment: formData.comment,
+          rating: rating,
+          pubclé: clé,
+          useremail: email,
+        }),
+      });
+      if (response.ok) {
+        console.log("Comment posted successfully");
+        // Optionally, clear the form fields after successful submission
+        console.log(clé);
+        setFormData({
+          pubclé: "",
+          useremail: email,
+          comment: "",
+          rating: "",
+        });
+      } else {
+        console.error("Failed to post comment");
+      }
+    } catch (error) {
+      console.error("Error posting comment:", error);
+    }
+  };
+
   return (
     <>
-     {publication && (
-      <div class="max-w-screen-xl mx-auto">
-     
-        <div class=" z-0 mt-10">
-          <div className="font-bold underline text-2xl">{publication.titre}</div>
-          <p className="text-gray-700 text-base mb-4 ">{publication.type}</p>
-          <div class="block md:flex md:space-x-2 px-2 lg:p-0">
-            <a
-              class="mb-4 md:mb-0 w-full md:w-2/3 relative rounded inline-block"
-              style={{ height: "24em" }}
-              href="#"
-            >
-              <div
-                class="absolute left-0 bottom-0 w-full h-full z-0"
-                style={{
-                  backgroundImage:
-                    "linear-gradient(180deg,transparent,rgba(0,0,0,.7))",
-                }}
-              ></div>
-              <img
-                src="https://images.unsplash.com/photo-1493770348161-369560ae357d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2100&q=80"
-                class="absolute z-0 left-0 top-0 w-full h-full rounded z-0 object-cover"
-              />
-            </a>
+      {publication && (
+        <div class="max-w-screen-xl mx-auto">
+          <div class=" z-0 mt-10">
+            <div className="font-semibold font-serif underline text-2xl">
+              {publication.titre}
+            </div>
+            <p className="text-gray-700 text-base mb-4 ">{publication.type}</p>
+            <div class="block md:flex md:space-x-2 px-2 lg:p-0">
+              <a
+                class="mb-4 md:mb-0 w-full md:w-2/3 relative rounded inline-block"
+                style={{ height: "24em" }}
+                href="#"
+              >
+                <div
+                  class="absolute left-0 bottom-0 w-full h-full z-0"
+                  style={{
+                    backgroundImage:
+                      "linear-gradient(180deg,transparent,rgba(0,0,0,.7))",
+                  }}
+                ></div>
+                <img
+                  src="https://images.unsplash.com/photo-1493770348161-369560ae357d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2100&q=80"
+                  class="absolute z-0 left-0 top-0 w-full h-full rounded z-0 object-cover"
+                />
+              </a>
 
-            <div class="w-full md:w-1/3 relative rounded">Map</div>
-          </div>
-
-          <div class="block lg:flex lg:space-x-2 px-2 lg:p-0 mt-10 mb-10">
-            <div className="max-w-sm rounded overflow-hidden shadow-lg">
-              <div className="px-8 py-4">
-                <div className="font-bold mt-10 px-8  underline text-xl mb-2">
-                  Description de l'endroit
-                </div>
-                <p className="text-gray-700 px-8 text-base">
-                {publication.description}
-                </p>
-
-                <div className="font-bold mt-10 px-8 underline text-xl mb-2">
-                  Review
-                </div>
-              </div>
-              <div className=" px-5 flex items-center">
-                <div class="flex justify-center items-center">
-                  <div class="flex items-center mt-2 mb-4 px-8">
-                    <svg
-                      class="mx-1 w-4  h-4 fill-current text-yellow-500"
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 20 20"
-                    >
-                      <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
-                    </svg>
-                    <svg
-                      class="mx-1 w-4  h-4 fill-current text-yellow-500"
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 20 20"
-                    >
-                      <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
-                    </svg>
-                    <svg
-                      class="mx-1 w-4  h-4 fill-current text-yellow-500"
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 20 20"
-                    >
-                      <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
-                    </svg>
-                    <svg
-                      class="mx-1 w-4  h-4 fill-current text-yellow-500"
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 20 20"
-                    >
-                      <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
-                    </svg>
-                    <svg
-                      class="mx-1 w-4  h-4 fill-current text-gray-400"
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 20 20"
-                    >
-                      <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
-                    </svg>
-                  </div>
+              <div class="w-full md:w-1/3 relative rounded">
+                <div className="relative w-full h-96">
+                  <iframe
+                    className="absolute top-0 left-0 w-full h-full"
+                    src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12080.73732861526!2d-74.0059418!3d40.7127847!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zM40zMDA2JzEwLjAiTiA3NMKwMjUnMzcuNyJX!5e0!3m2!1sen!2sus!4v1648482801994!5m2!1sen!2sus"
+                    frameBorder="0"
+                    style={{ border: "0" }}
+                    allowFullScreen=""
+                    aria-hidden="false"
+                    tabIndex="0"
+                  ></iframe>
                 </div>
               </div>
             </div>
-
-            <div className="max-w-sm rounded overflow-hidden shadow-lg">
-              <div className="px-6 py-4">
-                <div className="font-bold underline text-xl mb-2">
-                  Les Détailles
-                </div>
-                <div className=" mt-4 text-gray-700 font-bold text-base">
-                  Cuisine
-                </div>
-                <p className="text-gray-700 text-base">{publication.spécialité}</p>
-
-                <div className="mt-4 text-gray-700 font-bold text-base">
-                  Le repas proposé par cet endroit
-                </div>
-                <p className="text-gray-700 text-base">{publication.repas}</p>
-                <div className=" mt-4 text-gray-700 font-bold text-base">
-                  La spécialité de cet endroit
-                </div>
-                <p className="text-gray-700 text-base">{publication.spécialité}</p>
-                <div className=" mt-4 text-gray-700 font-bold text-base">
-                  Le prix
-                </div>
-                <p className="text-gray-700 text-base">{publication.prix}</p>
-                <div className="mt-4 text-gray-700 font-bold text-base">
-                  Cet endroit est bon pour
-                </div>
-                <p className="text-gray-700 text-base">{publication.bonpour}</p>
-              </div>
-
-              <div class="border border-dotted"></div>
-              <div className="font-bold  px-6  underline text-xl mb-2">
-                Pour plus de détails, veuillez contacter le 58927359
-              </div>
-            </div> 
-
-            <div class="w-full lg:w-2/3 px-3">
+            <div class="w-full mt-9 lg:w-2/3 px-3">
               <div class="mb-4">
                 <h5 class="font-bold text-lg uppercase text-gray-700 px-1 mb-2">
                   Pour réserver
@@ -163,81 +161,172 @@ const Affichage = () => {
 
               <div class="border border-dotted"></div>
             </div>
-          </div>
-        </div>
 
-        <div class="max-w-xl py-16 px-8 flex justify-center mx-auto">
-          <div class="w-full mt-16 md:mt-0 ">
-            <form class="relative  h-auto p-8 py-10 overflow-hidden bg-white border-b-2 border-gray-300 rounded-lg shadow-2xl px-7">
-              <h3 class="mb-6 text-2xl font-medium text-center">
-                Ecrire 
-              </h3>
-              <textarea
-                type="text"
-                name="comment"
-                class="w-full px-4 py-3 mb-4 border border-2 border-transparent border-gray-200 rounded-lg focus:ring focus:ring-blue-500 focus:outline-none"
-                placeholder="Ecrire votre commentaire "
-                rows="5"
-                cols="33"
-              ></textarea>
-              <button
-                type="submit"
-                value="Submit comment"
-                name="submit"
-                class=" text-white px-4 py-3 bg-blue-500  rounded-lg"
-              >
-                {" "}
-                enregistrer
-              </button>
-            </form>
-          </div>
-        </div>
+            <div class="block lg:flex lg:space-x-2 px-2 lg:p-0 mt-10 mb-10">
+              <div className="max-w-sm rounded overflow-hidden shadow-lg">
+                <div className="px-8 py-4">
+                  <div className="font-semibold font-serif mt-10 px-8  underline text-xl mb-2">
+                    Description de l'endroit
+                  </div>
+                  <p className="text-gray-700 px-8 font-serif">
+                    {publication.description}
+                  </p>
 
-        <div class="max-w-4xl px-10 py-16 mx-auto bg-gray-100  bg-white min-w-screen animation-fade animation-delay  px-0 px-8 mx-auto sm:px-12 xl:px-5">
-          <p class="mt-1 text-2xl font-bold text-left text-gray-800 sm:mx-6 sm:text-2xl md:text-3xl lg:text-4xl sm:text-center sm:mx-0">
-            All comments on this post
-          </p>
+                  <div className="font-semibold font-serif mt-10 px-8 underline text-xl mb-2">
+                    Review
+                  </div>
+                </div>
+                <div className=" px-5 flex items-center">
+                  <div class="flex justify-center items-center">
+                    <div class="flex items-center mt-2 mb-4 px-8">
+                      <svg
+                        class="mx-1 w-4  h-4 fill-current text-yellow-500"
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 20 20"
+                      >
+                        <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
+                      </svg>
+                      <svg
+                        class="mx-1 w-4  h-4 fill-current text-yellow-500"
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 20 20"
+                      >
+                        <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
+                      </svg>
+                      <svg
+                        class="mx-1 w-4  h-4 fill-current text-yellow-500"
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 20 20"
+                      >
+                        <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
+                      </svg>
+                      <svg
+                        class="mx-1 w-4  h-4 fill-current text-yellow-500"
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 20 20"
+                      >
+                        <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
+                      </svg>
+                      <svg
+                        class="mx-1 w-4  h-4 fill-current text-gray-400"
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 20 20"
+                      >
+                        <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+              </div>
 
-          <div class="flex  items-center w-full px-6 py-6 mx-auto mt-10 bg-white border border-gray-200 rounded-lg sm:px-8 md:px-12 sm:py-8 sm:shadow lg:w-5/6 xl:w-2/3">
-            <a href="#" class="flex items-center mt-6 mb-6 mr-6"></a>
+              <div className="max-w-sm rounded overflow-hidden shadow-lg">
+                <div className="px-6 py-4">
+                  <div className="font-semibold font-serif underline text-xl mb-2">
+                    Les Détailes
+                  </div>
+                  <div className=" mt-4 text-gray-700 font-semibold font-serif text-base">
+                    Cuisine
+                  </div>
+                  <p className="text-gray-700 font-serif">
+                    {publication.spécialité}
+                  </p>
 
-            <div>
-              <h3 class="text-lg font-bold text-purple-500 sm:text-xl md:text-2xl">
-                By James Amos
-              </h3>
-              <p class="text-sm font-bold text-gray-300">August 22,2021</p>
-              <p class="mt-2 text-base text-gray-600 sm:text-lg md:text-normal">
-                Please help with how you did the migrations for the blog
-                database fields.I tried mine using exactly what you instructed
-                but its not working!!.
-              </p>
-            </div>
-          </div>
+                  <div className="mt-4 text-gray-700 font-semibold font-serif text-base">
+                    Le repas proposé par cet endroit
+                  </div>
+                  <p className="text-gray-700 font-serif">
+                    {publication.repas}
+                  </p>
+                  <div className=" mt-4 text-gray-700 font-semibold font-serif  text-base">
+                    La spécialité de cet endroit
+                  </div>
+                  <p className="text-gray-700 font-serif">
+                    {publication.spécialité}
+                  </p>
+                  <div className=" mt-4 text-gray-700 font-semibold font-serif  text-base">
+                    Le prix
+                  </div>
+                  <p className="text-gray-700 font-serif">{publication.prix}</p>
+                  <div className="mt-4 text-gray-700 font-semibold font-serif  text-base">
+                    Cet endroit est bon pour
+                  </div>
+                  <p className="text-gray-700 font-serif">
+                    {publication.bonpour}
+                  </p>
+                </div>
 
-          <div class="flex  items-center w-full px-6 py-6 mx-auto mt-10 bg-white border border-gray-200 rounded-lg sm:px-8 md:px-12 sm:py-8 sm:shadow lg:w-5/6 xl:w-2/3">
-            <a href="#" class="flex items-center mt-6 mb-6 mr-6"></a>
+                <div class="border border-dotted"></div>
+                <div className="font-semibold font-serif  px-6  underline text-xl mb-2">
+                  Pour plus de détails, veuillez contacter le 58927359
+                </div>
+              </div>
+              <form onSubmit={handleSubmit}>
+                <div class="max-w-lg border px-5 py-5 rounded-lg">
+                  <div className="block text-sm font-medium leading-6 text-gray-900">
+                    Rate your experience:
+                  </div>
+                  <Rating onChange={handleRatingChange} />
+                  <div class="mt-5">
+                    <label className="block text-sm font-medium leading-6 text-gray-900">
+                      {" "}
+                      commentaire
+                    </label>
+                    <textarea
+                      type="text"
+                      name="comment"
+                      value={formData.comment}
+                      onChange={handleChange}
+                      className="block w-full rounded-md border-0 py-1.5 pl-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black-500 sm:text-sm sm:leading-6"
+                    />
+                    <button
+                      type="submit"
+                      className="bg-green-500 text-white px-3 py-1 rounded-md hover:bg-green-600 mt-2"
+                    >
+                      Enregistrer
+                    </button>
+                  </div>
+                </div>
 
-            <div>
-              <h3 class="text-lg font-bold text-purple-500 sm:text-xl md:text-2xl">
-                By James Amos
-              </h3>
-              <p class="text-sm font-bold text-gray-300">August 22,2021</p>
-              <p class="mt-2 text-base text-gray-600 sm:text-lg md:text-normal">
-                Especially I dont understand the concepts of multiple
-                models.What really is the difference between the blog model and
-                blogApp model? Am stuck
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <footer class="border-t mt-32 pt-12 pb-32 px-4 lg:px-0">
-          <Footer />
-          
-        </footer>
+                <div className="mt-5 max-w-lg border px-6 py-4 rounded-lg">
+  {comment.map((comment) => (
+    <div key={comment.id} className="flex items-center mb-6">
+      <div>
+        <div className="text-lg font-medium text-gray-800">{comment.useremail}</div>
+        <div className="text-gray-500">{comment.comment}</div>
       </div>
-        )}
+      <p className="text-lg leading-relaxed mb-6">aa</p>
+      <div className="flex justify-between items-center">
+        <div>
+          <a href="#" className="text-gray-500 hover:text-gray-700 mr-4">
+            <i className="far fa-thumbs-up"></i> Like
+          </a>
+          <a href="#" className="text-gray-500 hover:text-gray-700">
+            <i className="far fa-comment-alt"></i> Reply
+          </a>
+        </div>
+        <div className="flex items-center">
+          <a href="#" className="text-gray-500 hover:text-gray-700 mr-4">
+            <i className="far fa-flag"></i> Report
+          </a>
+          <a href="#" className="text-gray-500 hover:text-gray-700">
+            <i className="far fa-share-square"></i> Share
+          </a>
+        </div>
+      </div>
+    </div>
+  ))}
+</div>
+
+              </form>
+            </div>
+          </div>
+          <footer class="border-t mt-32 pt-12 pb-32 px-4 lg:px-0">
+            <Footer />
+          </footer>
+        </div>
+      )}
     </>
   );
 };
+
 export default Affichage;

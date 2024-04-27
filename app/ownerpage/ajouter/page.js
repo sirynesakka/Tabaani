@@ -1,7 +1,8 @@
 import React from "react";
+import Ajoutbtn from "../../components1/ajoutbtn";
 import Head from 'next/head';
 
-const Ownerpage = () => {
+const Analy = () => {
     return (
         <div className="mx-auto max-w-lg sm:max-w-xl md:max-w-2xl lg:max-w-4xl xl:max-w-6xl">
             <Head>
@@ -13,13 +14,12 @@ const Ownerpage = () => {
             </Head>
             <div className="mb-5 mt-16 mx-4 sm:mx-8 md:mx-16 lg:mx-32 xl:mx-64">
                 <div className="purple_border font-serif font-semibold text-center p-6 border border-black">
-                    <p className="mb-3"> Bienvenue dans votre espace Manager ! </p>
-                    <p className="mb-3">Un lieu conçu pour vous permettre de gérer efficacement vos tâches et vos responsabilités</p>
-                    <p> Si vous avez des questions, n'hésitez pas à nous contacter.</p>
+                    <p className="mb-4">Vous pouvez ajouter votre publication en cliquant sur le bouton ci-dessus intitulé "Ajouter publication"</p>
+                    <Ajoutbtn />
                 </div>
             </div>
         </div>
     );
 };
 
-export default Ownerpage;
+export default Analy;

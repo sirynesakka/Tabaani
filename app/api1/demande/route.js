@@ -8,6 +8,7 @@ export async function POST(req) {
     const {
         nom,
         email,
+        telnum,
         num,
         nombre,
         date,
@@ -22,6 +23,7 @@ export async function POST(req) {
         const demande = await Demande.create({
             nom,
             email,
+            telnum,
             num,
             nombre,
             date,
@@ -97,3 +99,10 @@ export async function PUT(request) {
         return NextResponse.error('Error updating publication', { status: 500 });
     }
 }
+export async function DELETE(request) {
+    const id = request.nextUrl.searchParams.get("id");
+    await connectDB();
+    await Demande.findByIdAndDelete(id);
+    const demandes = await Demande.find();
+    return NextResponse.json({ message: "publication supprimé", demandes }, { status: 200 });
+  }

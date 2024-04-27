@@ -13,6 +13,10 @@ const demandeSchema = new Schema({
     type: String,
     required: true,
 },
+telnum  : {
+  type: String,
+  required: true,
+},
 num: {
     type: String,
     required: true,

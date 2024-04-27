@@ -10,8 +10,9 @@ const TimePicker = ({ control, name }) => {
       render={({ field }) => (
         <input
           type="time"
-          {...field}
+          {...field }
           style={{ width: '100%', padding: '0.5rem' }}
+          required
         />
       )}
     />

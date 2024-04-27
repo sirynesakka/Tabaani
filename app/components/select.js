@@ -1,5 +1,6 @@
 import { useForm, Controller } from "react-hook-form";
 import Select from "react-select";
+import Styledselect from "./styledselect";
 
 const StyledSelect = ({
   name,
@@ -30,7 +31,8 @@ const StyledSelect = ({
           <Select 
             {...field}
             options={options}
-            className="block w-full px-4 py-2 pr-8 mt-1 text-sm border border-gray-300 rounded-md appearance-none focus:outline-none focus:ring focus:ring-indigo-400 focus:border-indigo-400"
+            styles={Styledselect}
+           
           />
         )}
       />

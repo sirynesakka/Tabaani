@@ -21,18 +21,16 @@ export default function Home() {
 <div>
   <Navbar />
 
-  <div className="min-h-screen flex justify-center items-center text-center relative">
-  <Image 
-    src="/pp.png"
-    alt="logo" 
-    layout="fill"
-    objectFit="cover"
-  />
-  <div className="absolute top-1/ left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white">
-    <p className="text-4xl font-bold">Découvrez, Savourez:</p>
-    <p className="text-2xl">Votre Guide Ultime Des Bonnes Adresses</p>
+  <div class=" relative bg-gradient-to-r from-purple-600 to-blue-600 h-screen text-white overflow-hidden">
+  <div class="absolute inset-0">
+    <img src="https://images.pexels.com/photos/16722267/pexels-photo-16722267/free-photo-of-lumineux-ville-restaurant-vacances.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Background Image" class="object-cover object-center w-full h-full" />
+    <div class="absolute inset-0 bg-black opacity-50"></div>
   </div>
-  {/* Your other content here */}
+  
+  <div class="relative  flex flex-col justify-center items-center h-full text-center">
+    <h1 class="text-5xl font-semibold font-serif leading-tight mb-4">Votre Guide Ultime Des Bonnes Adresses</h1>
+    <Link href="/api/auth/login" class="bg-green-50 border-2 border-green-800  text-green-900 hover:bg-red-60 py-2 px-6 rounded-full text-lg font-semibold font-serif transition duration-300 ease-in-out transform hover:scale-105 hover:shadow-lg">Créer votre compte</Link>
+  </div>
 </div>
 </div>
 
@@ -53,7 +51,7 @@ export default function Home() {
             <div>
               
                    <Aboutus/>
-                   <h1 className=" py-10  text-3xl font-bold text-center mt-[50px] mb-[50px] underline">
+                   <h1 className=" py-10  text-3xl font-semibold font-serif text-center mt-[50px] mb-[50px] underline">
                    Les 6 meilleurs restaurants en Tunisie
                     </h1>
                    <MySlider className="z-1" />  

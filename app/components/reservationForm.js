@@ -5,6 +5,7 @@ import {useForm} from "react-hook-form"
 import StyledInput2 from "./styledinput2"
 import Stylednum from "./stylednum"
 import TimePicker from "./styledtime"
+import StyledNumber from './styledNumber';
 
 
 
@@ -36,6 +37,7 @@ const [modalOpen, setModalOpen] = useState(false);
       } = useForm({defaultValues: {
         nom: "",
         email:"",
+        telnum:"",
         date: new Date() ,
         nombre:0,
         num:0,
@@ -58,6 +60,7 @@ const [modalOpen, setModalOpen] = useState(false);
               nombre: data.nombre,
               num: data.num,
               heure: data.heure,
+              telnum : formatPhoneNumber(data.telnum),
               
             }),
           });
@@ -74,7 +77,13 @@ const [modalOpen, setModalOpen] = useState(false);
         } catch (error) {
           console.error("Error:", error);
         }
-      };
+      };  
+       const formatPhoneNumber = (phoneNumber) => {
+        if (!phoneNumber.startsWith("+216")) {
+            return "+216" + phoneNumber;
+        }
+        return phoneNumber;
+    };
 
     return (
         <>
@@ -137,12 +146,22 @@ const [modalOpen, setModalOpen] = useState(false);
                       pattern={/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i}
                       message="Only letters are allowed"
                     />
+                     <StyledNumber
+                       label="Enter Number"
+                       name="telnum"
+                       placeholder="Enter a number"
+                       register={register}
+                       required={true}
+                       message="This field is required"
+                    />
+                    
                     
  <label className="block text-sm font-medium leading-6 text-gray-900" >
         heures 
       </label>
       <TimePicker 
       control={control}
+      required 
        name="heure" />
 
       <Stylednum

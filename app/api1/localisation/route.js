@@ -19,8 +19,8 @@ export async function GET(request) {
         const confirmationStatus = searchParams.get('confirmationStatus');
 
         // Define the query based on confirmation status
-        const query = confirmationStatus === 'confirmer' ?
-            { tunisiaStates: tunisiaState, confirmer: 'confirmer' } :
+        const query = confirmationStatus !== 'x' ?
+            { tunisiaStates: tunisiaState, confirmer: { $ne: 'x' } } :
             { tunisiaStates: tunisiaState };
 
         // Retrieve publications based on the query

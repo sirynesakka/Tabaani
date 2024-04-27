@@ -9,7 +9,7 @@ export default function RecipeReviewCard() {
            
             <Navbar hasDashboardclient={true} /> 
            
-            <div className="flex-1">
+            <div className="mb-8 flex-1">
                 <Reservation />
             </div>
             <Footer/>

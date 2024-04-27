@@ -25,7 +25,7 @@ const Deletebtn = ({ id, setPublication }) => {
   return (
     <button
       onClick={handleDelete}
-      className="font-bold px-6 py-3 leading-none text-blue-900 border border-red-800 rounded-lg focus:outline-none focus:shadow-outline bg-gradient-to-b hover:from-red-500 from-white-900 to-red"
+      className="font-serif font-semibold px-6 py-3 leading-none text-blue-900 border border-red-800 rounded-lg focus:outline-none focus:shadow-outline bg-gradient-to-b hover:from-red-500 from-white-900 to-red"
     >
       Supprimer
     </button>
