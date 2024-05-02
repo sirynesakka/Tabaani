@@ -1,7 +1,7 @@
 "use client"
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import DeleteDemande from "./deletDemande";
+import DeleteDemClient from "./deleteDemClient";
 
 const Mesdemandes = () => {
   const [demandes, setDemande] = useState([]);
@@ -21,7 +21,7 @@ const Mesdemandes = () => {
 
   return (
     <div className="flex flex-col items-center justify-center h-screen">
-      <h1 className="mt-3 text-4xl text-center font-semibold font-serif text-transparent bg-clip-text text-green-900">
+      <h1 className="mt-3 text-4xl text-center font-semibold font-serif  bg-clip-text text-green-900">
         Mes Demandes
       </h1>
       <div className="flex mt-4 justify-center">
@@ -117,7 +117,7 @@ const Mesdemandes = () => {
                     action
                   </span>
                   <div >
-                        <DeleteDemande id={demande._id} setDemande={setDemande}/>
+                        <DeleteDemClient id={demande._id} setDemande={setDemande}/>
                       </div>
                 </td>
               </tr>

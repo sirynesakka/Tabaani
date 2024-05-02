@@ -2,14 +2,14 @@ import React from "react";
 import axios from "axios";
 
 
-const Deletebtn = ({ id, setPublication }) => {
+const Deletepubowner = ({ id, setPublication }) => {
  
   
   const handleDelete = async () => {
     const confirmDelete = window.confirm("Voulez-vous vraiment supprimer cet publication ?");
     if (confirmDelete) {
       try {
-      const response=  await axios.delete(`/api1/ownerpublications?id=${id}`);
+      const response=  await axios.delete(`/api1/ownerpublication2?id=${id}`);
         console.log("Data Deleted successfully!");
          // Assuming fetchData is a function passed as prop to refetch data
        
@@ -32,4 +32,4 @@ const Deletebtn = ({ id, setPublication }) => {
   );
 };
 
-export default Deletebtn;
+export default Deletepubowner;

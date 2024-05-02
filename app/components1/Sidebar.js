@@ -9,6 +9,7 @@ import {
   MdOutlineSettings,
   MdOutlineLogout,
 } from "react-icons/md"; 
+import { IoIosClock, IoIosCheckboxOutline,IoIosHourglass  } from "react-icons/io";
 import { TfiWrite } from "react-icons/tfi";
 import { FaRegComments } from "react-icons/fa";
 import Model from "../components/model";
@@ -53,9 +54,28 @@ const Sidebar = () => {
                   Ajouter des publications 
                 </h3>
               </Link> 
+              <Link href="/ownerpage/pubAttente"    className="flex  mb-2 justify-start items-center gap-4 pl-5 hover:bg-green-900 p-2 rounded-md group cursor-pointer hover:shadow-lg m-auto">
+                <IoIosHourglass   className="text-2xl text-green-900 group-hover:text-white " />
+                <h3 className="text-base text-green-900 group-hover:text-white font-semibold font-serif ">
+                Publications en attente
+                </h3>
+              </Link>
+              <Link href="/ownerpage/publication"    className="flex  mb-2 justify-start items-center gap-4 pl-5 hover:bg-green-900 p-2 rounded-md group cursor-pointer hover:shadow-lg m-auto">
+                <IoIosCheckboxOutline  className="text-2xl text-green-900 group-hover:text-white " />
+                <h3 className="text-base text-green-900 group-hover:text-white font-semibold font-serif ">
+                 Mes publications 
+                </h3>
+              </Link> 
+              
+              <Link href="/" className="flex  mb-2 justify-start items-center gap-4 pl-5 hover:bg-green-900 p-2 rounded-md group cursor-pointer hover:shadow-lg m-auto">
+                <FaRegComments  className="text-2xl text-green-900 group-hover:text-white " />
+                <h3 className="text-base text-green-900 group-hover:text-white font-semibold font-serif">
+                  Mes commentaires
+                </h3>
+              </Link> 
+              </div> 
              
-             
-
+              <div className=" my-4 border-b border-gray-100 pb-4">
               <Link href="/ownerpage/visiterDem" className="flex  mb-2 justify-start items-center gap-4 pl-5 hover:bg-green-900 p-2 rounded-md group cursor-pointer hover:shadow-lg m-auto">
                 <TfiWrite   className="text-2xl text-green-900 group-hover:text-white " />
                 <h3 className="text-base text-green-900 group-hover:text-white font-semibold font-serif">
@@ -70,31 +90,20 @@ const Sidebar = () => {
                 </h3>
               </Link> 
 
+              
+
+              
             
 
-               <Link href="/ownerpage/publication"    className="flex  mb-2 justify-start items-center gap-4 pl-5 hover:bg-green-900 p-2 rounded-md group cursor-pointer hover:shadow-lg m-auto">
-                <FaRegComments className="text-2xl text-green-900 group-hover:text-white " />
-                <h3 className="text-base text-green-900 group-hover:text-white font-semibold font-serif ">
-                 Mes publications 
-                </h3>
-              </Link> 
-            
-
-
-              <Link href="/" className="flex  mb-2 justify-start items-center gap-4 pl-5 hover:bg-green-900 p-2 rounded-md group cursor-pointer hover:shadow-lg m-auto">
-                <FaRegComments  className="text-2xl text-green-900 group-hover:text-white " />
-                <h3 className="text-base text-green-900 group-hover:text-white font-semibold font-serif">
-                  Mes commentaires
-                </h3>
-              </Link>          
+         
             
 
                
-
+              </div> 
              
               
               
-              </div>  
+          
             {/* logout */}
             <div className=" my-4">
             <Link href="/manager" className="flex mb-2 justify-start items-center gap-4 pl-5 border border-gray-200  hover:bg-green-900 p-2 rounded-md group cursor-pointer hover:shadow-lg m-auto">

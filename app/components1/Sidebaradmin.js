@@ -49,15 +49,23 @@ const Sidebaradmin = () => {
                   Gestion des profiles 
                 </h3>
               </Link> 
+              </div> 
+              <div className=" my-4 border-b border-gray-100 pb-4">
+              <Link href="/admindashbord/gestionDemande" className="flex mb-2 justify-start items-center gap-4 pl-5 hover:bg-green-900 p-2 rounded-md group cursor-pointer hover:shadow-lg m-auto">
+                <TfiWrite  className="text-2xl text-green-900  group-hover:text-white " />
+                <h3 className="text-base text-green-900 group-hover:text-white   font-semibold font-serif">
+                  Les Demandes d'ajout 
+                </h3>
+              </Link>  
 
               <Link href="/admindashbord/gestion-pub" className="flex mb-2 justify-start items-center gap-4 pl-5 hover:bg-green-900 p-2 rounded-md group cursor-pointer hover:shadow-lg m-auto">
                 <TfiWrite  className="text-2xl text-green-900  group-hover:text-white " />
                 <h3 className="text-base text-green-900 group-hover:text-white   font-semibold font-serif">
-                  Gestion de Publication
+                  Les Publications confirmées
                 </h3>
               </Link>  
 
-              <Link href="/" className="flex mb-2 justify-start items-center gap-4 pl-5 hover:bg-green-900 p-2 rounded-md group cursor-pointer hover:shadow-lg m-auto">
+              <Link href="/admindashbord/gestionComm" className="flex mb-2 justify-start items-center gap-4 pl-5 hover:bg-green-900 p-2 rounded-md group cursor-pointer hover:shadow-lg m-auto">
                 <FaRegComments className="text-2xl text-green-900  group-hover:text-white " />
                 <h3 className="text-base text-green-900 group-hover:text-white   font-semibold font-serif">
                   Gestion des Avis
@@ -65,7 +73,7 @@ const Sidebaradmin = () => {
               </Link> 
             
 
-        
+              </div> 
 
 
                
@@ -73,7 +81,7 @@ const Sidebaradmin = () => {
              
               
               
-              </div>  
+              
             {/* logout */}
             <div className=" my-4">
             <Link href="/manager" className="flex mb-2 justify-start items-center gap-4 pl-5 border border-gray-200  hover:bg-green-900 p-2 rounded-md group cursor-pointer hover:shadow-lg m-auto">

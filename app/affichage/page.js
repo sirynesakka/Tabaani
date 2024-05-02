@@ -4,6 +4,7 @@ import { useUser } from "@auth0/nextjs-auth0/client";
 import axios from "axios";
 import Rating from "../components/rating";
 import Footer from "../components1/Footer";
+import Deletecomment  from "../components/deleteComment"
 import Modal from "../components/reservationForm";
 
 const Affichage = () => {
@@ -287,33 +288,30 @@ const Affichage = () => {
                   </div>
                 </div>
 
-                <div className="mt-5 max-w-lg border px-6 py-4 rounded-lg">
+                <div class="max-w-lg mx-auto border px-6 py-7 rounded-lg">
   {comment.map((comment) => (
-    <div key={comment.id} className="flex items-center mb-6">
+    <div key={comment.id}>
+     <div class="flex  items-center">
       <div>
-        <div className="text-lg font-medium text-gray-800">{comment.useremail}</div>
-        <div className="text-gray-500">{comment.comment}</div>
+        <div className="text-lg font-serif font-semibold text-gray-800">{comment.useremail}</div>
+        <div className="text-gray-500">2h</div>
+        <p className="text-lg font-serif leading-relaxed mb-6">{comment.comment}</p>
       </div>
-      <p className="text-lg leading-relaxed mb-6">aa</p>
-      <div className="flex justify-between items-center">
+      </div>
+      
+      
+      <div className="flex mb-9 justify-between items-center">
         <div>
-          <a href="#" className="text-gray-500 hover:text-gray-700 mr-4">
-            <i className="far fa-thumbs-up"></i> Like
-          </a>
-          <a href="#" className="text-gray-500 hover:text-gray-700">
-            <i className="far fa-comment-alt"></i> Reply
-          </a>
+        <a href="#" class="text-gray-500 hover:text-gray-700 font-serif mr-4"><i class="far fa-thumbs-up"></i> Modifier</a>
+        <a href="#" class="text-gray-500 hover:text-gray-700 font-serif"><i class="far fa-comment-alt"></i> Repondre</a>
         </div>
         <div className="flex items-center">
-          <a href="#" className="text-gray-500 hover:text-gray-700 mr-4">
-            <i className="far fa-flag"></i> Report
-          </a>
-          <a href="#" className="text-gray-500 hover:text-gray-700">
-            <i className="far fa-share-square"></i> Share
-          </a>
+        <a href="#" class="text-gray-500 hover:text-gray-700 mr-4 font-serif"><i class="far fa-flag"></i> <Deletecomment id={comment._id} setComment={setComment} /></a>
         </div>
-      </div>
+        </div>
+        <div class=" mb-4 border border-dotted"></div>
     </div>
+    
   ))}
 </div>
 

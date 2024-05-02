@@ -1,7 +1,7 @@
 "use client"
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import DeleteDemande from "../components/deletDemande"
+import DeleteRes from "../components/deleteRes"
 
 const Reservation = () => {
   const [demandes, setDemande] = useState([]);
@@ -70,7 +70,7 @@ const Reservation = () => {
           </tbody>
           </table>
           <th className="  text-right font-bold text-sm text-gray-700">
-                <DeleteDemande id={demande._id} setDemande={setDemande}/>
+                <DeleteRes id={demande._id} setDemande={setDemande}/>
               </th>
       </div>
     </div>

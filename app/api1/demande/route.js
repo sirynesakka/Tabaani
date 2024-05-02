@@ -103,6 +103,6 @@ export async function DELETE(request) {
     const id = request.nextUrl.searchParams.get("id");
     await connectDB();
     await Demande.findByIdAndDelete(id);
-    const demandes = await Demande.find();
+    const demandes = await Demande.find({ confirme: false });
     return NextResponse.json({ message: "publication supprimé", demandes }, { status: 200 });
   }

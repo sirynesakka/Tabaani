@@ -45,6 +45,8 @@ const Visiter = () => {
     }
   }
 
+
+
   return (
     <>
       <div className="ml-4 lg:ml-60 mt-10 text-green-900 justify-center text-center text-4xl font-semibold font-serif">
@@ -169,6 +171,7 @@ const Visiter = () => {
                         {/* "Supprimer" button */}
                         <div>
                           <DeleteDemande
+                          email={demande.email}
                             id={demande._id}
                             setDemande={setDemande}
                           />

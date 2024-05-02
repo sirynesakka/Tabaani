@@ -2,18 +2,18 @@
 import React , {useState , useEffect} from "react"
 import axios from "axios";
 import Image from "next/image";
-import Deletebtn from "../../components/deletebtn"
+import DeleteDemPub from "../../components/deleteDemPub"
 import Confirmer from "../../confirmationbtn/page"
 
 
-export default function GesPub () {
+export default function GesDem () {
     
     const [publications , setPublication] = useState([]);
 
    
     const fetchPublication = async () => {
         try {
-            const response = await axios.get("/api1/publication");
+            const response = await axios.get("/api1/demandeAdmin");
             setPublication(response.data.publications);
         } catch (error) {
             console.error("Error", error);
@@ -34,16 +34,16 @@ export default function GesPub () {
             if (response.status === 200) {
                 // Publication successfully confirmed, update UI accordingly
                 // For example, you may want to refetch the publications list
-               
-                alert('Publication successfully confirmed');
+                fetchPublication();
+                alert('Publication confirmée avec succès');
             } else {
                 // Handle other response statuses if needed
-                console.error("Error confirming publication");
-                alert('Error confirming publication');
+                console.error("Erreur lors de la confirmation de la publication.");
+                alert('Erreur lors de la confirmation de la publication.');
             }
         } catch (error) {
             console.error("Error", error);
-            alert("Error, please try again");
+            alert("Erreur, veuillez réessayer");
         }
         try {
             const response = await fetch('/api1/email', {
@@ -57,12 +57,12 @@ export default function GesPub () {
             }
             const responseData = await response.json();
             console.log(responseData['message'])
-            fetchPublication();
-            alert('Email successfully sent');
+    
+            alert('Email envoyé avec succès');
            
         } catch (err) {
             console.error(err);
-            alert("Error, please try resubmitting the form");
+            alert("Erreur lors de l'envoie de l'email.");
         }
     };
     
@@ -72,7 +72,7 @@ export default function GesPub () {
         <>
         <div className="bg-white">
       <div className="ml-6 sm:ml-60 mt-9  text-green-900 text-center text-4xl font-semibold font-serif">
-        Les Publications confirmées
+        Les Demandes d'ajout 
       </div>
 
       <div className="ml-6 sm:ml-60 mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
@@ -123,9 +123,11 @@ export default function GesPub () {
                 </p>
              </div>
              <div className="flex justify-center mt-4">
-   
+    <form onSubmit={(event) => handleSubmit(event, publication.ownerEmail , publication.clé)} >
+        <button className="font-bold px-6 py-3 leading-none text-blue-900 border border-green-800 rounded-lg focus:outline-none focus:shadow-outline bg-gradient-to-b hover:from-green-500 from-white-900 to-green" type="submit">Confirmer</button>
+    </form>
     <div className="ml-2"> {/* Added margin to separate the buttons */}
-        <Deletebtn id={publication._id} setPublication={setPublication} />
+        <DeleteDemPub ownerEmail={publication.ownerEmail}id={publication._id} setPublication={setPublication} />
     </div>
 </div>
          </div>

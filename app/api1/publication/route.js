@@ -67,7 +67,7 @@ export async function POST(req) {
         await connectDB();
 
         // Retrieve all users
-        const publications = await Publication.find();
+        const publications = await Publication.find({ confirmer: "confirmer" });
 
         console.log(publications ,"validée")
         return NextResponse.json({ publications  }, {status:200});

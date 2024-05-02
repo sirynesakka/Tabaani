@@ -1,8 +1,8 @@
-import { useForm, Controller } from "react-hook-form";
+import { Controller } from "react-hook-form";
 import Select from "react-select";
 import Styledselect from "./styledselect";
 
-const StyledSelect = ({
+const CostumSelect = ({
   name,
   control,
   defaultValue,
@@ -10,29 +10,20 @@ const StyledSelect = ({
   required,
   message,
   errors,
-  value,
-  onChange
 }) => {
   return (
     <div className="relative">
       <Controller
         name={name}
         control={control}
-        defaultValue={defaultValue}
-        value={value}
-        onChange={onChange}
-        rules={{
-          required: required && message, // Add required rule
-          pattern: {
-            message: errors // Custom error message for pattern
-          }
-        }}
+        rules={{ required: required && message }} // Simplify rules assignment
         render={({ field }) => (
-          <Select 
+          <Select
             {...field}
             options={options}
             styles={Styledselect}
-           
+            onChange={(selectedOption) => field.onChange(selectedOption)}
+            onBlur={field.onBlur}
           />
         )}
       />
@@ -43,4 +34,4 @@ const StyledSelect = ({
   );
 };
 
-export default StyledSelect;
+export default CostumSelect;

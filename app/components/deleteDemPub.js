@@ -2,17 +2,25 @@ import React from "react";
 import axios from "axios";
 
 
-const Deletebtn = ({ id, setPublication }) => {
+const DeleteDemPub = ({ id, setPublication,ownerEmail }) => {
  
   
   const handleDelete = async () => {
     const confirmDelete = window.confirm("Voulez-vous vraiment supprimer cet publication ?");
     if (confirmDelete) {
       try {
-      const response=  await axios.delete(`/api1/ownerpublications?id=${id}`);
+      const response=  await axios.delete(`/api1/demandeAdmin?id=${id}`);
         console.log("Data Deleted successfully!");
          // Assuming fetchData is a function passed as prop to refetch data
-       
+         const formData = new FormData();
+        formData.append('ownerEmail', ownerEmail);
+
+        const emailResponse = await axios.post("/api1/emailDeleteAdmin", formData);
+        
+        // Assuming the response contains JSON data
+        const emailData = await emailResponse.data;
+        console.log(emailData.message);
+        alert('Email envoyé avec succès');
         // Refresh the page
         setPublication(response.data.publications);
         console.log(response)
@@ -32,4 +40,4 @@ const Deletebtn = ({ id, setPublication }) => {
   );
 };
 
-export default Deletebtn;
+export default DeleteDemPub;
