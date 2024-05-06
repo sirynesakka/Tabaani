@@ -4,37 +4,51 @@ import Link from "next/link";
 import axios from "axios";
 import { MdFavorite } from "react-icons/md";
 
-export default function Aside3() {
+const Aside3 = ({ options }) => {
     const [publications, setPublications] = useState([]);
-    const [alt, setAlt] = useState(""); // State to store the alt value
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+    const [clickedImageAlt, setClickedImageAlt] = useState(localStorage.getItem("clickedImageAlt"));
 
     useEffect(() => {
-        fetchPublicationsAndSetAlt();
-    }, []);
+        const fetchData = async () => {
+            setLoading(true);
+            setError(null);
+            try {
+                console.log("Fetching data...");
+                const params = { ...options, tunisiaStates: clickedImageAlt }; // Combine options and clickedImageAlt
+                const response = await axios.get('/api1/get', { params });
+                console.log("Data fetched successfully:", response.data);
+                setPublications(response.data.publications);
+            } catch (error) {
+                console.error('Error fetching data:', error);
+                setError(error);
+            } finally {
+                setLoading(false);
+            }
+        };
+        fetchData();
+    }, [options, clickedImageAlt]);
 
-    const fetchPublicationsAndSetAlt = async () => {
-        try {
-            const clickedImageAlt = localStorage.getItem("clickedImageAlt");
-            setAlt(clickedImageAlt);
-            const response = await axios.get(`/api1/localisation?tunisiaStates=${clickedImageAlt}`); // Replace "/your-api-endpoint" with your actual API endpoint
-            setPublications(response.data.publications);
-        } catch (error) {
-            console.error("Error fetching publications:", error);
-        }
-    };
+    if (error) {
+        return <div>Error: {error.message}</div>;
+    }
+
+    if (loading) {
+        return <div>Loading...</div>;
+    }
 
     const handlePublicationClick = (clé) => {
-        // Store the clicked publication clé in localStorage
-        localStorage.setItem("clickedPublicationId", clé);
-        console.log("Clicked Publication clé:", clé); // Log the clicked publication ID to console
+        localStorage.setItem("clickedClé", clé);
+        console.log(clé);
     };
 
     return (
         <>
             {publications.map(publication => (
-                <div key={publication.clé} className="inline-block mx-2">
+                <div key={publication.clé} className="inline-block mx-2" onClick={() => handlePublicationClick(publication.clé)}>
                     <Link href="/affichage" key={publication.clé}>
-                        <div className="max-w-sm rounded overflow-hidden shadow-lg" onClick={() => handlePublicationClick(publication.clé)}>
+                        <div className="max-w-sm rounded overflow-hidden shadow-lg">
                             <img className="w-full" src="/djerba.jpg" alt="Paella dish" />
                             <div className="px-6 py-4">
                                 <div className="font-bold text-xl">{publication.titre}</div>
@@ -50,4 +64,6 @@ export default function Aside3() {
             ))}
         </>
     );
-}
+};
+
+export default Aside3;

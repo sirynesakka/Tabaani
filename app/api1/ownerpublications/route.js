@@ -24,6 +24,7 @@ export async function GET(request) {
     }
 }
 
+
 export async function PUT(request) {
     const requestData = await request.json();
 

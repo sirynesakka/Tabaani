@@ -2,14 +2,30 @@
 import React, { useState, useEffect } from "react";
 import { useUser } from "@auth0/nextjs-auth0/client";
 import axios from "axios";
+import sentiment from 'sentiment';
 import Rating from "../components/rating";
 import Footer from "../components1/Footer";
 import Deletecomment  from "../components/deleteComment"
 import Modal from "../components/reservationForm";
 
+
+
+
+
 const Affichage = () => {
   const [rating, setRating] = useState(null);
   const [comment, setComment] = useState([]);
+
+  const analyzeSentiment = (text) => {
+    console.log("Text for Sentiment Analysis:", text); // Debugging statement
+    const result = sentiment(text);
+    console.log("Sentiment Analysis Result:", result); // Debugging statement
+    if (result) {
+      return result.score;
+    }
+    return 0; // Default score if result is undefined
+  };
+ 
 
   const fetchComment = async () => {
     try {
@@ -45,7 +61,7 @@ const Affichage = () => {
 
   const fetchPublication = async () => {
     // Récupérer la clé de la publication à partir du stockage local
-    const clé = localStorage.getItem("clickedPublicationId");
+    const clé = localStorage.getItem("clickedClé");
     if (clé) {
       try {
         const response = await axios.get(`/api1/client?clé=${clé}`);
@@ -105,7 +121,7 @@ const Affichage = () => {
       console.error("Error posting comment:", error);
     }
   };
-
+ 
   return (
     <>
       {publication && (
@@ -310,6 +326,7 @@ const Affichage = () => {
         </div>
         </div>
         <div class=" mb-4 border border-dotted"></div>
+        <div className="text-sm text-gray-500">Sentiment Score: {analyzeSentiment(comment.comment)}</div>
     </div>
     
   ))}

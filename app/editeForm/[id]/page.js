@@ -7,6 +7,7 @@ import axios from "axios";
 import ImageUploadForm from "../../components/imageUpload";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useParams } from "next/navigation";
 import { useRouter } from "next/navigation";
 import { useUser } from "@auth0/nextjs-auth0/client";
 import StyledInput2 from "../../components/styledinput2";
@@ -44,17 +45,16 @@ const bonpour = [
   { value: "romantique", label: "Romantique" },
 ];
 
-export default function Editeform({ onFormClose })  {
-  const router = useRouter();
+export default function Editeform({onFormClose })  {
   const [cities, setCities] = useState([]);
   const [publications , setPublication] = useState([]);
+  const {id} = useParams();
+ 
   
    
   
 
-  const notify = () => {
-    toast.success("Form submitted successfully.");
-  };
+  
   const { user } = useUser();
   const { email } = user || {};
   const body = JSON.stringify({ email });
@@ -76,66 +76,64 @@ export default function Editeform({ onFormClose })  {
     fetchCities();
   }, [])
 
-  const fetchPublication = async (email) => {
-    try {
-      const response = await axios.get(
-        `/api1/ownerpublications?ownerEmail=${email}`
-      );
-      console.log("API Response Data:", response.data);
-      return response.data.publications;
-    } catch (error) {
-      console.error("Error", error);
-      return [];
-    }
-  };
 
-  useEffect(() => {
-    if (email) {
-      fetchPublication(email).then((publications) => {
-        setPublication(publications);
-      });
+  const fetchPublication = async () => {
+    try {
+        const response = await axios.get(`/api1/ownerpublications/${id}`);
+        setPublication(response.data.publication);
+    } catch (error) {
+        console.error("Error fetching publication:", error);
     }
-  }, [email]);
+};
+
+useEffect(() => {
+    fetchPublication(); 
+}, []);
+
+
+  
 
   const {
     register,
     handleSubmit,
     formState: { errors },
     control,
- 
-} = useForm({
-  defaultValues: {
-    type: publications.type, // Access type property of publications, or set to empty string if undefined
-    repas: publications.repas,
-    spécialité: publications.spécialité,
-    prix: publications.prix,
-    bonpour: publications.bonpour,
-    ownerEmail: "",
-  },
-});
+   reset
+} = useForm();
 
 
 
 
+const onSubmit = async (data) => {
+  try {
+    const response = await axios.put(`/api1/ownerpublications/${id}`, {
+      ...data,
+      confirmer :confirmation ,
+      ownerEmail: email,
+      type: data.type.value,
+      repas: data.repas.value,
+      spécialité: data.spécialité.value,
+      cities: data.cities.value,
+      prix: data.prix.value,
+      bonpour: data.bonpour.value,
+      description: data.description,
+      titre: data.titre,
 
-  const onSubmit = async (data) => {
-    try {
-      const response = await axios.put(`/api1/publication/${initialData.id}`, {
-        ...data,
-        ownerEmail: email,
-      });
+      // Pass clé along with other form data
+    });
 
-      if (response.ok) {
-        // Redirect after successful update
-        router.push("/ownerpage/pubAttente");
-        onFormClose();
-      } else {
-        console.error("Error updating data");
-      }
-    } catch (error) {
-      console.error("Error:", error);
+    if (response.status === 200) {
+      console.log("Publication is updated");
+      // Redirect or perform any other actions upon successful update
+    } else {
+      console.error("Error updating data:", response.data.message);
     }
-  };
+  } catch (error) {
+    console.error("Error:", error);
+  }
+};
+
+
  
 
   return (
@@ -254,7 +252,7 @@ export default function Editeform({ onFormClose })  {
        <ImageUploadForm />
        </div>
         <button
-          onClick={notify}
+        
           form="main-form"
           className="bg-green-500 text-white px-3 py-1 rounded-md hover:bg-green-600 mt-2"
         >
