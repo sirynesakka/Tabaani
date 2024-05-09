@@ -1,6 +1,7 @@
 "use client"
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import Link from "next/link";
 import DeleteDemClient from "./deleteDemClient";
 
 const Mesdemandes = () => {
@@ -116,9 +117,18 @@ const Mesdemandes = () => {
                   <span className="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">
                     action
                   </span>
+                  <div className="py-2">
+                      <Link href={`/editeFormReser/${demande._id}`}
+      
+      className="font-bold px-3 py-2 leading-none text-black-200 border border-green-800 rounded-lg focus:outline-none focus:shadow-outline bg-gradient-to-b hover:from-green-500 from-white-900 to-green"
+    >
+      Modifier 
+    </Link>
+    </div>
                   <div >
                         <DeleteDemClient id={demande._id} setDemande={setDemande}/>
                       </div>
+          
                 </td>
               </tr>
             ))}

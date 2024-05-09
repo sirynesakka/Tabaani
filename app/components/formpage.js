@@ -10,11 +10,13 @@ import "react-toastify/dist/ReactToastify.css";
 import { useRouter } from "next/navigation";
 import { useUser } from "@auth0/nextjs-auth0/client";
 import StyledInput2 from "./styledinput2";
+import ButtonForm from "../components/buttonForm"
 
 const type = [
   { value: "cafe", label: "Cafe" },
   { value: "restaurant", label: "Réstaurant" },
 ];
+
 const repas = [
   { value: "petit-déjeuner", label: "Petit-déjeuner" },
   { value: "déjeuner", label: "Déjeuner" },
@@ -25,15 +27,15 @@ const repas = [
 const spécialité = [
   { value: "tunisienne", label: "Tunisienne" },
   { value: "asiatique", label: "Asiatique" },
-  { value: "fruits de mer", label: "Fruits de mer" },
+  { value: "fruitsdemer", label: "Fruits de mer" },
   { value: "italien", label: "Italien" },
   { value: "pizza", label: "Pizza" },
   { value: "café", label: "Café" },
 ];
 
 const prix = [
-  { value: "Moyenne de gamme", label: "Moyenne de gamme" },
-  { value: "pas cher", label: "Pas cher" },
+  { value: "Moyennedegamme", label: "Moyenne de gamme" },
+  { value: "pascher", label: "Pas cher" },
 ];
 
 const bonpour = [
@@ -48,6 +50,7 @@ const Formajouter = ({ onFormClose }) => {
   const notify = () => {
     toast.success("Form submitted successfully.");
   };
+  
   const { user } = useUser();
   const { email } = user || {};
   const body = JSON.stringify({ email });
@@ -69,7 +72,12 @@ const Formajouter = ({ onFormClose }) => {
     fetchCities();
   }, [])
 
+  const [selectedFile, setSelectedFile] = useState(null);
 
+  const handleFileSubmit = async () => {
+    // Appeler la fonction handleSubmit de ImageUploadForm
+    await ImageUploadForm.handleSubmit(selectedFile);
+  };
   const {
     register,
     handleSubmit,
@@ -80,15 +88,17 @@ const Formajouter = ({ onFormClose }) => {
       type: { value: "cafe", label: "Cafe" },
       repas: { value: "petit-déjeuner", label: "Petit-déjeuner" },
       spécialité: { value: "tunisienne", label: "Tunisienne" },
-      prix: { value: "pas cher", label: "Pas cher" },
+      prix: { value: "pascher", label: "Pas cher" },
       bonpour: { value: "enfants", label: "Enfants" },
     
       ownerEmail: "",
     },
   });
-
+  
   const onSubmit = async (data) => {
     try {
+      const cléDePubStored = localStorage.getItem('cléDePub');
+      console.log(cléDePubStored);
       const response = await fetch("/api1/publication", {
         method: "POST",
         headers: {
@@ -105,6 +115,7 @@ const Formajouter = ({ onFormClose }) => {
           titre: data.titre,
           description: data.description,
           confirmer :confirmation ,
+          clé : cléDePubStored ,
         }),
       });
 
@@ -247,13 +258,7 @@ const Formajouter = ({ onFormClose }) => {
     <div className="mb-4">
        <ImageUploadForm />
        </div>
-        <button
-          onClick={notify}
-          form="main-form"
-          className="bg-green-500 text-white px-3 py-1 rounded-md hover:bg-green-600 mt-2"
-        >
-          Enregistrer
-        </button>
+       <ButtonForm onClick={handleFileSubmit}/>
         <ToastContainer />
         
       </form>

@@ -38,7 +38,7 @@ export async function GET(request) {
         // If additional filters are provided, apply them
         const type = searchParams.get('type');
         const repas = searchParams.get('repas');
-        const specialite = searchParams.get('specialite');
+        const spécialité = searchParams.get('spécialité');
         const bonpour = searchParams.get('bonpour');
         const prix = searchParams.get('prix');
 
@@ -49,8 +49,8 @@ export async function GET(request) {
         if (repas) {
             query.repas = repas;
         }
-        if (specialite) {
-            query.specialite = specialite;
+        if (spécialité) {
+            query.spécialité = spécialité;
         }
         if (bonpour) {
             query.bonpour = bonpour;

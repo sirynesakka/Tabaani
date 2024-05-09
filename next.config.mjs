@@ -1,11 +1,6 @@
-/** @type {import('next').NextConfig} */
-const nextConfig = {
+export default {
     images: {
-        domains: [
-            "res.cloudinary.com"
-    ]
-    }
-
-};
-
-export default nextConfig;
+      domains: ['minio.pfe.leemawebtech.com'],
+    },
+  };
+  

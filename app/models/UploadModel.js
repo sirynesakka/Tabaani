@@ -10,6 +10,10 @@ const uploadSchema = new Schema({
         
      
    },
+   cléDePub:{
+    type: String,
+    required: true,
+ },
  location: {
     type: String,
     required: true,
@@ -30,6 +34,7 @@ bucketName: {
     
  
 },
+
 });
 
 const UploadModel = 

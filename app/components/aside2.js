@@ -9,7 +9,7 @@ const Aside2 = ({ onOptionsChange }) => {
   const [selectedOptions, setSelectedOptions] = useState({
     type: '',
     repas: '',
-    specialite: '',
+    spécialité: '',
     bonpour: '',
     prix: ''
   });
@@ -65,8 +65,8 @@ const Aside2 = ({ onOptionsChange }) => {
             <FormControlLabel
               control={<Radio />}
               label="Petit-déjeuner"
-              value="petit-dejeuner"
-              checked={selectedOptions.repas === 'petit-dejeuner'}
+              value="petit-déjeuner"
+              checked={selectedOptions.repas === 'petit-déjeuner'}
               onChange={(e) =>{ handleOptionChange('repas', e.target.value);onOptionsChange(selectedOptions);}}
             />
             <FormControlLabel
@@ -79,8 +79,8 @@ const Aside2 = ({ onOptionsChange }) => {
             <FormControlLabel
               control={<Radio />}
               label="Déjeuner"
-              value="dejeuner"
-              checked={selectedOptions.repas === 'dejeuner'}
+              value="déjeuner"
+              checked={selectedOptions.repas === 'déjeuner'}
               onChange={(e) => {handleOptionChange('repas', e.target.value);onOptionsChange(selectedOptions);}}
             />
             <FormControlLabel
@@ -104,43 +104,43 @@ const Aside2 = ({ onOptionsChange }) => {
               control={<Radio />}
               label="Tunisienne"
               value="tunisienne"
-              checked={selectedOptions.specialite === 'tunisienne'}
-              onChange={(e) => {handleOptionChange('specialite', e.target.value);onOptionsChange(selectedOptions);}}
+              checked={selectedOptions.spécialité === 'tunisienne'}
+              onChange={(e) => {handleOptionChange('spécialité', e.target.value);onOptionsChange(selectedOptions);}}
             />
             <FormControlLabel
               control={<Radio />}
               label="Asiatique"
               value="asiatique"
-              checked={selectedOptions.specialite === 'asiatique'}
-              onChange={(e) => {handleOptionChange('specialite', e.target.value);onOptionsChange(selectedOptions);}}
+              checked={selectedOptions.spécialité === 'asiatique'}
+              onChange={(e) => {handleOptionChange('spécialité', e.target.value);onOptionsChange(selectedOptions);}}
             />
             <FormControlLabel
               control={<Radio />}
               label="Fruits de mer"
-              value="fruits-de-mer"
-              checked={selectedOptions.specialite === 'fruits-de-mer'}
-              onChange={(e) => {handleOptionChange('specialite', e.target.value);onOptionsChange(selectedOptions);}}
+              value="fruitsdemer"
+              checked={selectedOptions.spécialité === 'fruits-de-mer'}
+              onChange={(e) => {handleOptionChange('spécialité', e.target.value);onOptionsChange(selectedOptions);}}
             />
             <FormControlLabel
               control={<Radio />}
               label="Italien"
               value="italien"
-              checked={selectedOptions.specialite === 'italien'}
-              onChange={(e) => {handleOptionChange('specialite', e.target.value);onOptionsChange(selectedOptions);}}
+              checked={selectedOptions.spécialité === 'italien'}
+              onChange={(e) => {handleOptionChange('spécialité', e.target.value);onOptionsChange(selectedOptions);}}
             />
             <FormControlLabel
               control={<Radio />}
               label="Pizza"
               value="pizza"
-              checked={selectedOptions.specialite === 'pizza'}
-              onChange={(e) => {handleOptionChange('specialite', e.target.value);onOptionsChange(selectedOptions);}}
+              checked={selectedOptions.spécialité === 'pizza'}
+              onChange={(e) => {handleOptionChange('spécialité', e.target.value);onOptionsChange(selectedOptions);}}
             />
             <FormControlLabel
               control={<Radio />}
               label="Café"
-              value="cafe"
-              checked={selectedOptions.specialite === 'cafe'}
-              onChange={(e) => {handleOptionChange('specialite', e.target.value);onOptionsChange(selectedOptions);}}
+              value="café"
+              checked={selectedOptions.spécialité === 'café'}
+              onChange={(e) => {handleOptionChange('spécialité', e.target.value);onOptionsChange(selectedOptions);}}
             />
           </FormGroup>
         </div>
@@ -155,8 +155,8 @@ const Aside2 = ({ onOptionsChange }) => {
             <FormControlLabel
               control={<Radio />}
               label="Famille"
-              value="famille"
-              checked={selectedOptions.bonpour === 'famille'}
+              value="familles"
+              checked={selectedOptions.bonpour === 'familles'}
               onChange={(e) => {handleOptionChange('bonpour', e.target.value);onOptionsChange(selectedOptions);}}
             />
             <FormControlLabel
@@ -186,15 +186,15 @@ const Aside2 = ({ onOptionsChange }) => {
             <FormControlLabel
               control={<Radio />}
               label="Moyenne de gamme"
-              value="moyenne"
-              checked={selectedOptions.prix === 'moyenne'}
+              value="Moyennedegamme"
+              checked={selectedOptions.prix === 'Moyennedegamme'}
               onChange={(e) => {handleOptionChange('prix', e.target.value);onOptionsChange(selectedOptions);}}
             />
             <FormControlLabel
               control={<Radio />}
               label="Pas cher"
-              value="pas-cher"
-              checked={selectedOptions.prix === 'pas-cher'}
+              value="pascher"
+              checked={selectedOptions.prix === 'pascher'}
               onChange={(e) => {handleOptionChange('prix', e.target.value);onOptionsChange(selectedOptions);}}
             />
           </FormGroup>

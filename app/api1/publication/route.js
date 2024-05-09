@@ -2,7 +2,6 @@ import connectDB from "../../lib/mongodb";
 import mongoose from "mongoose";
 import Publication from "../../models/publication";
 import { NextResponse } from 'next/server';
-import { v4 as uuidv4 } from 'uuid';
 
 export async function POST(req) {
   const {
@@ -16,9 +15,9 @@ export async function POST(req) {
     description,
     ownerEmail,
     confirmer,
+    clé
   } = await req.json();
   
-  const clé = uuidv4();
   // Définir manuellement la valeur de confirmer
   
   

@@ -23,6 +23,7 @@ const Reservation = () => {
     <>
     {demandes.map((demande) => (
     <div   key={demande.id} className="flex justify-center items-center h-">
+      
       <div className="bg-white border rounded-lg shadow-lg px-4 py-6 max-w-sm mx-auto mt-24">
         <h1 className="font-semibold font-serif text-lg my-2 text-center text-green-800">Votre table a été réservée avec succès.</h1>
         <hr className="mb-1" />

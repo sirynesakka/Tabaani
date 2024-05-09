@@ -5,7 +5,7 @@ const StyledInput = ({ label, name, defaultValue, placeholder, register, require
     <div className="col-span-full">
       <label
         htmlFor={name}
-        className="mb-2 block mb-2 text-sm font-bold text-gray-700 underline"
+        className="mb-2 block mb-2 text-sm font-serif font-semibold text-gray-700 underline"
       >
         {label}
       </label>

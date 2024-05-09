@@ -7,7 +7,7 @@ import Rating from "../components/rating";
 import Footer from "../components1/Footer";
 import Deletecomment  from "../components/deleteComment"
 import Modal from "../components/reservationForm";
-
+import DisplayImage from "../components/DisplayImage"
 
 
 
@@ -137,17 +137,8 @@ const Affichage = () => {
                 style={{ height: "24em" }}
                 href="#"
               >
-                <div
-                  class="absolute left-0 bottom-0 w-full h-full z-0"
-                  style={{
-                    backgroundImage:
-                      "linear-gradient(180deg,transparent,rgba(0,0,0,.7))",
-                  }}
-                ></div>
-                <img
-                  src="https://images.unsplash.com/photo-1493770348161-369560ae357d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2100&q=80"
-                  class="absolute z-0 left-0 top-0 w-full h-full rounded z-0 object-cover"
-                />
+                
+                <DisplayImage publication={publication} />
               </a>
 
               <div class="w-full md:w-1/3 relative rounded">

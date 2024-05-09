@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import axios from "axios";
 import { MdFavorite } from "react-icons/md";
+import DisplayImage from "../components/DisplayImage";
 
 const Aside3 = ({ options }) => {
     const [publications, setPublications] = useState([]);
@@ -49,7 +50,7 @@ const Aside3 = ({ options }) => {
                 <div key={publication.clé} className="inline-block mx-2" onClick={() => handlePublicationClick(publication.clé)}>
                     <Link href="/affichage" key={publication.clé}>
                         <div className="max-w-sm rounded overflow-hidden shadow-lg">
-                            <img className="w-full" src="/djerba.jpg" alt="Paella dish" />
+                        <DisplayImage publication={publication} />
                             <div className="px-6 py-4">
                                 <div className="font-bold text-xl">{publication.titre}</div>
                                 <p className="text-gray-700 text-base mb-4 ">{publication.type}</p>

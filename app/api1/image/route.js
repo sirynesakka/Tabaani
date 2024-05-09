@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import connectDB from "../../lib/mongodb";
 import mongoose from "mongoose";
-import  UploadModel from "../../models/UploadModel";
+import UploadModel from "../../models/UploadModel";
 import UploadFileMinio from "../../utils/minio";
 
 /**
@@ -11,9 +11,9 @@ import UploadFileMinio from "../../utils/minio";
  * @constructor
  */
 export async function POST(request) {
-
   const formData = await request.formData();
   const file = formData.get("img");
+  const clé = formData.get("clé");
   // upload files to minio
   console.log(file);
 
@@ -21,7 +21,7 @@ export async function POST(request) {
   const originalFileName = file.name.replaceAll(" ", "_");
   const minioFileName = file.name.replaceAll(" ", "_");
   const documentType = "";
-  
+
   UploadFileMinio({
     bucketName: process.env.UPLOADS_BUCKET_NAME,
     fileStream: buffer,
@@ -29,39 +29,65 @@ export async function POST(request) {
   });
 
   // insert file to db
-    
- try {
-  await connectDB();
 
-await UploadModel.create({
-name: originalFileName,
-location: minioFileName,
-type: documentType,
-bucketName: process.env.UPLOADS_BUCKET_NAME,
-});
+  try {
+    await connectDB();
+    console.log(clé);
+    await UploadModel.create({
+      name: originalFileName,
+      location: minioFileName,
+      type: documentType,
+      bucketName: process.env.UPLOADS_BUCKET_NAME,
+      cléDePub: clé,
+    });
 
-
-
-  const uploadModels = await UploadModel.find();
-  return NextResponse.json({
-    msg: ["Image information saved successfully"],
-    uploadModels,
-    success: true,
-  });
-
-}  catch (error) {
-  let err;
-  if (error instanceof mongoose.Error.ValidationError) {
-    let errorList = [];
-    for(let e in error.errors) {
-      errorList.push(error.errors[e].message);
+    const uploadModels = await UploadModel.find();
+    return NextResponse.json({
+      msg: ["Image information saved successfully"],
+      uploadModels,
+      success: true,
+    });
+  } catch (error) {
+    let err;
+    if (error instanceof mongoose.Error.ValidationError) {
+      let errorList = [];
+      for (let e in error.errors) {
+        errorList.push(error.errors[e].message);
+      }
+      console.log(errorList);
+      return NextResponse.json({ msg: errorList });
+    } else {
+      err = error;
+      console.log(err);
+      return NextResponse.json({ msg: ["Unable to save user information."] });
     }
-    console.log(errorList);
-    return NextResponse.json({ msg: errorList });
-  } else {
-    err = error;
-    console.log(err);
-    return NextResponse.json({ msg: ["Unable to save user information."] });
   }
 }
+
+export async function GET(request) {
+  const { searchParams } = new URL(request.url);
+  const cléDePub = searchParams.get("cléDePub");
+  console.log("le clé est : ", cléDePub);
+
+  if (!cléDePub) {
+    return NextResponse.error(
+      new Error("Missing 'cléDePub' parameter in the request")
+    );
+  }
+
+  try {
+    await connectDB();
+    const uploadModel = await UploadModel.findOne({ cléDePub });
+
+    if (!uploadModel) {
+      return NextResponse.json({ msg: ["Data not found"] });
+    }
+
+    // Retrieve bucketName and location from the uploadModel
+    // Return bucketName and location as response
+    return NextResponse.json(uploadModel);
+  } catch (error) {
+    console.error(error);
+    return NextResponse.json({ msg: ["Error retrieving data"] });
+  }
 }

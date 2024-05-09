@@ -16,7 +16,7 @@ export default async function UploadFileMinio({
     objectName,
     filePath,
     fileStream,
-    mimeType="application/x-compress",
+    mimeType="image/*",
 }){
     const metaData = {
         "Content-type": mimeType,
