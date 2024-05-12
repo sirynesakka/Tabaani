@@ -3,11 +3,11 @@ import React, { useState, useEffect } from "react";
 import { useUser } from "@auth0/nextjs-auth0/client";
 import axios from "axios";
 import sentiment from 'sentiment';
-import Rating from "../components/rating";
-import Footer from "../components1/Footer";
-import Deletecomment  from "../components/deleteComment"
-import Modal from "../components/reservationForm";
-import DisplayImage from "../components/DisplayImage"
+import Rating from "../../components/rating";
+import Footer from "../../components1/Footer";
+import Deletecomment  from "../../components/deleteComment"
+import Modal from "../../components/reservationForm";
+import DisplayImage from "../../components/DisplayImage"
 
 
 
@@ -28,9 +28,18 @@ const Affichage = () => {
  
 
   const fetchComment = async () => {
+    const clé = localStorage.getItem("clickedClédepub");
+    console.log("le clé de comments :" , clé);
+
     try {
-      const response = await axios.get("/api1/comments");
+      console.log("l api est appelé");
+      const response = await axios.get('/api1/comments', {
+        params: {
+          pubclé: clé// Replace 'example@example.com' with the actual email
+        }
+    }) ;
       setComment(response.data.comments);
+      console.log("comments data : " , response.data.comments)
     } catch (error) {
       console.error("Error", error);
     }
@@ -61,7 +70,8 @@ const Affichage = () => {
 
   const fetchPublication = async () => {
     // Récupérer la clé de la publication à partir du stockage local
-    const clé = localStorage.getItem("clickedClé");
+    const clé = localStorage.getItem("clickedClédepub");
+    console.log("clé client est :", clé)
     if (clé) {
       try {
         const response = await axios.get(`/api1/client?clé=${clé}`);
@@ -90,7 +100,8 @@ const Affichage = () => {
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const clé = localStorage.getItem("clickedPublicationId");
+    const clé = localStorage.getItem("clickedClédepub");
+    const Owneremail = localStorage.getItem("ownerEmailPourDemande");
 
     try {
       const response = await fetch("/api1/comments", {
@@ -103,6 +114,7 @@ const Affichage = () => {
           rating: rating,
           pubclé: clé,
           useremail: email,
+          Owneremail :Owneremail,
         }),
       });
       if (response.ok) {

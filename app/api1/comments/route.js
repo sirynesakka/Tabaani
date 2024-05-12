@@ -10,6 +10,7 @@ export async function POST(req) {
     useremail,
     comment,
     rating,
+    Owneremail,
   } = await req.json();
   
   const clé = uuidv4();
@@ -24,7 +25,8 @@ export async function POST(req) {
         pubclé,
         comment,
         rating,
-      clé, // Utilisation de la valeur définie manuellement
+      clé, 
+      Owneremail,// Utilisation de la valeur définie manuellement
     });
     console.log(err); 
     const comments = await Comment.find();
@@ -52,9 +54,10 @@ export async function POST(req) {
 export async function GET(request) {
     try {
         await connectDB();
-
+        const { searchParams } = new URL(request.url);
+        const pubclé = searchParams.get('pubclé');
         // Retrieve all comments
-        const comments = await Comment.find();
+        const comments = await Comment.find({pubclé});
 
         console.log(comments ,"validée")
         return NextResponse.json({ comments  }, {status:200});

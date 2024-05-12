@@ -67,7 +67,7 @@ const Sidebar = () => {
                 </h3>
               </Link> 
               
-              <Link href="/" className="flex  mb-2 justify-start items-center gap-4 pl-5 hover:bg-green-900 p-2 rounded-md group cursor-pointer hover:shadow-lg m-auto">
+              <Link href="/ownerpage/visiterCom" className="flex  mb-2 justify-start items-center gap-4 pl-5 hover:bg-green-900 p-2 rounded-md group cursor-pointer hover:shadow-lg m-auto">
                 <FaRegComments  className="text-2xl text-green-900 group-hover:text-white " />
                 <h3 className="text-base text-green-900 group-hover:text-white font-semibold font-serif">
                   Mes commentaires

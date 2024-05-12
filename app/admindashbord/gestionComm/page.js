@@ -9,7 +9,7 @@ const GestComm = () =>{
 
     const fetchComment = async () => {
       try {
-        const response = await axios.get("/api1/comments");
+        const response = await axios.get("/api1/adminCom");
         setComment(response.data.comments);
       } catch (error) {
         console.error("Error", error);

@@ -40,7 +40,7 @@ const Aside3 = ({ options }) => {
     }
 
     const handlePublicationClick = (clé) => {
-        localStorage.setItem("clickedClé", clé);
+        localStorage.setItem("clickedClédepub", clé);
         console.log(clé);
     };
 
@@ -48,7 +48,7 @@ const Aside3 = ({ options }) => {
         <>
             {publications.map(publication => (
                 <div key={publication.clé} className="inline-block mx-2" onClick={() => handlePublicationClick(publication.clé)}>
-                    <Link href="/affichage" key={publication.clé}>
+                    <Link href="/clientpage/affichage" key={publication.clé}>
                         <div className="max-w-sm rounded overflow-hidden shadow-lg">
                         <DisplayImage publication={publication} />
                             <div className="px-6 py-4">
