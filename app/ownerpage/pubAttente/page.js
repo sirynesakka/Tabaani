@@ -12,6 +12,13 @@ export default function Home() {
 
   const { user } = useUser();
   const email = user?.email || "";
+  const handleModifierClick = (publicationclé, publicationId) => {
+    localStorage.setItem("publicationKey", publicationclé);
+    console.log("la clé cliquée est :", publicationclé);
+    console.log("l'id cliqué est :", publicationId);
+    window.location.href = `/editeForm/${publicationId}`;
+  };
+  
 
   const fetchPublications = async (email) => {
     try {
@@ -79,12 +86,16 @@ export default function Home() {
               </div>
               <div>
                 <div className="flex justify-center mt-5">
-                  <Link
-                    href={`/editeForm/${publication._id}`}
-                    className="font-serif font-semibold px-6 py-3 leading-none text-blue-900 border border-green-800 rounded-lg focus:outline-none focus:shadow-outline bg-gradient-to-b hover:from-green-500 from-white-900 to-green"
-                  >
-                    Modifier
-                  </Link>
+                <a
+                  href={`/editeForm/${publication._id}`}
+                  className="font-serif font-semibold px-6 py-3 leading-none text-blue-900 border border-green-800 rounded-lg focus:outline-none focus:shadow-outline bg-gradient-to-b hover:from-green-500 from-white-900 to-green"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleModifierClick(publication.clé, publication._id);
+                  }}
+                >
+                  Modifier
+                </a>
 
                   <div className="flex items-center ml-2">
                     <Deletebtn

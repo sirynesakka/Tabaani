@@ -2,8 +2,9 @@
 import React , {useState , useEffect} from "react"
 import axios from "axios";
 import Image from "next/image";
-import Deletebtn from "../../components/deletebtn"
+import DeletePubCon from "../../components/deletPubCon"
 import Confirmer from "../../confirmationbtn/page"
+import DisplayImage from "../../components/DisplayImage";
 
 
 export default function GesPub () {
@@ -79,13 +80,8 @@ export default function GesPub () {
         <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
           {publications.map((publication) => (
             <div key={publication.id} className="group relative">
-             <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80">
-  <Image
-    src="/mahdia.jpg" // Provide the correct path to your image file
-    alt="mahdia"
-    width={600} // Set both width and height to 600 pixels
-    height={600} // Set both width and height to 600 pixels
-  />
+             <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 ">
+             <DisplayImage publication={publication} />
 </div>
 
 
@@ -125,7 +121,7 @@ export default function GesPub () {
              <div className="flex justify-center mt-4">
    
     <div className="ml-2"> {/* Added margin to separate the buttons */}
-        <Deletebtn id={publication._id} setPublication={setPublication} />
+        <DeletePubCon ownerEmail={publication.ownerEmail} id={publication._id} setPublication={setPublication} />
     </div>
 </div>
          </div>

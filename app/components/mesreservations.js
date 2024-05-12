@@ -5,10 +5,16 @@ import DeleteRes from "../components/deleteRes"
 
 const Reservation = () => {
   const [demandes, setDemande] = useState([]);
-
+  const email = typeof window !== 'undefined' ? localStorage.getItem('Clientsemail') : null;
+  console.log("l email est de :", email);
   const fetchDemande = async () => {
     try {
-      const response = await axios.get("/api1/reservation");
+      
+      const response = await axios.get('/api1/reservationClient', {
+        params: {
+            email: email// Replace 'example@example.com' with the actual email
+        }
+    }) ;
       setDemande(response.data.demandes);
     } catch (error) {
       console.error("Error", error);

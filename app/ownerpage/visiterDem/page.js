@@ -2,14 +2,20 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import DeleteDemande from "../../components/deletDemande";
-
+import { useUser } from "@auth0/nextjs-auth0/client";
 const Visiter = () => {
   const [demandes, setDemande] = useState([]);
-
+ 
+  const Owneremail = localStorage.getItem('Demandes');
+  console.log("email est s :", Owneremail)
   const fetchDemande = async () => {
     try {
-      const response = await axios.get("/api1/demande");
-      setDemande(response.data.demandes);
+      console.log("Owneremail:", Owneremail);
+      const response = await axios.get('/api1/demande', {
+        params: {
+            Owneremail: Owneremail// Replace 'example@example.com' with the actual email
+        }
+    });setDemande(response.data.demandes);
     } catch (error) {
       console.error("Error", error);
     }

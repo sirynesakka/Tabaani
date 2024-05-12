@@ -7,11 +7,13 @@ export async function PUT(request, {params}) {
     console.log(id)
    const { nom,
     email,
+   
     telnum,
     num,
     nombre,
     date,
     heure}= await request.json()
+    
 
     await connectDB();
 
@@ -25,6 +27,7 @@ export async function PUT(request, {params}) {
             nombre,
             date,
             heure,
+           
             
         });
         

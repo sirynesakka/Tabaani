@@ -66,6 +66,7 @@ const Affichage = () => {
       try {
         const response = await axios.get(`/api1/client?clé=${clé}`);
         setPublication(response.data.publication);
+        localStorage.setItem("ownerEmailPourDemande", response.data.publication.ownerEmail);
       } catch (error) {
         console.error("Error fetching publication:", error);
       }

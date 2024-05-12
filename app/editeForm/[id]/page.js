@@ -12,6 +12,7 @@ import { useRouter } from "next/navigation";
 import { useUser } from "@auth0/nextjs-auth0/client";
 import StyledInput2 from "../../components/styledinput2";
 import CostumSelect from "../../components/select";
+import ImageEdite from "../../components/imageEdite"
 
 
 const type = [
@@ -77,8 +78,20 @@ export default function Editeform({onFormClose })  {
     fetchCities();
   }, [])
 
-
+  useEffect(() => {
+      reset({
+        type: {value:publications.type,label:publications.type},
+        repas: {value:publications.repas,label:publications.repas},
+        spécialité: {value:publications.spécialité,label:publications.spécialité},
+        prix: {value:publications.prix,label:publications.prix},
+        bonpour: {value:publications.bonpour,label:publications.bonpour},
+        tunisiaStates: {value:publications.cities,label:publications.cities}, // Set the initial value of the select input
+        description:publications.description,
+        titre :publications.titre
+      
+      });
   const fetchPublication = async () => {
+    
     try {
         const response = await axios.get(`/api1/ownerpublications/${id}`);
         setPublication(response.data.publication);
@@ -87,20 +100,20 @@ export default function Editeform({onFormClose })  {
     }
 };
 
-useEffect(() => {
-    fetchPublication(); 
+
+
+
+  fetchPublication(); 
 }, []);
 
+const {
+  register,
+  handleSubmit,
+  formState: { errors },
+  reset,
+  control,
+} = useForm({defaultValues:{}});
 
-  
-
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-    control,
-   reset
-} = useForm();
 
 
 
@@ -157,6 +170,7 @@ const onSubmit = async (data) => {
           options={type}
           required={true}
           message="Sélectionner le type"
+          defaultValue={publications.type}
           errors={errors.type && "Sélectionner le champ type"}
           className="block w-full px-4 py-2 pr-8 mt-1 text-sm border border-gray-300 rounded-md appearance-none focus:outline-none focus:ring focus:ring-indigo-400 focus:border-indigo-400"
         /> </div>
@@ -172,6 +186,7 @@ const onSubmit = async (data) => {
           options={cities.map(city => ({ value: city, label: city }))}
           required={true}
           message="Sélectionner le type"
+          defaultValue={publications.tunisiaStates}
           errors={errors.type && "Sélectionner le champ type"}
           className="block w-full px-4 py-2 pr-8 mt-1 text-sm border border-gray-300 rounded-md appearance-none focus:outline-none focus:ring focus:ring-indigo-400 focus:border-indigo-400"
         />
@@ -185,6 +200,8 @@ const onSubmit = async (data) => {
           control={control}
           options={repas}
           required={true}
+          defaultValue={publications.repas}
+          
           message="Sélectionner le type"
           errors={errors.type && "Sélectionner le champ type"}
           className="block w-full px-4 py-2 pr-8 mt-1 text-sm border border-gray-300 rounded-md appearance-none focus:outline-none focus:ring focus:ring-indigo-400 focus:border-indigo-400"
@@ -196,14 +213,16 @@ const onSubmit = async (data) => {
         </div>
         <div className="mb-2">
         <CostumSelect  
-           name="spécialité"
-          control={control}
-          options={spécialité}
-          required={true}
-          message="Sélectionner le type"
-          errors={errors.type && "Sélectionner le champ type"}
-          className="block w-full px-4 py-2 pr-8 mt-1 text-sm border border-gray-300 rounded-md appearance-none focus:outline-none focus:ring focus:ring-indigo-400 focus:border-indigo-400"
-        />
+  name="spécialité"
+  control={control}
+  options={spécialité}
+  required={true}
+  defaultValue={publications.spécialité} // This sets the default value
+
+  message="Sélectionner le type"
+  errors={errors.type && "Sélectionner le champ type"}
+  className="block w-full px-4 py-2 pr-8 mt-1 text-sm border border-gray-300 rounded-md appearance-none focus:outline-none focus:ring focus:ring-indigo-400 focus:border-indigo-400"
+/>
        </div>
 
         <div className="mb-2 block mb-2 text-sm font-serif font-semibold text-gray-700 underline">
@@ -215,6 +234,8 @@ const onSubmit = async (data) => {
           control={control}
           options={prix}
           required={true}
+          defaultValue={publications.prix}
+
           message="Sélectionner le type"
           errors={errors.type && "Sélectionner le champ type"}
           className="block w-full px-4 py-2 pr-8 mt-1 text-sm border border-gray-300 rounded-md appearance-none focus:outline-none focus:ring focus:ring-indigo-400 focus:border-indigo-400"
@@ -230,6 +251,8 @@ const onSubmit = async (data) => {
           control={control}
           options={bonpour}
           required={true}
+          defaultValue={publications.bonpour}
+
           message="Sélectionner le type"
           errors={errors.type && "Sélectionner le champ type"}
           className="block w-full px-4 py-2 pr-8 mt-1 text-sm border border-gray-300 rounded-md appearance-none focus:outline-none focus:ring focus:ring-indigo-400 focus:border-indigo-400"
@@ -242,6 +265,8 @@ const onSubmit = async (data) => {
           name="titre"
           placeholder="Entrer le titre "
           register={register}
+          defaultValue={publications.titre}
+
           required={true}
           pattern={/^[a-zA-Z\s]+$/}
           message="Only letters are allowed"
@@ -251,6 +276,8 @@ const onSubmit = async (data) => {
          <StyledInput
   label="Description"
   name="description"
+  defaultValue={publications.description}
+
   placeholder="Votre description"
   register={register}
   required={true}
@@ -263,7 +290,7 @@ const onSubmit = async (data) => {
 
 
     <div className="">
-       <ImageUploadForm />
+       <ImageEdite />
        </div>
         <button
         

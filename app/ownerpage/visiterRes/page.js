@@ -4,10 +4,15 @@ import axios from "axios";
 
 const VisiterRes = () => {
     const [demandes, setDemande] = useState([]);
-
+    const Owneremail = localStorage.getItem('Demandes');
+    console.log("email est s :", Owneremail)
     const fetchDemande = async () => {
         try {
-            const response = await axios.get("/api1/reservation");
+            const response = await axios.get('/api1/reservation', {
+                params: {
+                    Owneremail: Owneremail// Replace 'example@example.com' with the actual email
+                }
+            }) ;
             setDemande(response.data.demandes);
         } catch (error) {
             console.error("Error", error);

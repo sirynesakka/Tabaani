@@ -13,6 +13,10 @@ const demandeSchema = new Schema({
     type: String,
     required: true,
 },
+Owneremail : {
+  type: String,
+  required: true,
+},
 telnum  : {
   type: String,
   required: true,

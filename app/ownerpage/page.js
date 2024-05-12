@@ -1,7 +1,12 @@
+'use client'
 import React from "react";
 import Head from 'next/head';
-
+import { useUser } from "@auth0/nextjs-auth0/client";
 const Ownerpage = () => {
+const { user } = useUser();
+  
+  const Owneremail = user?.email || "";
+  localStorage.setItem('Demandes', Owneremail);
     return (
         <div className="mx-auto max-w-lg sm:max-w-xl md:max-w-2xl lg:max-w-4xl xl:max-w-6xl">
             <Head>

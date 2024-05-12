@@ -6,19 +6,31 @@ import DeleteDemClient from "./deleteDemClient";
 
 const Mesdemandes = () => {
   const [demandes, setDemande] = useState([]);
-
-  const fetchDemande = async () => {
-    try {
-      const response = await axios.get("/api1/demande");
-      setDemande(response.data.demandes);
-    } catch (error) {
-      console.error("Error", error);
-    }
-  };
+  
+  // Check if window is defined (runs in the browser)
+  const email = typeof window !== 'undefined' ? localStorage.getItem('Clientemail') : null;
 
   useEffect(() => {
+    const fetchDemande = async () => {
+      try {
+        console.log("api applied");
+        console.log("email:", email);
+        const response = await axios.get('/api1/demandeclient', {
+          params: {
+            email: email // Replace 'example@example.com' with the actual email
+          }
+          
+        });
+        setDemande(response.data.demandes);
+        console.log("api applied");
+        console.log("data are : " ,response.data.demandes);
+      } catch (error) {
+        console.error("Error", error);
+      }
+    };
+
     fetchDemande();
-  }, []);
+  }, [email]); // Add email as dependency to useEffect
 
   return (
     <div className="flex flex-col items-center justify-center h-screen">

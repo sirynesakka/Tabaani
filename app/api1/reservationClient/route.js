@@ -8,12 +8,12 @@ export async function GET(request) {
     try {
         await connectDB();
         const { searchParams } = new URL(request.url);
-        const Owneremail = searchParams.get('Owneremail');
+        const email = searchParams.get('email');
         // Get Owneremail from request parameters
-        console.log("l email est :", Owneremail);
+        console.log("l email xs est :", email);
         // Retrieve demands where confirme is true
         const confirme = "true";
-        const demandes = await Demande.find({ Owneremail , confirme });
+        const demandes = await Demande.find({ email , confirme });
 
         console.log(demandes, "validée");
         return NextResponse.json({ demandes }, { status: 200 });
@@ -23,10 +23,3 @@ export async function GET(request) {
         return NextResponse.error('Error retrieving demande', { status: 500 });
     }
 }
-export async function DELETE(request) {
-    const id = request.nextUrl.searchParams.get("id");
-    await connectDB();
-    await Demande.findByIdAndDelete(id);
-    const demandes = await Demande.find({ confirme: true });
-    return NextResponse.json({ message: "publication supprimé", demandes }, { status: 200 });
-  }

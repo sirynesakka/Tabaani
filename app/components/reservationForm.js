@@ -6,11 +6,12 @@ import StyledInput2 from "./styledinput2"
 import Stylednum from "./stylednum"
 import TimePicker from "./styledtime"
 import StyledNumber from './styledNumber';
+import { ownerDocument } from '@mui/material';
 
 
 
 const Modal = () => {
-  
+  const Clientemail = localStorage.getItem('Clientemail');
 const [modalOpen, setModalOpen] = useState(false);
 
     const openModal = () => {
@@ -28,7 +29,8 @@ const [modalOpen, setModalOpen] = useState(false);
             closeModal();
         }
     };
-
+    const ownerEmail = localStorage.getItem("ownerEmailPourDemande");
+    console.log("owner email pour la demande est ", ownerEmail);
     const {
         register,
         handleSubmit,
@@ -55,12 +57,13 @@ const [modalOpen, setModalOpen] = useState(false);
             },
             body: JSON.stringify({
               nom: data.nom,
-              email: data.email,
+              email: Clientemail,
               date: data.date,
               nombre: data.nombre,
               num: data.num,
               heure: data.heure,
               telnum : formatPhoneNumber(data.telnum),
+              Owneremail :ownerEmail ,
               
             }),
           });

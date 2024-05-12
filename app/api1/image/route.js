@@ -91,3 +91,73 @@ export async function GET(request) {
     return NextResponse.json({ msg: ["Error retrieving data"] });
   }
 }
+
+
+export async function PUT(request) {
+  console.log("PUT request received");
+  const formData = await request.formData();
+  const cléDePub = formData.get("cléDePub");
+  console.log("cléDePub:", cléDePub);
+
+  const file = formData.get("img");
+  if (!file) {
+    console.error("No file provided in the request");
+    return NextResponse.error(
+      new Error("No file provided in the request")
+    );
+  }
+
+  const buffer = Buffer.from(await file.arrayBuffer());
+  const originalFileName = file.name.replaceAll(" ", "_");
+  const minioFileName = file.name.replaceAll(" ", "_");
+  const documentType = "";
+
+  console.log("File information:", {
+    originalFileName,
+    minioFileName,
+    documentType,
+  });
+
+  UploadFileMinio({
+    bucketName: process.env.UPLOADS_BUCKET_NAME,
+    fileStream: buffer,
+    objectName: minioFileName,
+  });
+
+  console.log("File uploaded to MinIO");
+
+  try {
+    await connectDB();
+    console.log("Connected to MongoDB");
+
+    const uploadModel = await UploadModel.findOneAndUpdate(
+      { cléDePub },
+      {
+        name: originalFileName,
+        location: minioFileName,
+        type: documentType,
+        bucketName: process.env.UPLOADS_BUCKET_NAME,
+        cléDePub: cléDePub,
+      },
+      { new: true }
+    );
+
+    if (!uploadModel) {
+      console.error("Data with the provided 'cléDePub' not found");
+      return NextResponse.error(
+        new Error("Data with the provided 'cléDePub' not found")
+      );
+    }
+
+    console.log("Image information updated successfully:", uploadModel);
+
+    return NextResponse.json({
+      msg: ["Image information updated successfully"],
+      uploadModel,
+      success: true,
+    });
+  } catch (error) {
+    console.error("Error updating image information:", error);
+    return NextResponse.json({ msg: ["Error updating image information"] });
+  }
+}

@@ -13,6 +13,7 @@ export async function POST(req) {
         nombre,
         date,
         heure,
+        Owneremail ,
         
         confirme = false, // Ajoutez le champ confirme avec la valeur false par défaut
     } = await req.json();
@@ -28,6 +29,7 @@ export async function POST(req) {
             nombre,
             date,
             heure,
+            Owneremail ,
             
             confirme,
             clé, // Incluez le champ confirme dans la création de la demande
@@ -59,11 +61,22 @@ export async function GET(request) {
     try {
         await connectDB();
 
-        // Retrieve demands where confirme is false
-        const demandes = await Demande.find({ confirme: false });
+        const { searchParams } = new URL(request.url);
+        const Owneremail = searchParams.get('Owneremail');
+        // Get Owneremail from request parameters
+        console.log("l email est :", Owneremail);
+        if (!Owneremail ) {
+            return NextResponse.error('State parameter is missing', { status: 400 });
+        }
+        const confirme = "false";
+    
+        const demandes = await Demande.find({ Owneremail,confirme });
 
-        console.log(demandes, "validée");
+        console.log(demandes, "validated");
         return NextResponse.json({ demandes }, { status: 200 });
+
+        // Retrieve demands based on the query criteria
+        
 
     } catch (error) {
         console.error(error);

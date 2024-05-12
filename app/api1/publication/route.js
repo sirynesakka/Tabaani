@@ -81,6 +81,6 @@ export async function DELETE(request) {
   const id = request.nextUrl.searchParams.get("id");
   await connectDB();
   await Publication.findByIdAndDelete(id);
-  const publications = await Publication.find();
+  const publications = await Publication.find({ confirmer: "confirmer" });
   return NextResponse.json({ message: "publication supprimé", publications }, { status: 200 });
 }
