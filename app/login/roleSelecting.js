@@ -6,6 +6,7 @@ import Select from "react-select";
 import Client from "../clientpage/page";
 import Manager from "../managerpage/page";
 import Admin from "../adminpage/page";
+import Styledselect from "../components/styledselect";
 
 const options = [
   { value: 'client', label: 'Client' },
@@ -37,6 +38,7 @@ const RoleSelecting = () => {
       });
 
       console.log(response.data);
+      setRedirected(true); 
     } catch (error) {
       console.error('Error:', error);
     }
@@ -60,32 +62,45 @@ const RoleSelecting = () => {
   }
 
   return (
-    <div className="max-w-md mt-10 mx-auto">
+    <>
+    <div className="flex justify-center max-w-md mt-20 sm:first:col-span-2 py-14 px-11 rounded-lg max-w-lg mx-auto ">
+      <div className="sm:first:col-span-2 py-14 px-11 rounded-lg max-w-lg" style={{ backgroundColor: '#bbe6b1' }}>
+      <h3 className="mb-4 font-semibold font-serif text-black text-[22px] sm:text-[40px] font-extrabold leading-none">
+        <span>Authentification </span>
+      </h3>
+      <ul className="mt-6 sm:mt-10">
       <form onSubmit={handleSubmit}>
-        <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="role">
+        <label className="block text-gray-700 text-sm font-semibold font-serif mb-2" htmlFor="role">
           Sélectionner votre rôle :
         </label>
         <div className="relative">
           <Select
+           styles={Styledselect}
             options={options}
-            className="block appearance-none w-full bg-white border border-gray-300 text-gray-700 py-2 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+            className="block appearance-none w-full   border-gray-300 text-gray-700 py-2 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
             onChange={option => setSelectedRole(option.value) }
           />
         </div>
 
         <div className="text-center mt-4">
-          <button type="submit" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+          <button type="submit" className="bg-green-700 hover:bg-green-900 text-white font-bold py-2 px-4 rounded">
             Enregistrer
           </button>
         </div>
       </form>
+      </ul>
+      </div>
+      
       
       {/* Render the page based on the selected role */}
-      {selectedRole && renderPageBasedOnRole()}
-      
+     
       {/* Display user information if available */}
      
     </div>
+   
+      
+    </>
+    
   );
 }
 

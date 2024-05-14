@@ -8,13 +8,14 @@ import Footer from "../components1/Footer";
 import MySlider from "../components1/MySlider";
 import Aboutus from "../components1/Aboutus";
 import Navbar from "../components1/Navbar";
+import ChatbotScript from '../components/chatboat';
 
 
 export default function Client() { 
    
      return (
 <div>
-
+  <ChatbotScript/>
       
        <Navbar hasDashboardclient={true} /> 
     
