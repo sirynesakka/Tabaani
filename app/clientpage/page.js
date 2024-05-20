@@ -15,7 +15,7 @@ export default function Client() {
    
      return (
 <div>
-  <ChatbotScript/>
+<ChatbotScript/>
       
        <Navbar hasDashboardclient={true} /> 
     

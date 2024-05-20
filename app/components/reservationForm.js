@@ -91,7 +91,7 @@ const [modalOpen, setModalOpen] = useState(false);
     return (
         <>
         <button
-          className="bg-purple-600 text-white rounded-md px-4 py-2 hover:bg-purple-800 transition"
+          className="bg-green-700 text-white rounded-md px-4 py-2 hover:bg-green-600 transition"
           onClick={openModal}
         >
           Réservation

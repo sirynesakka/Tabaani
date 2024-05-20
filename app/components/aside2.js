@@ -29,6 +29,8 @@ const Aside2 = ({ onOptionsChange }) => {
 
 
   return (
+    <>
+    
     <div className="py-1 overflow-y-auto bg-white border-l border-r sm:w-64 w-60 dark:bg-gray-900 dark:border-gray-700">
       <h2 className="border-b px-3 text-lg font-bold text-gray-800 dark:text-white">
         Filtres :
@@ -201,6 +203,7 @@ const Aside2 = ({ onOptionsChange }) => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 

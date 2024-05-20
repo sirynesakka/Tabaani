@@ -8,7 +8,7 @@ const ChatbotScript = () => (
   
 <script
 src="https://www.chatbase.co/embed.min.js"
-chatbotId="Tco2nRJLxr05skg-cQqCu"
+chatbotId="-E5J-PNFIRQW2BQxwsXHj"
 domain="www.chatbase.co"
 defer>
 </script>

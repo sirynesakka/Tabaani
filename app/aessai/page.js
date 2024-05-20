@@ -46,11 +46,19 @@ const Aessai = () => {
       }, [output])
       function handleColor() {
         if (output && output.length > 0) {
-          const colorKey = output[0].label
-          const colorHex = emotionConfig[colorKey].colorHex
-          setColor(colorHex)
+          const colorKey = output[0].label;
+          const emotionConfigItem = emotionConfig[colorKey];
+          if (emotionConfigItem) {
+            const colorHex = emotionConfigItem.colorHex;
+            setColor(colorHex);
+          } else {
+            // Handle the case when emotionConfigItem is undefined
+            // For example, set a default color
+            setColor(defaultColor);
+          }
         }
       }
+      
     return (
         <>
         <div  style={{ backgroundColor: color + "aa" }} className="transition-all delay-500  flex min-h-screen flex-col items-center p-24">

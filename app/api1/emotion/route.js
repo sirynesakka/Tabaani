@@ -4,6 +4,7 @@ let hf
 
 export async function POST(req, res) {
     const { input } = await req.json()
+    console.log("l input est :", input);
     const inferenceResponse = await runInference(input)
   
     const filteredResponse = filterResponses([...inferenceResponse])

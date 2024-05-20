@@ -14,10 +14,10 @@ const Test = () => {
   return (
     <div className="h-screen overflow-y-auto">
       <div className="flex flex-col sm:flex-row">
-        <div className="w-full sm:w-1/2">
+        <div className="">
           <Aside2 onOptionsChange={setOptions} handleOptionsChange={handleOptionsChange} />
         </div>
-        <div className="w-full sm:w-1/2">
+        <div >
           <Aside3 options={options} />
         </div>
       </div>

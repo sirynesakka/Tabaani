@@ -32,6 +32,7 @@ export default function DisplayImage({ publication }) {
       alt="aa"
       width={600} // Set both width and height to 600 pixels
       height={600}
+      
     />
   );
 }

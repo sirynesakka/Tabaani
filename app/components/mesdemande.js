@@ -47,9 +47,7 @@ const Mesdemandes = () => {
               <th className="p-3 font-semibold font-serif uppercase bg-white-200 text-green-900 border border-gray-300 hidden lg:table-cell">
                 tel
               </th>
-              <th className="p-3 font-semibold font-serif uppercase bg-white-200 text-green-900 border border-gray-300 hidden lg:table-cell">
-                Email
-              </th>
+             
               <th className="p-3 font-semibold font-serif uppercase bg-white-200 text-green-900 border border-gray-300 hidden lg:table-cell">
                 Heures
               </th>
@@ -85,14 +83,7 @@ const Mesdemandes = () => {
                   </span>
                   {demande.telnum}
                 </td>
-                <td className="w-full lg:w-auto p-3 text-gray-800 text-center border border-b text-center block lg:table-cell relative lg:static">
-                  <span className="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">
-                    email
-                  </span>
-                  <span className="rounded  py-1 px-3 text-xs font-bold">
-                    {demande.email}
-                  </span>
-                </td>
+               
                 <td className="w-full lg:w-auto p-3 text-gray-800 text-center border border-b text-center block lg:table-cell relative lg:static">
                   <span className="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">
                     heures

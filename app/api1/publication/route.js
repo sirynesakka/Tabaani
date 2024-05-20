@@ -15,7 +15,7 @@ export async function POST(req) {
     description,
     ownerEmail,
     confirmer,
-    clé
+    clé, 
   } = await req.json();
   
   // Définir manuellement la valeur de confirmer
@@ -23,7 +23,7 @@ export async function POST(req) {
   
   try {
     await connectDB();
-
+    const rating ="0"  ;
     const err = await Publication.create({
       type,
       repas,
@@ -35,7 +35,8 @@ export async function POST(req) {
       description,
       ownerEmail,
       confirmer,
-      clé, // Utilisation de la valeur définie manuellement
+      clé, 
+      rating// Utilisation de la valeur définie manuellement
     });
     console.log(err); 
     const publications = await Publication.find();

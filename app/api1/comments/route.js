@@ -25,7 +25,7 @@ export async function POST(req) {
         pubclé,
         comment,
         rating,
-      clé, 
+        clé, 
       Owneremail,// Utilisation de la valeur définie manuellement
     });
     console.log(err); 

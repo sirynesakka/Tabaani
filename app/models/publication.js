@@ -44,7 +44,12 @@ const publicationSchema = new Schema({
   confirmer: {
     type: String,
     required: true,
+  },
+  rating: {
+    type: String,
+    required: false,
   }
+
 });
 
 const Publication =

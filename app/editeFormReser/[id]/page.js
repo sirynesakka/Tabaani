@@ -41,12 +41,14 @@ useEffect(() => {
      } = useForm();
 
      const onSubmit = async (data) => {
-       try {
+  const email = typeof window !== 'undefined' ? localStorage.getItem('Clientemail') : null;
+     
+      try {
         
          const response = await axios.put(`/api1/demande/${id}`, {
             ...data,
              nom: data.nom,
-             email: data.email,
+             email: email,
              date: data.date,
              nombre: data.nombre,
              num: data.num,
@@ -105,16 +107,7 @@ useEffect(() => {
                      pattern={/^[a-zA-Z\s]+$/}
                      message="Only letters are allowed"
                    />
-                   <StyledInput2
-                     type="text"
-                     label="Email"
-                     name="email"
-                     placeholder="Entrer votre email "
-                     register={register}
-                     required={true}
-                     pattern={/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i}
-                     message="Only letters are allowed"
-                   />
+                
                     <StyledNumber
                       label="Enter Number"
                       name="telnum"
