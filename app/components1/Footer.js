@@ -3,13 +3,13 @@ import React from "react";
 const Footer = () => {
     return(
     
-        <footer className="bg-gradient-to-r from-gray-100 via-[#5b98ca] to-gray-100">
+        <footer className="bg-gradient-to-r from-green-100 via-[#678f7d] to-green-100">
           <div className=" py-20 max-w-screen-xl px-4 mx-auto sm:px-6 lg:px-8">
             <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
               <div>
-              <img src="#" className="mr-5 h-6 sm:h-9" alt="logo" />
+              <img src="Logo.png" className="mr-5 h-6 sm:h-9" alt="logo" />
                 <p className="max-w-xs mt-4 text-sm text-gray-600">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas, accusantium.
+                Une application web vous fournit des avis sur les restaurants et cafés de toute la Tunisie. Elle vous aide à faire des choix informés pour des sorties culinaires réussies
                 </p>
                 <div className="flex mt-8 space-x-6 text-gray-600">
                   <a className="hover:opacity-75" href target="_blank" rel="noreferrer">
@@ -47,13 +47,13 @@ const Footer = () => {
               <div className="grid grid-cols-1 gap-8 lg:col-span-2 sm:grid-cols-2 lg:grid-cols-4">
                 <div>
                   <p className="font-medium">
-                    Company
+                    Tabaani 
                   </p>
                   <nav className="flex flex-col mt-4 space-y-2 text-sm text-gray-500">
-                    <a className="hover:opacity-75" href> About </a>
-                    <a className="hover:opacity-75" href> Meet the Team </a>
-                    <a className="hover:opacity-75" href> History </a>
-                    <a className="hover:opacity-75" href> Careers </a>
+                    <a className="hover:opacity-75" href> Accueil </a>
+                    <a className="hover:opacity-75" href> Destination  </a>
+                    <a className="hover:opacity-75" href> Avis </a>
+                    <a className="hover:opacity-75" href> Contact </a>
                   </nav>
                 </div>
                 <div>
@@ -61,42 +61,41 @@ const Footer = () => {
                     Services
                   </p>
                   <nav className="flex flex-col mt-4 space-y-2 text-sm text-gray-500">
-                    <a className="hover:opacity-75" href> 1on1 Coaching </a>
-                    <a className="hover:opacity-75" href> Company Review </a>
-                    <a className="hover:opacity-75" href> Accounts Review </a>
-                    <a className="hover:opacity-75" href> HR Consulting </a>
-                    <a className="hover:opacity-75" href> SEO Optimisation </a>
+                    <a className="hover:opacity-75" href> Évaluation d'entreprise </a>
+                    <a className="hover:opacity-75" href> Révision de comptes</a>
+                    <a className="hover:opacity-75" href>Consultation en ressources humaines </a>
+                    <a className="hover:opacity-75" href> Optimisation SEO </a>
                   </nav>
                 </div>
                 <div>
                   <p className="font-medium">
-                    Helpful Links
+                  Liens Utiles
                   </p>
                   <nav className="flex flex-col mt-4 space-y-2 text-sm text-gray-500">
                     <a className="hover:opacity-75" href> Contact </a>
                     <a className="hover:opacity-75" href> FAQs </a>
-                    <a className="hover:opacity-75" href> Live Chat </a>
+                    
                   </nav>
                 </div>
                 <div>
                   <p className="font-medium">
-                    Legal
+                    Légal
                   </p>
                   <nav className="flex flex-col mt-4 space-y-2 text-sm text-gray-500">
-                    <a className="hover:opacity-75" href> Privacy Policy </a>
-                    <a className="hover:opacity-75" href> Terms &amp; Conditions </a>
-                    <a className="hover:opacity-75" href> Returns Policy </a>
-                    <a className="hover:opacity-75" href> Accessibility </a>
+                    <a className="hover:opacity-75" href> Politique de confidentialité </a>
+                    <a className="hover:opacity-75" href> Conditions générales </a>
+                    <a className="hover:opacity-75" href> Politique de retour </a>
+                    <a className="hover:opacity-75" href> Accessibilité </a>
                   </nav>
                 </div>
               </div>
             </div>
             <p className="mt-8 text-xs text-gray-800">
-              © 2022 Comany Name
+              © 2022 Tabaani 
             </p>
           </div>
         </footer>
 
     )
 } 
-export default Footer; 
+export default Footer;

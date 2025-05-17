@@ -1,0 +1,58 @@
+import mongoose, { Schema } from "mongoose";
+
+const publicationSchema = new Schema({
+ clé:{
+    type: String,
+    required: true,
+ },
+    type: {
+    type: String,
+    required: true,
+  },
+  repas: {
+    type: String,
+    required: true,
+  },
+  spécialité: {
+    type: String,
+    required: true,
+  },
+  prix: {
+    type: String,
+    required: true,
+  },
+  bonpour: {
+    type: String,
+    required: true,
+  },
+  tunisiaStates: {
+    type: String,
+    required: true,
+  },
+  description: {
+    type: String,
+    required: true,
+  },
+  titre: {
+    type: String,
+    required: true,
+  },
+  ownerEmail: {
+    type: String,
+    required: true,
+  },
+  confirmer: {
+    type: String,
+    required: true,
+  },
+  rating: {
+    type: String,
+    required: false,
+  }
+
+});
+
+const Publication =
+  mongoose.models.Publication || mongoose.model("Publication", publicationSchema);
+
+export default Publication;

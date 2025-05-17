@@ -19,18 +19,15 @@ const Temoignages = () => {
               <Image
                src="/t1.png"
                 className="w-32 rounded-full shadow-lg dark:shadow-black/20" 
-                alt="Maria Smantha"
+                alt="Sami Smantha"
                 width={200} 
                 height={100} 
                 />
             </div>
-            <h5 className="font-bold text-lg mb-2">Maria Smantha</h5>
-            <h6 className="font-medium text-primary dark:text-primary-400 mb-4">
-              Développeuse Web
-            </h6>
+            <h5 className="font-bold text-lg mb-2">Sami Smantha</h5>
+        
             <p className="mb-4">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod eos
-              id officiis hic tenetur quae quaerat ad velit ab hic.
+            Ce site est une vraie trouvaille ! Les réservations sont simples et rapides, et les offres sont super avantageuses. Ça rend la planification de sorties vraiment agréable et sans stress !
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 96 960 960" className="inline-block w-6">
                 <path fill="currentColor"
                   d="M580 556h160V396H580v160Zm-360 0h160V396H220v160Zm406 220 80-160H520V336h280v288l-76 152h-98Zm-360 0 80-160H160V336h280v288l-76 152h-98Zm34-300Zm360 0Z" />
@@ -56,13 +53,9 @@ const Temoignages = () => {
                 height={100} 
                 />
             </div>
-            <h5 className="font-bold text-lg mb-2">Lisa Cudrow</h5>
-            <h6 className="font-medium text-primary dark:text-primary-400 mb-4">
-              Graphiste
-            </h6>
+            <h5 className="font-bold text-lg mb-2">Yassine Cudrow</h5>
             <p className="mb-4">
-              Ut enim ad minima veniam, quis nostrum exercitationem ullam
-              corporis suscipit laboriosam, nisi ut aliquid commodi.
+            J'adore ce site ! La réservation en ligne est tellement pratique, et j'ai découvert tellement d'endroits géniaux grâce à eux. Les offres exclusives rendent chaque sortie encore plus spéciale. Je le recommande à tous les amateurs de bonne cuisine
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 96 960 960" className="inline-block w-6">
                 <path fill="currentColor"
                   d="M580 556h160V396H580v160Zm-360 0h160V396H220v160Zm406 220 80-160H520V336h280v288l-76 152h-98Zm-360 0 80-160H160V336h280v288l-76 152h-98Zm34-300Zm360 0Z" />
@@ -80,20 +73,16 @@ const Temoignages = () => {
             </ul>
           </div>
           {/* Témoignage 3 */}
-          <div className="mb-0">
+          <div className="mb-12 md:mb-0">
             <div className="flex justify-center mb-6">
             <Image src="/t3.png"
                 className="w-32 rounded-full shadow-lg dark:shadow-black/20" alt="John Smith"
                 width={200} 
                 height={100}  />
             </div>
-            <h5 className="font-bold text-lg mb-2">John Smith</h5>
-            <h6 className="font-medium text-primary dark:text-primary-400 mb-4">
-              Spécialiste en marketing
-            </h6>
+            <h5 className="font-bold text-lg mb-2">Sarra Smith</h5>
             <p className="mb-4">
-              At vero eos et accusamus et iusto odio dignissimos ducimus qui
-              blanditiis praesentium voluptatum deleniti atque corrupti.
+            Depuis que j'utilise ce site , mes sorties sont devenues beaucoup plus simples et agréables. La réservation en ligne est un vrai jeu d'enfant. C'est devenu mon allié incontournable pour trouver les meilleurs endroits où manger sans tracas 
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 96 960 960" className="inline-block w-6">
                 <path fill="currentColor"
                   d="M580 556h160V396H580v160Zm-360 0h160V396H220v160Zm406 220 80-160H520V336h280v288l-76 152h-98Zm-360 0 80-160H160V336h280v288l-76 152h-98Zm34-300Zm360 0Z" />
@@ -116,7 +105,3 @@ const Temoignages = () => {
     );
 };
 export default Temoignages;
-
-    
-
-
