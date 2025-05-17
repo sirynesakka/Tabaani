@@ -50,10 +50,10 @@ export async function GET(request) {
     try {
         await connectDB();
 
-        // Retrieve all users
-        const users = await User.find();
+        // Retrieve all users except those with role 'admin'
+        const users = await User.find({ selectedRole: { $ne: 'admin' } }); // Exclude 'admin' users
 
-        // Return the list of users
+        // Return the list of filtered users
         return NextResponse.json({ users });
         
     } catch (error) {
@@ -61,6 +61,7 @@ export async function GET(request) {
         return NextResponse.error('Error retrieving users', { status: 500 });
     }
 }
+
 export async function DELETE(request) {
     const id = request.nextUrl.searchParams.get("id");
     await connectDB();

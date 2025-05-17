@@ -1,32 +1,70 @@
-"use client"
+"use client";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { useUser } from "@auth0/nextjs-auth0/client";
+import { useRouter } from "next/navigation";
 
 const Visiter = () => {
   const [comments, setComment] = useState([]);
- 
+  const { user, isLoading } = useUser();
+  const router = useRouter();
+
   const Owneremail = localStorage.getItem('Demandes');
-  console.log("email est s :", Owneremail)
-const fetchComment = async () => {
+  console.log("email est s :", Owneremail);
+
+  const fetchComment = async () => {
     try {
       console.log("Owneremail:", Owneremail);
       const response = await axios.get('/api1/ownerCom', {
         params: {
-            Owneremail: Owneremail// Replace 'example@example.com' with the actual email
+          Owneremail: Owneremail
         }
-    });setComment(response.data.comments);
-    console.log("data of ow are :", response.data.Comments);
+      });
+      setComment(response.data.comments);
+      console.log("data of ow are :", response.data.comments);
     } catch (error) {
       console.error("Error", error);
     }
   };
 
+  const checkUserRole = async (email) => {
+    try {
+      const response = await axios.get('/api1/checkRole', {
+        params: { email }
+      });
+      const role = response.data.role;
+      console.log("User** role:", role);
+      return role;
+    } catch (error) {
+      console.error("Error fetching user role:", error);
+      return null;
+    }
+  };
+
+  useEffect(() => {
+    const verifyUserRole = async () => {
+      try {
+        if (!isLoading && user) {
+          const role = await checkUserRole(user.email);
+          if (role !== "manager") {
+            router.replace("/403");
+          }
+        }
+      } catch (error) {
+        console.error("Error verifying user role:", error);
+      }
+    };
+
+    verifyUserRole();
+  }, [isLoading, user, router]);
+
   useEffect(() => {
     fetchComment();
   }, []);
 
- 
-
+  if (isLoading || !user) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <>
@@ -60,7 +98,7 @@ const fetchComment = async () => {
                     <span className="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-serif uppercase">
                       Email
                     </span>
-                     <div className="font-semibold">{Comment.useremail}</div>
+                    <div className="font-semibold">{Comment.useremail}</div>
                   </td>
                   <td className="w-full lg:w-auto p-3 text-gray-800 text-center border border-b text-center block lg:table-cell relative lg:static">
                     <span className="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-serif uppercase">
@@ -68,21 +106,14 @@ const fetchComment = async () => {
                     </span>
                     <div className="font-semibold">{Comment.comment}</div>
                   </td>
-
                   <td className="w-full lg:w-auto p-3 text-gray-800 text-center border border-b text-center block lg:table-cell relative lg:static">
                     <span className="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-serif uppercase">
                       Rate
                     </span>
-                    <span className="rounded  py-1 px-3 text-xs font-bold">
-                     <div className=" font-semibold"> {Comment.rating}</div>
+                    <span className="rounded py-1 px-3 text-xs font-bold">
+                      <div className="font-semibold">{Comment.rating}</div>
                     </span>
                   </td>
-
-
-                
-
-                 
-
                 </tr>
               ))}
             </tbody>

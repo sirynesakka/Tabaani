@@ -1,7 +1,5 @@
 import { HfInference } from '@huggingface/inference'
-
 let hf  
-
 export async function POST(req, res) {
     const { input } = await req.json()
     console.log("l input est :", input);
@@ -30,7 +28,7 @@ export async function POST(req, res) {
     return inferenceRes
   }
   
-  function filterResponses(emotions) {
+  function filterResponses(emotions) { 
     const filtered = []
     const emotion0 = emotions.shift()
     filtered.push(emotion0)

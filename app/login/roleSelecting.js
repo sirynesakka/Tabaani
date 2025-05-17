@@ -10,8 +10,7 @@ import Styledselect from "../components/styledselect";
 
 const options = [
   { value: 'client', label: 'Client' },
-  { value: 'manager', label: 'Manager' },
-  { value: 'admin', label: 'Admin' }
+  { value: 'manager', label: 'Manager' }
 ];
 
 const RoleSelecting = () => {

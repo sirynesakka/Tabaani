@@ -28,8 +28,7 @@ const Mesdemandes = () => {
         console.error("Error", error);
       }
     };
-
-    fetchDemande();
+  fetchDemande();
   }, [email]); // Add email as dependency to useEffect
 
   return (

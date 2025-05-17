@@ -99,7 +99,7 @@ const [modalOpen, setModalOpen] = useState(false);
       
         {modalOpen && (
           <>
-            <div className="fixed bg-gray-100 inset-0 flex justify-center items-center">
+            <div className="fixed bg-green-100 inset-0 flex justify-center items-center z-50">
               <div className="bg-white rounded-lg shadow-md max-w-md p-6">
                 <button
                   onClick={closeModal}
@@ -139,16 +139,7 @@ const [modalOpen, setModalOpen] = useState(false);
                       pattern={/^[a-zA-Z\s]+$/}
                       message="Only letters are allowed"
                     />
-                    <StyledInput2
-                      type="text"
-                      label="Email"
-                      name="email"
-                      placeholder="Entrer votre email "
-                      register={register}
-                      required={true}
-                      pattern={/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i}
-                      message="Only letters are allowed"
-                    />
+                
                      <StyledNumber
                        label="Enter Number"
                        name="telnum"
@@ -196,7 +187,7 @@ const [modalOpen, setModalOpen] = useState(false);
       
                     <button
                     
-                    className="bg-green-500 text-white px-3 py-1 rounded-md hover:bg-green-600 mt-2"
+                    className="bg-green-700 text-white px-3 py-1 rounded-md hover:bg-green-600 mt-2"
                     >
                       Enregistrer
                     </button>

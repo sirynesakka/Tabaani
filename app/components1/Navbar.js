@@ -54,7 +54,7 @@ const Navbar =({hasDashboardmanager,hasDashboardadmin,hasDashboardclient}) => {
         src="/Logo.png"
          alt="logo" 
          width={100}
-          height={60} />
+          height={100} />
 
         <div>
         <ul className="hidden md:flex text-2xl lg:text-[20px]">
@@ -185,8 +185,8 @@ const Navbar =({hasDashboardmanager,hasDashboardadmin,hasDashboardclient}) => {
                </div>
              </Link>
              <Link href="/clientpage/cities"> 
-                      <div class="relative inline-block text-center">
-                      <div class="group">
+                      <div className="relative inline-block text-center">
+                      <div className="group">
                       <div className="ml-2 rounded-full lg:mr-2 font-bold  mr-4 px-8 py-1  text-blue-800 hover:text-[#659be2] ">
                                  Destination
                              </div> 
@@ -209,8 +209,8 @@ const Navbar =({hasDashboardmanager,hasDashboardadmin,hasDashboardclient}) => {
  </div>
 </Link>
 <Link href="/clientpage/cities"> 
-          <div class="relative inline-block text-center">
-          <div class="group">
+          <div className="relative inline-block text-center">
+          <div className="group">
           <div className="ml-2 rounded-full lg:mr-2 font-bold  mr-4 px-8 py-1  text-blue-800 hover:text-[#659be2] ">
                      Destination
                  </div> 

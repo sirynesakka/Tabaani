@@ -1,18 +1,20 @@
-// components/ChatbotScript.js
+import React, { useEffect } from 'react';
 
+const ChatbotScript = () => {
+  useEffect(() => {
+    const script = document.createElement('script');
+    script.src = 'https://www.chatbase.co/embed.min.js';
+    script.setAttribute('chatbotid', 'F1EuJduEL_bHqa-ZOCezQ');
+    script.setAttribute('domain', 'www.chatbase.co');
+    script.defer = true;
+    document.body.appendChild(script);
 
-import React from 'react';
+    return () => {
+      document.body.removeChild(script);
+    };
+  }, []);
 
-const ChatbotScript = () => (
-  <div>
-  
-<script
-src="https://www.chatbase.co/embed.min.js"
-chatbotId="-E5J-PNFIRQW2BQxwsXHj"
-domain="www.chatbase.co"
-defer>
-</script>
-  </div>
-);
+  return null;
+};
 
 export default ChatbotScript;

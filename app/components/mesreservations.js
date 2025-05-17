@@ -77,7 +77,7 @@ const Reservation = () => {
           </tbody>
           </table>
           <th className="  text-right font-bold text-sm text-gray-700">
-                <DeleteRes id={demande._id} setDemande={setDemande}/>
+                <DeleteRes id={demande._id} setDemande={fetchDemande}/>
               </th>
       </div>
     </div>

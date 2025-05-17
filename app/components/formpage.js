@@ -138,7 +138,7 @@ const Formajouter = ({ onFormClose }) => {
   return (
     <div>
       <form onSubmit={handleSubmit(onSubmit)} id="main-form" >
-      <div class=" mb-6 underline text-center  font-bold font-custom">Veuillez entrer votre établissement</div>
+      <div className=" mb-6 underline text-center  font-bold font-custom">Veuillez entrer votre établissement</div>
 
         <div className=" mb-2 block mb-2 text-sm font-bold text-gray-700 underline ">
           Sélectionner le type de votre établissement:{" "}

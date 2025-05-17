@@ -1,25 +1,62 @@
-"use client"
+"use client";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import DeleteDemande from "../../components/deletDemande";
 import { useUser } from "@auth0/nextjs-auth0/client";
+import { useRouter } from "next/navigation";
+
 const Visiter = () => {
   const [demandes, setDemande] = useState([]);
- 
+  const { user, isLoading } = useUser();
+  const router = useRouter();
+
   const Owneremail = localStorage.getItem('Demandes');
-  console.log("email est s :", Owneremail)
+  console.log("email est s :", Owneremail);
+
   const fetchDemande = async () => {
     try {
       console.log("Owneremail:", Owneremail);
       const response = await axios.get('/api1/demande', {
         params: {
-            Owneremail: Owneremail// Replace 'example@example.com' with the actual email
+          Owneremail: Owneremail
         }
-    });setDemande(response.data.demandes);
+      });
+      setDemande(response.data.demandes);
     } catch (error) {
       console.error("Error", error);
     }
   };
+
+  const checkUserRole = async (email) => {
+    try {
+      const response = await axios.get('/api1/checkRole', {
+        params: { email }
+      });
+      const role = response.data.role;
+      console.log("User role:", role);
+      return role;
+    } catch (error) {
+      console.error("Error fetching user role:", error);
+      return null;
+    }
+  };
+
+  useEffect(() => {
+    const verifyUserRole = async () => {
+      try {
+        if (!isLoading && user) {
+          const role = await checkUserRole(user.email);
+          if (role !== "manager") {
+            router.replace("/403");
+          }
+        }
+      } catch (error) {
+        console.error("Error verifying user role:", error);
+      }
+    };
+
+    verifyUserRole();
+  }, [isLoading, user, router]);
 
   useEffect(() => {
     fetchDemande();
@@ -29,18 +66,15 @@ const Visiter = () => {
     try {
       const response = await axios.put(`/api1/demande`, { clé });
 
-      // Assuming the response contains JSON data
       const responseData = await response.data;
       console.log(responseData.message);
 
-      // Send SMS here
       const smsResponse = await axios.post("/api1/sms", {
-        phone: telnum, // Using the phone number from the demand
-        msg: `Votre réservation a été confirmée pour ${nom} le ${date} à ${heure}`, // Custom message
+        phone: telnum,
+        msg: `Votre réservation a été confirmée pour ${nom} le ${date} à ${heure}`,
       });
-      console.log(smsResponse.data); // Assuming you want to log the response
+      console.log(smsResponse.data);
 
-      // If you want to update the UI after confirmation, you might need to refetch the data
       fetchDemande();
 
       alert(
@@ -51,7 +85,9 @@ const Visiter = () => {
     }
   }
 
-
+  if (isLoading || !user) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <>
@@ -72,7 +108,7 @@ const Visiter = () => {
                 <th className="p-3 font-serif uppercase bg-white-200 text-green-900 border border-gray-300 hidden lg:table-cell">
                   Email
                 </th>
-                <th className="p-3 font-serif  uppercase bg-white-200 text-green-900 border border-gray-300 hidden lg:table-cell">
+                <th className="p-3 font-serif uppercase bg-white-200 text-green-900 border border-gray-300 hidden lg:table-cell">
                   Heures
                 </th>
                 <th className="p-3 font-serif uppercase bg-white-200 text-green-900 border border-gray-300 hidden lg:table-cell">
@@ -100,7 +136,7 @@ const Visiter = () => {
                     <span className="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-serif uppercase">
                       Nom
                     </span>
-                     <div className="font-semibold">{demande.nom}</div>
+                    <div className="font-semibold">{demande.nom}</div>
                   </td>
                   <td className="w-full lg:w-auto p-3 text-gray-800 text-center border border-b text-center block lg:table-cell relative lg:static">
                     <span className="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-serif uppercase">
@@ -108,56 +144,49 @@ const Visiter = () => {
                     </span>
                     <div className="font-semibold">{demande.telnum}</div>
                   </td>
-
                   <td className="w-full lg:w-auto p-3 text-gray-800 text-center border border-b text-center block lg:table-cell relative lg:static">
                     <span className="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-serif uppercase">
                       Email
                     </span>
-                    <span className="rounded  py-1 px-3 text-xs font-bold">
-                     <div className=" font-semibold"> {demande.email}</div>
+                    <span className="rounded py-1 px-3 text-xs font-bold">
+                      <div className="font-semibold"> {demande.email}</div>
                     </span>
                   </td>
-
                   <td className="w-full lg:w-auto p-3 text-gray-800 text-center border border-b text-center block lg:table-cell relative lg:static">
                     <span className="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-serif uppercase">
                       Heures
                     </span>
                     <span className="rounded bg-grey-400 py-1 px-3 text-xs font-bold">
-                    <div className="font-semibold"> {demande.heure}</div>
+                      <div className="font-semibold"> {demande.heure}</div>
                     </span>
                   </td>
-
                   <td className="w-full lg:w-auto p-3 text-gray-800 text-center border border-b text-center block lg:table-cell relative lg:static">
                     <span className="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-serif uppercase">
                       Durée
                     </span>
                     <span className="rounded bg-grey-400 py-1 px-3 text-xs font-bold">
-                    <div className="font-semibold">{demande.num}</div>
+                      <div className="font-semibold">{demande.num}</div>
                     </span>
                   </td>
-
                   <td className="w-full lg:w-auto p-3 text-gray-800 text-center border border-b text-center block lg:table-cell relative lg:static">
                     <span className="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-serif uppercase">
                       Nombre de personnes
                     </span>
                     <span className="rounded bg-grey-400 py-1 px-3 text-xs font-bold">
-                    <div className=" font-semibold"> {demande.nombre}</div>
+                      <div className="font-semibold"> {demande.nombre}</div>
                     </span>
                   </td>
-
                   <td className="w-full lg:w-auto p-3 text-gray-800 text-center border border-b text-center block lg:table-cell relative lg:static">
                     <span className="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-serif uppercase">
                       Date
                     </span>
                     <span className="rounded bg-grey-400 py-1 px-3 text-xs font-bold">
-                    <div className="font-semibold">{demande.date}</div>
+                      <div className="font-semibold">{demande.date}</div>
                     </span>
                   </td>
-
                   <td className="w-full lg:w-auto p-3 text-gray-800 text-center border border-b text-center block lg:table-cell relative lg:static">
                     <div className="lg:flex">
                       <div className="mr-4 lg:mr-0 mb-2 lg:mb-0">
-                        {/* Confirmation button */}
                         <button
                           onClick={() =>
                             handleConfirmation(
@@ -174,14 +203,11 @@ const Visiter = () => {
                         </button>
                       </div>
                       <div className="ml-3">
-                        {/* "Supprimer" button */}
-                        <div>
-                          <DeleteDemande
+                        <DeleteDemande
                           email={demande.email}
-                            id={demande._id}
-                            setDemande={setDemande}
-                          />
-                        </div>
+                          id={demande._id}
+                          setDemande={setDemande}
+                        />
                       </div>
                     </div>
                   </td>
